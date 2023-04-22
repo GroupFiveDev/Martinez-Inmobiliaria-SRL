@@ -8,7 +8,13 @@ import {
 export default function NavBar() {
   return (
     <nav class="bg-[#368a8c]">
-      <div className='flex absolute left-5 gap-5 mt-4'>
+      {/* redes */}
+      <div className='absolute left-5 gap-5 mt-4 flex md:hidden items-center'>
+        <img src={logo} class="h-10" alt="inmobiliaria_Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TyJ Inmobiliaria</span>
+      </div>
+      <div className='absolute left-5 gap-5 mt-4 hidden md:flex'>
+
         <AiOutlineInstagram size={"1.5rem"} />
         <AiOutlineTwitter size={"1.5rem"} />
         <AiOutlineWhatsApp size={"1.5rem"} />
@@ -16,7 +22,7 @@ export default function NavBar() {
       <div class=" flex flex-wrap items-center justify-end p-4 w-full" >
 
         {/* responsive */}
-        <div class="flex md:order-2 md:hidden">
+        <div class="flex md:order-2 md:hidden mr-3">
           <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-search" aria-expanded="false">
             <span class="sr-only">Open menu</span>
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
@@ -46,7 +52,7 @@ export default function NavBar() {
               </a>
             </li>
             <li class="hidden md:flex h-fit">
-              <img src={logo} class="mr-3 w-40 h-40" alt="Flowbite Logo" />
+              <img src={logo} class="mr-3 w-40 h-40" alt="inmobiliaria_Logo" />
             </li>
             <li className='h-fit'>
               <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
