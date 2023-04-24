@@ -1,7 +1,6 @@
 import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
 import {
   AiOutlineInstagram,
-  AiOutlineTwitter,
   AiOutlineWhatsApp
 } from 'react-icons/ai';
 
@@ -17,8 +16,9 @@ export default function Footer() {
             <div className='flex flex-col items-center mb-6'>
               <h2 className="text-sm font-semibold text-gray-900 uppercase mb-2">Seguinos</h2>
               <div className="flex space-x-6 sm:justify-center">
-                <AiOutlineInstagram className='w-7 h-7 hover:cursor-pointer' />
-                <AiOutlineTwitter className='w-7 h-7 hover:cursor-pointer' />
+                <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
+                  <AiOutlineInstagram className='w-7 h-7 hover:cursor-pointer' />
+                </a>
                 <a href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
                   <AiOutlineWhatsApp className='w-7 h-7 hover:cursor-pointer' />
                 </a>
@@ -27,7 +27,7 @@ export default function Footer() {
 
             <div className="flex justify-center md:mr-10 md:flex-col gap-8 sm:grid-cols-3">
               <div>
-                <h2 className="hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase" onClick={() => window.scrollTo({ top: document.getElementById("campos"), behavior: "smooth" })} >Campos</h2>
+                <a className="hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase" href="#campos" >Campos</a>
               </div>
               <div>
                 <h2 className="hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase">Nosotros</h2>

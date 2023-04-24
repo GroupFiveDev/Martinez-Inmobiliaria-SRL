@@ -1,21 +1,16 @@
 import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
 import {
   AiOutlineInstagram,
-  AiOutlineTwitter,
   AiOutlineWhatsApp
 } from 'react-icons/ai';
 
 export default function NavBar() {
   return (
     <nav className="bg-[#368a8c]">
-      {/* 
- llamanos 
- <a class="ast-custom-button-link" href="tel:+54%209%203413%2059-0101" target="_blank"><div class="ast-custom-button">LLAMANOS</div></a>
- */}
       <div className='absolute left-5 gap-5 mt-4 hidden md:flex'>
-
-        <AiOutlineInstagram size={"1.5rem"} />
-        <AiOutlineTwitter size={"1.5rem"} />
+        <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
+          <AiOutlineInstagram size={"1.5rem"} />
+        </a>
         <a href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
           <AiOutlineWhatsApp size={"1.5rem"} />
         </a>
@@ -44,13 +39,13 @@ export default function NavBar() {
               <div id="dropdownNavbar" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100">Propiedad Urbana</a>
+                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Propiedad Urbana</a>
                   </li>
                 </ul>
               </div>
             </li>
             <li className='h-fit'>
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+              <a href='#campos' className=" hover:cursor-pointer block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
                 Campos
               </a>
             </li>
@@ -60,7 +55,6 @@ export default function NavBar() {
             <li className='h-fit'>
               <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
                 Nosotros
-
               </a>
             </li>
             <li className='h-fit'>
@@ -69,7 +63,7 @@ export default function NavBar() {
               </a>
             </li>
             <li className='h-fit'>
-              <a href="tel:2473509269" target="_blank" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+              <a href="tel:2473509269" target="_blank" className="md:hidden block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
                 Llamanos
               </a>
             </li>
@@ -78,7 +72,7 @@ export default function NavBar() {
         </div>
 
       </div>
-    </nav>
+    </nav >
 
 
 
