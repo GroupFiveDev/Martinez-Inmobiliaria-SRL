@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
 import {
   AiOutlineInstagram,
@@ -9,18 +10,19 @@ export default function NavBar() {
     <nav className="bg-[#368a8c]">
       <div className='absolute left-5 gap-5 mt-4 hidden md:flex'>
         <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
-          <AiOutlineInstagram size={"1.5rem"} />
+          <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' />
         </a>
         <a href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
-          <AiOutlineWhatsApp size={"1.5rem"} />
+          <AiOutlineWhatsApp size={"1.5rem"} className='hover:opacity-50' />
         </a>
       </div>
-      <div className=" flex flex-wrap items-center justify-end p-4 w-full" >
+      <div className="flex flex-wrap items-center justify-end p-4 w-full" >
 
         {/* responsive */}
         <div className="flex w-full justify-between items-center md:order-2 md:hidden">
-          <img src={logo} className="w-40" alt="inmobiliaria_Logo" />
-
+          <Link to="/">
+            <img src={logo} className="w-40" alt="inmobiliaria_Logo" />
+          </Link>
           <button data-collapse-toggle="navbar-search" type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-search" aria-expanded="false">
             <span className="sr-only">Open menu</span>
             <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
@@ -30,6 +32,11 @@ export default function NavBar() {
         {/* pc */}
         <div className="items-center justify-center hidden w-full md:flex" id="navbar-search">
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#368a8c] md:items-center">
+            <li className='h-fit'>
+              <Link to="/" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+                Inicio
+              </Link>
+            </li>
             <li className='hidden md:flex h-fit'>
               <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">
                 Comprar
@@ -50,17 +57,19 @@ export default function NavBar() {
               </a>
             </li>
             <li className="hidden md:flex h-fit">
-              <img src={logo} className="w-40 h-40" alt="inmobiliaria_Logo" />
+              <Link to="/">
+                <img src={logo} className="w-40 h-40 hover:opacity-50" alt="inmobiliaria_Logo" />
+              </Link>
             </li>
             <li className='h-fit'>
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+              <Link to="/nosotros" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
                 Nosotros
-              </a>
+              </Link>
             </li>
             <li className='h-fit'>
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+              <Link to="/contacto" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
                 Contacto
-              </a>
+              </Link>
             </li>
             <li className='h-fit'>
               <a href="tel:2473509269" target="_blank" className="md:hidden block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
