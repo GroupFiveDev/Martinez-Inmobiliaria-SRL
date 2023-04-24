@@ -3,6 +3,7 @@ import Card from "./Card"
 
 let cards = [
   {
+    id: 1,
     titulo: "Campo Los Alamos",
     descripcion: "Hermoso campo con amplia vegetación y zona de pastoreo para ganado.",
     hectareas: 1000,
@@ -11,6 +12,7 @@ let cards = [
     ubicacion: "Provincia de Buenos Aires"
   },
   {
+    id: 2,
     titulo: "Campo La Esperanza",
     descripcion: "Campo ideal para agricultura y ganadería, con amplio terreno y fértil suelo.",
     hectareas: 800,
@@ -19,6 +21,7 @@ let cards = [
     ubicacion: "Provincia de Córdoba"
   },
   {
+    id: 3,
     titulo: "Estancia San Martin",
     descripcion: "Gran estancia con vistas panorámicas de las montañas y amplio terreno para caza y pesca.",
     hectareas: 5000,
@@ -27,6 +30,7 @@ let cards = [
     ubicacion: "Provincia de Chubut"
   },
   {
+    id: 4,
     titulo: "Campo El Zorzal",
     descripcion: "Hermoso campo con amplia vegetación y zona de pastoreo para ganado.",
     hectareas: 1200,
@@ -35,6 +39,7 @@ let cards = [
     ubicacion: "Provincia de Buenos Aires"
   },
   {
+    id: 5,
     titulo: "Campo El Potrerillo",
     descripcion: "Campo ideal para agricultura y ganadería, con amplio terreno y fértil suelo.",
     hectareas: 600,
@@ -43,6 +48,7 @@ let cards = [
     ubicacion: "Provincia de San Luis"
   },
   {
+    id: 6,
     titulo: "Estancia Los Tamarindos",
     descripcion: "Gran estancia con vistas panorámicas de las montañas y amplio terreno para caza y pesca.",
     hectareas: 4500,
@@ -51,6 +57,7 @@ let cards = [
     ubicacion: "Provincia de Río Negro"
   },
   {
+    id: 7,
     titulo: "Campo La Argentina",
     descripcion: "Hermoso campo con amplia vegetación y zona de pastoreo para ganado.",
     hectareas: 900,
@@ -59,6 +66,7 @@ let cards = [
     ubicacion: "Provincia de Buenos Aires"
   },
   {
+    id: 8,
     titulo: "Campo El Recuerdo",
     descripcion: "Campo ideal para agricultura y ganadería, con amplio terreno y fértil suelo.",
     hectareas: 700,
@@ -67,6 +75,7 @@ let cards = [
     ubicacion: "Provincia de Córdoba"
   },
   {
+    id: 9,
     titulo: "Estancia Los Corrales",
     descripcion: "Gran estancia con vistas panorámicas de las montañas y amplio terreno para caza y pesca.",
     hectareas: 6000,
@@ -75,6 +84,7 @@ let cards = [
     ubicacion: "Provincia de Neuquén"
   },
   {
+    id: 10,
     titulo: "Campo La Providencia",
     descripcion: "Hermoso campo con amplia vegetación y zona de pastoreo para ganado.",
     hectareas: 1100,
@@ -88,7 +98,7 @@ export default function CardList() {
     <>
       <div class="flex flex-wrap justify-center">
         {cards.map((card) => (
-          <Card titulo={card.titulo} descripcion={card.descripcion} hectareas={card.hectareas} lotes={card.lotes} ubicacion={card.ubicacion} />
+          <Card id={card.id} titulo={card.titulo} descripcion={card.descripcion} hectareas={card.hectareas} lotes={card.lotes} ubicacion={card.ubicacion} />
         ))}
       </div>
     </>

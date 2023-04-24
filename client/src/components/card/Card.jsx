@@ -1,11 +1,12 @@
-export default function Card({titulo, descripcion, hectareas, lotes, ubicacion}) {
+import { Link } from 'react-router-dom';
+export default function Card({id, titulo, descripcion, hectareas, lotes, ubicacion}) {
     return (
       <>
         
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-3">
+<Link to={`/card/${id}`}>
         <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg" alt="" />
-    </a>
+    </Link>
     <div class="p-5">
         <a href="#">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{titulo}</h5>
