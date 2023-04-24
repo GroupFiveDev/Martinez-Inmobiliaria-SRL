@@ -15,7 +15,7 @@ export default function Footer() {
               <img src={logo} alt="TyJ_Logo" className='w-60 h-60 md:w-40 md:h-40 hover:cursor-pointer hover:opacity-50' onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} />
             </div>
             <div className='flex flex-col items-center mb-6'>
-              <h2 className="text-sm font-semibold text-gray-900 uppercase mb-2">Seguinos</h2>
+              <h2 className="text-sm font-semibold text-gray-900 uppercase mb-2 font-Montserrat">Seguinos</h2>
               <div className="flex space-x-6 sm:justify-center">
                 <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
                   <AiOutlineInstagram className='w-7 h-7 hover:cursor-pointer hover:opacity-50' />
@@ -28,16 +28,16 @@ export default function Footer() {
 
             <div className="flex justify-center md:mr-10 md:flex-col gap-8 sm:grid-cols-3">
               <div>
-                <a className="hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase" href="#campos" >Campos</a>
+                <a className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase" href="#campos" >Campos</a>
               </div>
               <div>
                 <Link to="/nosotros">
-                  <h2 className="hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase">Nosotros</h2>
+                  <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase">Nosotros</h2>
                 </Link>
               </div>
               <div>
                 <Link to="/contacto">
-                  <h2 className="hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase">Contacto</h2>
+                  <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase">Contacto</h2>
                 </Link>
               </div>
             </div>
