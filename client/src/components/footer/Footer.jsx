@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="w-full">
           <div className="md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
-              <img src={logo} alt="TyJ_Logo" className='w-60 h-60 md:w-40 md:h-40 hover:cursor-pointer hover:opacity-50' onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} />
+              <img src={logo} alt="TyJ_Logo" className='w-60 h-60 md:w-40 md:h-40 hover:cursor-pointer hover:opacity-50 scale-150' onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} />
             </div>
             <div className='flex flex-col items-center mb-6'>
               <h2 className="text-sm font-semibold text-gray-900 uppercase mb-2 font-Montserrat">Seguinos</h2>
