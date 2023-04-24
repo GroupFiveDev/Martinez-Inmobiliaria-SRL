@@ -88,7 +88,7 @@ let cards = [
 export default function CardList() {
   return (
     <>
-      <div className="w-full flex flex-col md:flex-row md:justify-between items-center md:items-start">
+      <div className="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center md:items-center">
         <Filter />
         <Pagination />
       </div>

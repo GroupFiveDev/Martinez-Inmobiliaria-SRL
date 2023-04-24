@@ -8,22 +8,25 @@ import {
 export default function NavBar() {
   return (
     <nav className="bg-[#368a8c]">
-      {/* redes */}
-      <div className='absolute left-5 gap-5 mt-4 flex md:hidden items-center'>
-        <img src={logo} className="h-10" alt="inmobiliaria_Logo" />
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TyJ Inmobiliaria</span>
-      </div>
+      {/* 
+ llamanos 
+ <a class="ast-custom-button-link" href="tel:+54%209%203413%2059-0101" target="_blank"><div class="ast-custom-button">LLAMANOS</div></a>
+ */}
       <div className='absolute left-5 gap-5 mt-4 hidden md:flex'>
 
         <AiOutlineInstagram size={"1.5rem"} />
         <AiOutlineTwitter size={"1.5rem"} />
-        <AiOutlineWhatsApp size={"1.5rem"} />
+        <a href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
+          <AiOutlineWhatsApp size={"1.5rem"} />
+        </a>
       </div>
       <div className=" flex flex-wrap items-center justify-end p-4 w-full" >
 
         {/* responsive */}
-        <div className="flex md:order-2 md:hidden mr-3">
-          <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-search" aria-expanded="false">
+        <div className="flex w-full justify-between items-center md:order-2 md:hidden">
+          <img src={logo} className="w-40" alt="inmobiliaria_Logo" />
+
+          <button data-collapse-toggle="navbar-search" type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-search" aria-expanded="false">
             <span className="sr-only">Open menu</span>
             <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
           </button>
@@ -52,7 +55,7 @@ export default function NavBar() {
               </a>
             </li>
             <li className="hidden md:flex h-fit">
-              <img src={logo} className="mr-3 w-40 h-40" alt="inmobiliaria_Logo" />
+              <img src={logo} className="w-40 h-40" alt="inmobiliaria_Logo" />
             </li>
             <li className='h-fit'>
               <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
@@ -63,6 +66,11 @@ export default function NavBar() {
             <li className='h-fit'>
               <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
                 Contacto
+              </a>
+            </li>
+            <li className='h-fit'>
+              <a href="tel:+2473400240" target="_blank" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+                Llamanos
               </a>
             </li>
           </ul>

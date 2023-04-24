@@ -12,18 +12,20 @@ export default function Footer() {
         <div className="w-full">
           <div className="md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
-              <img src={logo} alt="TyJ_Logo" className='mr-3 h-8 w-40 hover:cursor-pointer' onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} />
+              <img src={logo} alt="TyJ_Logo" className='w-60 h-60 md:w-40 md:h-40 hover:cursor-pointer' onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} />
             </div>
             <div className='flex flex-col items-center mb-6'>
               <h2 className="text-sm font-semibold text-gray-900 uppercase mb-2">Seguinos</h2>
               <div className="flex space-x-6 sm:justify-center">
-                <AiOutlineInstagram className='w-5 h-5 hover:cursor-pointer' />
-                <AiOutlineTwitter className='w-5 h-5 hover:cursor-pointer' />
-                <AiOutlineWhatsApp className='w-5 h-5 hover:cursor-pointer' />
+                <AiOutlineInstagram className='w-7 h-7 hover:cursor-pointer' />
+                <AiOutlineTwitter className='w-7 h-7 hover:cursor-pointer' />
+                <a href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
+                  <AiOutlineWhatsApp className='w-7 h-7 hover:cursor-pointer' />
+                </a>
               </div>
             </div>
 
-            <div className="flex justify-center md:flex-col gap-8 sm:gap-6 sm:grid-cols-3">
+            <div className="flex justify-center md:mr-10 md:flex-col gap-8 sm:grid-cols-3">
               <div>
                 <h2 className="hover:cursor-pointer text-sm font-semibold text-gray-900 uppercase" onClick={() => window.scrollTo({ top: document.getElementById("campos"), behavior: "smooth" })} >Campos</h2>
               </div>
