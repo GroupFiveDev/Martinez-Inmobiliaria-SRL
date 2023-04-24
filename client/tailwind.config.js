@@ -23,6 +23,7 @@ export default {
       },
     },
     fontFamily: {
+      Montserrat: "Montserrat",
       body: [
         "Inter",
         "ui-sans-serif",

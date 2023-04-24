@@ -1,3 +1,5 @@
+import Filter from "../filter/Filter"
+import Pagination from "../pagination/Pagination"
 import Card from "./Card"
 
 
@@ -96,9 +98,13 @@ let cards = [
 export default function CardList() {
   return (
     <>
-      <div class="flex flex-wrap justify-center">
-        {cards.map((card) => (
-          <Card id={card.id} titulo={card.titulo} descripcion={card.descripcion} hectareas={card.hectareas} lotes={card.lotes} ubicacion={card.ubicacion} />
+      <div className="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center md:items-center">
+        <Filter />
+        <Pagination />
+      </div>
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2">
+        {cards.map((card, i) => (
+          <Card key={i} id={card.id} titulo={card.titulo} descripcion={card.descripcion} hectareas={card.hectareas} lotes={card.lotes} ubicacion={card.ubicacion} />
         ))}
       </div>
     </>
