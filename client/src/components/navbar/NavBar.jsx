@@ -4,8 +4,11 @@ import {
   AiOutlineInstagram,
   AiOutlineWhatsApp
 } from 'react-icons/ai';
+import { useState } from 'react';
 
 export default function NavBar() {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <nav className="bg-[#368a8c]">
       <div className='absolute left-5 gap-5 mt-4 hidden md:flex'>
@@ -23,17 +26,16 @@ export default function NavBar() {
           <Link to="/">
             <img src={logo} className="w-40 scale-150" alt="inmobiliaria_Logo" />
           </Link>
-          <button data-collapse-toggle="navbar-search" type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-search" aria-expanded="false">
-            <span className="sr-only">Open menu</span>
+          <button onClick={() => setIsOpen(!isOpen)} type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
             <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
           </button>
         </div>
 
         {/* pc */}
-        <div className="items-center justify-center hidden md:h-fit w-full md:flex z-30" id="navbar-search">
+        <div className={`items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30`} >
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#368a8c] md:items-center">
             <li className='h-fit'>
-              <Link to="/" className="block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-black md:p-0">
+              <Link to="/" onClick={() => setIsOpen(!isOpen)} className="block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-black md:p-0">
                 Inicio
               </Link>
             </li>
@@ -61,22 +63,22 @@ export default function NavBar() {
               </div>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to="#" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to="#" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Campos
               </Link>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to="#" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to="#" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Lotes
               </Link>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to="#" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to="#" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Casas
               </Link>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to="#" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to="#" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Departamentos
               </Link>
             </li>
@@ -86,17 +88,17 @@ export default function NavBar() {
               </Link>
             </li>
             <li className='h-fit'>
-              <Link to="/nosotros" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to="/nosotros" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Nosotros
               </Link>
             </li>
             <li className='h-fit'>
-              <Link to="/contacto" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to="/contacto" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Contacto
               </Link>
             </li>
             <li className='h-fit'>
-              <a href="tel:2473509269" target="_blank" className="md:hidden block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <a href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Llamanos
               </a>
             </li>

@@ -103,7 +103,7 @@ export default function CardList() {
         <Pagination />
       </div>
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2">
-        {cards.map((card, i) => (
+        {cards.slice(0, 6).map((card, i) => (
           <Card key={i} id={card.id} titulo={card.titulo} descripcion={card.descripcion} hectareas={card.hectareas} lotes={card.lotes} ubicacion={card.ubicacion} />
         ))}
       </div>
