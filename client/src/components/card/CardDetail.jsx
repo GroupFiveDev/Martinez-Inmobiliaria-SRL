@@ -1,4 +1,8 @@
 import { useParams } from "react-router-dom";
+import Instagram from "../contact/contacInfo/Instagram";
+import Location from "../contact/contacInfo/Location";
+import Phone from "../contact/contacInfo/Phone";
+import WhatsApp from "../contact/contacInfo/WhatsApp";
 let cards = [
   {
     id: 1,
@@ -153,7 +157,10 @@ export default function CardDetail() {
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{card.descripcion}</p>
     </div>
     <div class="m-3">
-      <h2>Contacto</h2>
+      <Instagram/>
+      <Location/>
+      <Phone/>
+      <WhatsApp/>
     </div>
     </div>
     <div>
