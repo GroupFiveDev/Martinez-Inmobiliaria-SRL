@@ -7,6 +7,15 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        movimiento: "movimiento 900ms ease 1",
+      },
+      keyframes: {
+        movimiento: {
+          "0%": { opacity: 0, top: 0 },
+          "100%": { opacity: 1, top: "125px" },
+        },
+      },
       colors: {
         primary: {
           50: "#eff6ff",

@@ -24,7 +24,7 @@ export default function NavBar() {
           <AiOutlineWhatsApp size={"1.5rem"} className='hover:opacity-50' color='white' />
         </a>
       </div>
-      <div className="flex flex-wrap items-center justify-end p-4 w-full" >
+      <div className="relative flex flex-wrap items-center justify-end p-4 w-full" >
 
         {/* responsive */}
         <div className="flex w-full justify-between items-center md:order-2 md:hidden">
@@ -37,7 +37,7 @@ export default function NavBar() {
         </div>
 
         {/* pc */}
-        <div className={`items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30`} >
+        <div className={`animate-movimiento max-[768px]:absolute max-[768px]:top-[125px] max-[768px]:lef-0 max-[768px]:right-0 items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30`} >
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#368a8c] md:items-center">
             <li className='h-fit'>
               <Link to="/" onClick={() => setIsOpen(!isOpen)} className="text-lg block py-2 pl-3 pr-4 text-black md:text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-black md:p-0">
