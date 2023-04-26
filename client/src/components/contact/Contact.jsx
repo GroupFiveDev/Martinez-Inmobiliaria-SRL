@@ -1,11 +1,4 @@
-import {
-  AiFillInstagram,
-  AiOutlineWhatsApp,
-  AiTwotonePhone
-} from 'react-icons/ai';
-import {
-  HiLocationMarker
-} from 'react-icons/hi';
+import oficina_afuera from '../../assets/oficina/oficina_afuera.jpeg'
 import WhatsApp from './contacInfo/WhatsApp';
 import Location from './contacInfo/Location';
 import Phone from './contacInfo/Phone';
@@ -28,17 +21,10 @@ export default function Contact() {
         </div>
         <div className='w-full flex flex-col md:flex-row'>
           <div className='bg-blue-500 w-full md:w-[50%]'>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d206.9860972547997!2d-61.099614400672394!3d-33.89538231200112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1682359002712!5m2!1ses!2sar" className='w-full h-full' allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d413.97177353734!2d-61.099512346626284!3d-33.89546903390623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b811bbc706b3b1%3A0xe5934e09909f2d36!2sT.Martinez%20%26%20J.Nessi!5e0!3m2!1ses!2sar!4v1682378252761!5m2!1ses!2sar" className='w-full h-96 md:h-full' allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <div className='bg-purple-500 w-full md:w-[50%]'>
-            <h1>Imagenes de la oficina</h1>
-            <h1>Imagenes de la oficina</h1>
-            <h1>Imagenes de la oficina</h1>
-            <h1>Imagenes de la oficina</h1>
-            <h1>Imagenes de la oficina</h1>
-            <h1>Imagenes de la oficina</h1>
-            <h1>Imagenes de la oficina</h1>
-            <h1>Imagenes de la oficina</h1>
+            <img src={oficina_afuera} alt="oficina_afuera" className='w-full h-full' />
           </div>
         </div>
       </div >

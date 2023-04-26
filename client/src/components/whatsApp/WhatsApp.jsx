@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 
 export default function WhatsApp() {
   const location = useLocation()
-  console.log(location);
   return (
     <>
       <div className={`fixed bottom-4 left-4 bg-[#2d6c6d] rounded-full p-2 hover:cursor-pointer ${location.pathname === "/contacto" ? "hidden" : ""}`}>
