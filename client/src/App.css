@@ -33,3 +33,15 @@
   width: 100%;
   height: 100vh;
 }
+
+.div-image-home {
+  position: relative;
+  background: url("/src/assets/depto/1855605248.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
