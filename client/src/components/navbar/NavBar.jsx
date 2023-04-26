@@ -30,31 +30,55 @@ export default function NavBar() {
         </div>
 
         {/* pc */}
-        <div className="items-center justify-center hidden w-full md:flex" id="navbar-search">
+        <div className="items-center justify-center hidden md:h-fit w-full md:flex z-30" id="navbar-search">
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#368a8c] md:items-center">
             <li className='h-fit'>
               <Link to="/" className="block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-black md:p-0">
                 Inicio
               </Link>
             </li>
-            {/* <li className='hidden md:flex h-fit'>
-              <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-black md:p-0 md:w-auto">
+            <li className='hidden md:flex h-fit'>
+              <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-black md:p-0 md:w-auto">
                 Comprar
                 <svg className="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
               </button>
-              <div id="dropdownNavbar" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+              <div id="dropdownNavbar" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Propiedad Urbana</a>
+                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Campos</a>
+                  </li>
+                  <li>
+                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Lotes</a>
+                  </li>
+                  <li>
+                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Casas</a>
+                  </li>
+                  <li>
+                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Departamentos</a>
                   </li>
                 </ul>
               </div>
-            </li> */}
-            <li className='h-fit'>
-              <a href='#campos' className=" hover:cursor-pointer block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+            </li>
+            <li className='h-fit md:hidden'>
+              <Link to="#" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Campos
-              </a>
+              </Link>
+            </li>
+            <li className='h-fit md:hidden'>
+              <Link to="#" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+                Lotes
+              </Link>
+            </li>
+            <li className='h-fit md:hidden'>
+              <Link to="#" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+                Casas
+              </Link>
+            </li>
+            <li className='h-fit md:hidden'>
+              <Link to="#" className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+                Departamentos
+              </Link>
             </li>
             <li className="hidden md:flex h-fit">
               <Link to="/">
@@ -77,7 +101,6 @@ export default function NavBar() {
               </a>
             </li>
           </ul>
-
         </div>
 
       </div>
