@@ -4,7 +4,7 @@ export default function About() {
     <>
       {/* Nosotros */}
       <div className="relative h-[500px] div-about flex justify-center items-center">
-        <h1 class="text-6xl text-white flex">Nosotros</h1>
+        <h1 class="text-6xl text-white flex font-Montserrat">Nosotros</h1>
       </div>
 
       {/* Info */}
@@ -17,8 +17,8 @@ export default function About() {
       </div>
 
       {/* Nuestros valores */}
-      <div className="w-full flex flex-col items-center justify-center bg-[#368a8c]">
-        <h1 class="text-6xl text-black flex text-center my-10">Nuestros valores</h1>
+      <div className="w-full flex flex-col items-center justify-center bg-[#368a8c] pb-5">
+        <h1 class="text-6xl text-gray-600 flex text-center my-10 font-Montserrat">Nuestros valores</h1>
         <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
           <div className="flex flex-col items-center text-center w-80">
@@ -27,7 +27,7 @@ export default function About() {
             </div>
 
             <div className="mt-3">
-              <p class="text-2xl text-gray-900 ">VOCACIÓN DE SERVICIO</p>
+              <p class="text-2xl text-gray-900 font-Montserrat">VOCACIÓN DE SERVICIO</p>
               <p class="text-md mt-4 text-gray-900 ">Siempre estamos al servicio del cliente generando soluciones para cada necesidad.</p>
             </div>
           </div>
@@ -38,7 +38,7 @@ export default function About() {
             </div>
 
             <div className="mt-3">
-              <p class="text-2xl text-gray-900 ">SIMPLICIDAD</p>
+              <p class="text-2xl text-gray-900 font-Montserrat">SIMPLICIDAD</p>
               <p class="text-md mt-4 text-gray-900 ">Creemos que si el proceso es simple, es doblemente bueno.</p>
             </div>
           </div>
@@ -49,7 +49,7 @@ export default function About() {
             </div>
 
             <div className="mt-3">
-              <p class="text-2xl text-gray-900 ">COMPROMISO</p>
+              <p class="text-2xl text-gray-900 font-Montserrat">COMPROMISO</p>
               <p class="text-md mt-4 text-gray-900 ">Tenemos la capacidad de sentir los objetivos del cliente como objetivos propios y eso nos facilita entender sus motivaciones y objetivos.</p>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function About() {
             </div>
 
             <div className="mt-3">
-              <p class="text-2xl text-gray-900 ">ESTAR MOTIVADOS</p>
+              <p class="text-2xl text-gray-900 font-Montserrat">ESTAR MOTIVADOS</p>
               <p class="text-md mt-4 text-gray-900 ">Nos mantiene decididos y ágiles.</p>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function About() {
             </div>
 
             <div className="mt-3">
-              <p class="text-2xl text-gray-900 ">LOGROS COMPARTIDOS</p>
+              <p class="text-2xl text-gray-900 font-Montserrat">LOGROS COMPARTIDOS</p>
               <p class="text-md mt-4 text-gray-900 ">Individualmente somos buenos, pero juntos somos geniales.</p>
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function About() {
             </div>
 
             <div className="mt-3">
-              <p class="text-2xl text-gray-900 ">CONOCIMIENTO</p>
+              <p class="text-2xl text-gray-900 font-Montserrat">CONOCIMIENTO</p>
               <p class="text-md mt-4 text-gray-900 ">Informamos el paso a paso en cada tipo de proceso.</p>
             </div>
           </div>
@@ -96,9 +96,9 @@ export default function About() {
         <div className="como md:w-[50%] h-full">
         </div>
 
-        <div className="md:w-[50%] bg-[#51535b] h-full pl-5">
-          <h1 class="text-6xl text-black flex text-center my-10">¿CÓMO?</h1>
-          <p class="text-2xl text-gray-900 ">Tratamos a cada cliente de forma personalizada para que tenga un trato exclusivo generando emociones positivas, manteniendo el foco en mejorar su calidad de vida.
+        <div className="md:w-[50%] bg-[#51535b] h-full pl-5 py-5">
+          <h1 class="text-4xl text-white flex text-center my-10 font-Montserrat">¿CÓMO?</h1>
+          <p class="text-lg text-white ">Tratamos a cada cliente de forma personalizada para que tenga un trato exclusivo generando emociones positivas, manteniendo el foco en mejorar su calidad de vida.
             <br />
             <br />
             En primer lugar entendiendo sus necesidades, y luego elaborando planes de trabajo conjunto de forma clara, para garantizar que todo lo que se promete se realizará en tiempo y forma,  trabajando de forma incansable, con dedicación y una verdadera pasión por el servicio al cliente para cumplir nuestro compromiso asumido.</p>

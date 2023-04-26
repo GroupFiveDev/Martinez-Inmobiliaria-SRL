@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
 import {
   AiOutlineInstagram,
@@ -7,7 +7,12 @@ import {
 import { useState } from 'react';
 
 export default function NavBar() {
+  const { pathname } = useLocation()
+  const history = useHistory()
   const [isOpen, setIsOpen] = useState(false)
+
+  const title = document.getElementById("title")
+  title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
 
   return (
     <nav className="bg-[#368a8c]">
@@ -35,7 +40,7 @@ export default function NavBar() {
         <div className={`items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30`} >
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#368a8c] md:items-center">
             <li className='h-fit'>
-              <Link to="/" onClick={() => setIsOpen(!isOpen)} className="block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-black md:p-0">
+              <Link to="/" onClick={() => setIsOpen(!isOpen)} className="text-lg block py-2 pl-3 pr-4 text-black md:text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-black md:p-0">
                 Inicio
               </Link>
             </li>
@@ -48,57 +53,57 @@ export default function NavBar() {
               <div id="dropdownNavbar" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Campos</a>
+                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Campos</a>
                   </li>
                   <li>
-                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Lotes</a>
+                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Lotes</a>
                   </li>
                   <li>
-                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Casas</a>
+                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Casas</a>
                   </li>
                   <li>
-                    <a href="#campos" className="block px-4 py-2 hover:bg-gray-100">Departamentos</a>
+                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Departamentos</a>
                   </li>
                 </ul>
               </div>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to="#" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Campos
               </Link>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to="#" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Lotes
               </Link>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to="#" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Casas
               </Link>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to="#" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Departamentos
               </Link>
             </li>
             <li className="hidden md:flex h-fit">
-              <Link to="/">
+              <Link to="/" className="mx-5">
                 <img src={logo} className="w-40 h-40 hover:opacity-50 scale-150" alt="inmobiliaria_Logo" />
               </Link>
             </li>
             <li className='h-fit'>
-              <Link to="/nosotros" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to="/Nosotros" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Nosotros
               </Link>
             </li>
             <li className='h-fit'>
-              <Link to="/contacto" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <Link to="/Contacto" onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Contacto
               </Link>
             </li>
             <li className='h-fit'>
-              <a href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-3 pr-4 text-black md:text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <a href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Llamanos
               </a>
             </li>
