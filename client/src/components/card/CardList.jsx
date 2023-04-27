@@ -10,8 +10,7 @@ export default function CardList() {
   useEffect(() => {
     (async function () {
       const fieldsDB = await axios.get("/fields")
-      const { data } = fieldsDB
-      setFields(data)
+      setFields(fieldsDB.data)
     })()
   }, [])
 
@@ -29,6 +28,9 @@ export default function CardList() {
         ))} */}
         {console.log("Typeof fields: ", typeof fields)}
         {console.log("fields: ", fields)}
+        {
+          fields.length && console.log("fields con length > 0 ", fields)
+        }
       </div>
     </>
   )
