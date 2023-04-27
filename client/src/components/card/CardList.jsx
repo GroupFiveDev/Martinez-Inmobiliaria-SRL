@@ -9,7 +9,7 @@ export default function CardList() {
 
   useEffect(() => {
     (async function () {
-      const fieldsDB = await axios.get("/fields")
+      const fieldsDB = await axios.get("https://inmobiliaria-martinez.onrender.com/fields")
       setFields(fieldsDB.data)
     })()
   }, [])
