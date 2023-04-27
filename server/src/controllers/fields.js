@@ -108,7 +108,8 @@ async function createFields() {
     }
 
     await Field.bulkCreate(fields);
-    return "Campos creados";
+    const fieldDB2 = await Field.findAll();
+    return fieldDB2;
   } catch (error) {
     return error;
   }
