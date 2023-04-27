@@ -9,7 +9,7 @@ export default function CardList() {
 
   useEffect(() => {
     (async function () {
-      const fieldsDB = await axios.get("http://localhost:3001/fields")
+      const fieldsDB = await axios.get("/fields")
       setFields(fieldsDB)
     })()
   }, [])
