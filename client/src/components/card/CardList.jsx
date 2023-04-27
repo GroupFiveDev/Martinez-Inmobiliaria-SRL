@@ -18,7 +18,7 @@ export default function CardList() {
     <>
       <div className="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center md:items-center">
         <Filter />
-        <div className={`${fields?.data?.length > 5 ? "" : "hidden"}`}>
+        <div className={`${fields?.length > 5 ? "" : "hidden"}`}>
           <Pagination />
         </div>
       </div>
