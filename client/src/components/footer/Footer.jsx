@@ -28,18 +28,10 @@ export default function Footer() {
 
             <div className="flex justify-center md:mr-10 md:flex gap-8 sm:grid-cols-3">
               <div className='flex flex-col gap-5 text-center'>
-                <a className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" >Campos</a>
-                <a href="#campos" onClick={() => history.push("/")}>
-                  <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase">Departamentos</h2>
-                </a>
-                <a href="#campos" onClick={() => history.push("/")}>
-                  <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase">Casas</h2>
-                </a>
-              </div>
-              <div className='flex flex-col gap-5 text-center'>
                 <Link to="/">
                   <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase">Inicio</h2>
                 </Link>
+                <a className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" >Campos</a>
                 <Link to="/nosotros">
                   <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase">Nosotros</h2>
                 </Link>

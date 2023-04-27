@@ -1,9 +1,6 @@
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
-import {
-  AiOutlineInstagram,
-  AiOutlineWhatsApp
-} from 'react-icons/ai';
+import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
 import { useState } from 'react';
 
 export default function NavBar() {
@@ -55,36 +52,12 @@ export default function NavBar() {
                   <li>
                     <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Campos</a>
                   </li>
-                  <li>
-                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Lotes</a>
-                  </li>
-                  <li>
-                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Casas</a>
-                  </li>
-                  <li>
-                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Departamentos</a>
-                  </li>
                 </ul>
               </div>
             </li>
             <li className='h-fit md:hidden'>
               <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Campos
-              </Link>
-            </li>
-            <li className='h-fit md:hidden'>
-              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
-                Lotes
-              </Link>
-            </li>
-            <li className='h-fit md:hidden'>
-              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
-                Casas
-              </Link>
-            </li>
-            <li className='h-fit md:hidden'>
-              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
-                Departamentos
               </Link>
             </li>
             <li className="hidden md:flex h-fit">
