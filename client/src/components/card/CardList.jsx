@@ -23,14 +23,10 @@ export default function CardList() {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2">
-        {/* {fields && fields.length && fields.map((card, i) => (
+        {fields && fields.length && fields.map((card, i) => (
           <Card key={i} id={card.id} type={card.type} titulo={card.title} descripcion={card.description} hectareas={card.hectares} lotes={card.lots} ubicacion={card.location} terrain={card.terrain} price={card.price} images={card.images} />
-        ))} */}
-        {console.log("Typeof fields: ", typeof fields)}
-        {console.log("fields: ", fields)}
-        {
-          fields.length && console.log("fields con length > 0 ", fields)
-        }
+        ))}
+
       </div>
     </>
   )
