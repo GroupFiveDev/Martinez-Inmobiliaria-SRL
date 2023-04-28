@@ -1,5 +1,6 @@
 const { Field } = require("../db.js");
 
+// Solamente para ambiente de desarrollo
 async function createFields() {
   const fields = [
     {
@@ -114,5 +115,18 @@ async function createFields() {
     return error;
   }
 }
+// ************************************
 
-module.exports = { createFields };
+async function deleteField(id) {
+  try {
+    const deleted = await Field.destroy({
+      where: { id },
+    });
+
+    return deleted === 1 ? "Field delete." : "Error";
+  } catch (error) {
+    return error;
+  }
+}
+
+module.exports = { createFields, deleteField };

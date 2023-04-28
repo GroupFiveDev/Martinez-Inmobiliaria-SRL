@@ -6,13 +6,14 @@ import axios from 'axios'
 
 export default function CardList() {
   const [fields, setFields] = useState([])
+  const [boolean, setBoolean] = useState(false)
 
   useEffect(() => {
     (async function () {
-      const fieldsDB = await axios.get("https://inmobiliaria-martinez.onrender.com/fields")
+      const fieldsDB = await axios.get("/fields")
       setFields(fieldsDB.data)
     })()
-  }, [])
+  }, [boolean])
 
   return (
     <>
@@ -23,10 +24,10 @@ export default function CardList() {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2">
-        {fields && fields.length && fields.map((card, i) => (
-          <Card key={i} id={card.id} type={card.type} titulo={card.title} descripcion={card.description} hectareas={card.hectares} lotes={card.lots} ubicacion={card.location} terrain={card.terrain} price={card.price} images={card.images} />
+        {fields.length && fields.map((card, i) => (
+          <Card key={i} id={card.id} type={card.type} titulo={card.title} descripcion={card.description} hectareas={card.hectares} lotes={card.lots} ubicacion={card.location} terrain={card.terrain} price={card.price} images={card.images} boolean={boolean}
+            setBoolean={setBoolean} />
         ))}
-
       </div>
     </>
   )

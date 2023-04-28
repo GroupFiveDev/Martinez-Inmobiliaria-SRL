@@ -5,8 +5,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_API
-// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 ReactDOM.render(
   <BrowserRouter>
