@@ -14,8 +14,6 @@ export default function CardDetail() {
     })()
   }, [])
 
-  console.log(field);
-
   return (
     <>
       <div className="m-20">

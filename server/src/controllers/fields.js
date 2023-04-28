@@ -134,7 +134,6 @@ async function getFieldById(id) {
     const field = await Field.findOne({
       where: { id },
     });
-    console.log(field);
     return field;
   } catch (error) {
     return error;
