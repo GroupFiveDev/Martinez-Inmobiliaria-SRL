@@ -129,4 +129,16 @@ async function deleteField(id) {
   }
 }
 
-module.exports = { createFields, deleteField };
+async function getFieldById(id) {
+  try {
+    const field = await Field.findOne({
+      where: { id },
+    });
+    console.log(field);
+    return field;
+  } catch (error) {
+    return error;
+  }
+}
+
+module.exports = { createFields, deleteField, getFieldById };

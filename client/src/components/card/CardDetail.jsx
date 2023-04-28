@@ -1,127 +1,25 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-let cards = [
-  {
-    id: 1,
-    titulo: "Campo Los Alamos",
-    descripcion:
-      "Hermoso campo con amplia vegetación y zona de pastoreo para ganado.",
-    hectareas: 1000,
-    precio: 5000000,
-    lotes: 10,
-    ubicacion: "Provincia de Buenos Aires",
-    propiedad: "campo",
-  },
-  {
-    id: 2,
-    titulo: "Campo La Esperanza",
-    descripcion:
-      "Campo ideal para agricultura y ganadería, con amplio terreno y fértil suelo.",
-    hectareas: 800,
-    precio: 6000000,
-    lotes: 8,
-    ubicacion: "Provincia de Córdoba",
-    propiedad: "campo",
-  },
-  {
-    id: 3,
-    titulo: "Estancia San Martin",
-    descripcion:
-      "Gran estancia con vistas panorámicas de las montañas y amplio terreno para caza y pesca.",
-    hectareas: 5000,
-    precio: 15000000,
-    lotes: 50,
-    ubicacion: "Provincia de Chubut",
-    propiedad: "campo",
-  },
-  {
-    id: 4,
-    titulo: "Campo El Zorzal",
-    descripcion:
-      "Hermoso campo con amplia vegetación y zona de pastoreo para ganado.",
-    hectareas: 1200,
-    precio: 5500000,
-    lotes: 12,
-    ubicacion: "Provincia de Buenos Aires",
-    propiedad: "campo",
-  },
-  {
-    id: 5,
-    titulo: "Campo El Potrerillo",
-    descripcion:
-      "Campo ideal para agricultura y ganadería, con amplio terreno y fértil suelo.",
-    hectareas: 600,
-    precio: 4000000,
-    lotes: 6,
-    ubicacion: "Provincia de San Luis",
-    propiedad: "campo",
-  },
-  {
-    id: 6,
-    titulo: "Estancia Los Tamarindos",
-    descripcion:
-      "Gran estancia con vistas panorámicas de las montañas y amplio terreno para caza y pesca.",
-    hectareas: 4500,
-    precio: 20000000,
-    lotes: 45,
-    ubicacion: "Provincia de Río Negro",
-    propiedad: "campo",
-  },
-  {
-    id: 7,
-    titulo: "Campo La Argentina",
-    descripcion:
-      "Hermoso campo con amplia vegetación y zona de pastoreo para ganado.",
-    hectareas: 900,
-    precio: 4500000,
-    lotes: 9,
-    ubicacion: "Provincia de Buenos Aires",
-    propiedad: "campo",
-  },
-  {
-    id: 8,
-    titulo: "Campo El Recuerdo",
-    descripcion:
-      "Campo ideal para agricultura y ganadería, con amplio terreno y fértil suelo.",
-    hectareas: 700,
-    precio: 5500000,
-    lotes: 7,
-    ubicacion: "Provincia de Córdoba",
-    propiedad: "campo",
-  },
-  {
-    id: 9,
-    titulo: "Estancia Los Corrales",
-    descripcion:
-      "Gran estancia con vistas panorámicas de las montañas y amplio terreno para caza y pesca.",
-    hectareas: 6000,
-    precio: 18000000,
-    lotes: 60,
-    ubicacion: "Provincia de Neuquén",
-    propiedad: "campo",
-  },
-  {
-    id: 10,
-    titulo: "Campo La Providencia",
-    descripcion:
-      "Hermoso campo con amplia vegetación y zona de pastoreo para ganado.",
-    hectareas: 1100,
-    precio: 6000000,
-    lotes: 11,
-    ubicacion: "Provincia de Buenos Aires",
-    propiedad: "campo",
-  },
-];
+import axios from 'axios'
 
 export default function CardDetail() {
-
   const { id } = useParams();
-  const card = cards.find((card) => card.id === Number(id));
+
+  const [field, setField] = useState()
+
+  useEffect(() => {
+    (async function () {
+      const result = await axios.get(`/fields/${id}`)
+      setField(result.data)
+    })()
+  }, [])
+
+  console.log(field);
 
   return (
     <>
       <div className="m-20">
-        <h5 className="bg-[#368a8c] mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{card.titulo}</h5>
+        <h5 className="bg-[#368a8c] mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{field?.title}</h5>
         <div className="flex flex-wrap">
           <div>
             <div id="default-carousel" className="relative" data-carousel="slide">
@@ -170,10 +68,11 @@ export default function CardDetail() {
                 </span>
               </button>
             </div>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">HECTÁREAS: {card.hectareas}</p>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Lotes: {card.lotes}</p>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Ubicación: {card.ubicacion}</p>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{card.descripcion}</p>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">HECTÁREAS: {field?.hectares}</p>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Aptitud: {field?.terrain}</p>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Ubicación: {field?.location}</p>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{field?.description}</p>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">$ {field?.price}</p>
           </div>
           <div className="m-3">
             <h2>Contacto</h2>
