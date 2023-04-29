@@ -1,9 +1,6 @@
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
-import {
-  AiOutlineInstagram,
-  AiOutlineWhatsApp
-} from 'react-icons/ai';
+import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
 import { useState } from 'react';
 
 export default function NavBar() {
@@ -15,7 +12,7 @@ export default function NavBar() {
   title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
 
   return (
-    <nav className="bg-[#368a8c]">
+    <nav className="bg-[#368a8c] ">
       <div className='absolute left-5 gap-5 mt-4 hidden md:flex'>
         <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
           <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' color='white' />
@@ -24,7 +21,7 @@ export default function NavBar() {
           <AiOutlineWhatsApp size={"1.5rem"} className='hover:opacity-50' color='white' />
         </a>
       </div>
-      <div className="flex flex-wrap items-center justify-end p-4 w-full" >
+      <div className="relative flex flex-wrap items-center justify-end p-4 w-full" >
 
         {/* responsive */}
         <div className="flex w-full justify-between items-center md:order-2 md:hidden">
@@ -37,7 +34,7 @@ export default function NavBar() {
         </div>
 
         {/* pc */}
-        <div className={`items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30`} >
+        <div className={`animate-movimiento max-[768px]:absolute max-[768px]:top-[125px] max-[768px]:lef-0 max-[768px]:right-0 items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30`} >
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#368a8c] md:items-center">
             <li className='h-fit'>
               <Link to="/" onClick={() => setIsOpen(!isOpen)} className="text-lg block py-2 pl-3 pr-4 text-black md:text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-black md:p-0">
@@ -55,36 +52,12 @@ export default function NavBar() {
                   <li>
                     <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Campos</a>
                   </li>
-                  <li>
-                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Lotes</a>
-                  </li>
-                  <li>
-                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Casas</a>
-                  </li>
-                  <li>
-                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Departamentos</a>
-                  </li>
                 </ul>
               </div>
             </li>
             <li className='h-fit md:hidden'>
               <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Campos
-              </Link>
-            </li>
-            <li className='h-fit md:hidden'>
-              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
-                Lotes
-              </Link>
-            </li>
-            <li className='h-fit md:hidden'>
-              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
-                Casas
-              </Link>
-            </li>
-            <li className='h-fit md:hidden'>
-              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
-                Departamentos
               </Link>
             </li>
             <li className="hidden md:flex h-fit">
