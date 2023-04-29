@@ -140,4 +140,27 @@ async function getFieldById(id) {
   }
 }
 
-module.exports = { createFields, deleteField, getFieldById };
+async function editField(id, data) {
+  try {
+    const field = await Field.findOne({
+      where: { id },
+    });
+
+    if (data.title) field.title = data.title;
+    if (data.description) field.description = data.description;
+    if (data.hectares) field.hectares = data.hectares;
+    if (data.location) field.location = data.location;
+    if (data.terrain) field.terrain = data.terrain;
+    if (data.price) field.price = data.price;
+    if (data.images) field.images = data.images;
+
+    await field.save();
+    await field.reload();
+
+    return field;
+  } catch (error) {
+    return error;
+  }
+}
+
+module.exports = { createFields, deleteField, getFieldById, editField };

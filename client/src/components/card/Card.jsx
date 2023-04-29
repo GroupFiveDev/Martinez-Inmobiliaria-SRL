@@ -44,7 +44,11 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
             </div>
           </div>
         </Link>
-
+        <div className='absolute bottom-0 w-full flex justify-center items-center'>
+          <button type="button" className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mr-2 mb-2 mt-2">
+            Modificar
+          </button>
+        </div>
         <button onClick={() => deleteField()} type="button" className="absolute top-0 right-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2">
           <img src={trash} className='w-5 h-5 mr-1' alt="deleted" />
           Eliminar
