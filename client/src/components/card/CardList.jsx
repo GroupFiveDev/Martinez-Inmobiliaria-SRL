@@ -102,12 +102,42 @@ export default function CardList() {
   const toggleView = () => {
     setView(view === "grid" ? "list" : "grid");
   };
+
+  const [currentPage, setCurrentPage] = useState(1) 
+   const [cardsPerPage] = useState(6) 
+
+   const last = currentPage * cardsPerPage
+   const first = last - cardsPerPage 
+   const currentCards = cards.slice(first, last) 
+   const numberOfPages = cards.length / cardsPerPage
+
+   const pagination = (numberPage) => {
+      setCurrentPage(numberPage);
+      document.getElementById(`${currentPage}`).classList.remove('active');
+      document.getElementById(`${numberPage}`).classList.toggle('active');
+    }
+    const handleNext = (event) => {
+      event.preventDefault();
+      currentPage <= numberOfPages ? setCurrentPage(currentPage + 1) : setCurrentPage(currentPage);
+      document.getElementById(`${currentPage}`).classList.remove('active');
+      currentPage <= numberOfPages ? document.getElementById(`${currentPage + 1}`).classList.toggle('active') :
+        document.getElementById(`${currentPage}`).classList.toggle('active');
+    }
+  
+    const handlePrevious = (event) => {
+      event.preventDefault();
+      currentPage > 1 ? setCurrentPage(currentPage - 1) : setCurrentPage(currentPage);
+      document.getElementById(`${currentPage}`).classList.remove('active');
+      currentPage > 1 ? document.getElementById(`${currentPage - 1}`).classList.toggle('active') :
+        document.getElementById(`${currentPage}`).classList.toggle('active');
+    }
   return (
-    <div className="flex flex-col w-screen">
+    <div className="flex flex-col w-screen p-10">
     <button onClick={toggleView}>Cambiar vista</button>
       <div className="w-full flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center md:items-center">
         <Filter />
-        <Pagination />
+        <Pagination cardsPerPage={cardsPerPage} cards={cards.length} pagination={pagination} currentPage={currentPage}
+        handlePrevious={handlePrevious} handleNext={handleNext} />
       </div>
       <div >
         {/* { cards.map((card, i) => (
@@ -115,7 +145,7 @@ export default function CardList() {
         ))} */}
         {view === "grid" ?
         <div className="grid grid-cols-1 gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2"> {
-          cards.slice(0, 6).map((card, i) => (
+          currentCards.map((card, i) => (
               <div >
                 <Card key={i} id={card.id} titulo={card.titulo} descripcion={card.descripcion} hectareas={card.hectareas} lotes={card.lotes} ubicacion={card.ubicacion} />
               </div>
@@ -124,7 +154,7 @@ export default function CardList() {
            </div>
           :
           <div className=""> {
-            cards.slice(0, 6).map((card, i) => (
+            currentCards.map((card, i) => (
               <div >
                 <Card key={i} id={card.id}  hectareas={card.hectareas} lotes={card.lotes} ubicacion={card.ubicacion} />
               </div>
