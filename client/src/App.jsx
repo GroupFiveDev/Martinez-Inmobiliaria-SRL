@@ -9,6 +9,7 @@ import Contact from './components/contact/Contact';
 import Drawer from './components/drawer/Drawer';
 import Archives from './components/archives/Archives';
 import { useDrawer } from './hooks/useDrawer';
+import Proyects from './components/proyects/Proyects';
 
 function App() {
 
@@ -26,7 +27,8 @@ function App() {
           <Route path="/card/:id" component={CardDetail} />
           <Route exact path="/Nosotros" component={About} />
           <Route exact path="/Contacto" component={Contact} />
-          <Route exact path="/Archives" component={Archives} />
+          <Route exact path="/Archivados" component={Archives} />
+          <Route exact path="/Proyectos" component={Proyects} />
         </Switch>
         <Footer />
       </Router>
