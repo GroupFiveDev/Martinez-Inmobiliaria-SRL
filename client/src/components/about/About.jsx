@@ -91,12 +91,12 @@ export default function About() {
       </div>
 
       {/* Como? */}
-      <div className="w-full md:h-[500px] flex flex-col md:flex-row">
+      <div className="w-full md:h-[600px] flex flex-col md:flex-row">
 
         <div className="como md:w-[50%] h-full">
         </div>
 
-        <div className="md:w-[50%] bg-[#51535b] h-full pl-5 py-5">
+        <div className="md:w-[50%] bg-[#51535b] h-full px-5 py-5">
           <h1 className="text-4xl text-white flex text-center my-10 font-Montserrat">¿CÓMO?</h1>
           <p className="text-lg text-white ">Tratamos a cada cliente de forma personalizada para que tenga un trato exclusivo generando emociones positivas, manteniendo el foco en mejorar su calidad de vida.
             <br />

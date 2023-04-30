@@ -11,7 +11,7 @@ export default function Drawer({ isOpen, closeDrawer }) {
           <h1 className="my-1 text-white font-bold font-Montserrat text-xl">Admin</h1>
           <button onClick={closeDrawer} type="button" className="text-white bg-[#368a8c] hover:bg-[#1b4546] focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Subir campo</button>
           <button onClick={closeDrawer} type="button" className="text-white bg-[#368a8c] hover:bg-[#1b4546] focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Subir departamento</button>
-          <Link to="/Archives">
+          <Link to="/Archivados">
             <button onClick={closeDrawer} type="button" className="text-white bg-[#368a8c] hover:bg-[#1b4546] focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Archivados</button>
           </Link>
           <button onClick={closeDrawer} type="button" className="text-white bg-black hover:bg-red-500 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Salir del modo admin</button>
