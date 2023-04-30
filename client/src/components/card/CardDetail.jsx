@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Instagram from "../contact/contacInfo/Instagram";
 import Phone from "../contact/contacInfo/Phone";
 import WhatsApp from "../contact/contacInfo/WhatsApp";
+import axios from "axios";
 
 export default function CardDetail() {
   const { id } = useParams();

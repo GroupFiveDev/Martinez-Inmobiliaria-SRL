@@ -37,12 +37,14 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
           </div>
         </div>
 
-
         <Link to={`/card/${id}`}>
-          <div className='flex flex-col justify-center'>
-            <img className="rounded-t-lg" src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg" alt="" />
+          <div className='flex flex-col justify-center relative'>
+            <img className={`rounded-t-lg ${sold || archived ? "blur-sm" : ""}`} src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg" alt="" />
             <div className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"}`}>
               <h1 className='text-white font-bold text-3xl font-Montserrat'>VENDIDO</h1>
+            </div>
+            <div className={`absolute bg-[#000000c1] w-full h-14 flex bottom-5 justify-center items-center ${archived ? "" : "hidden"}`}>
+              <h1 className='text-white font-bold text-3xl font-Montserrat'>ARCHIVADO</h1>
             </div>
           </div>
           <div className="p-5">
