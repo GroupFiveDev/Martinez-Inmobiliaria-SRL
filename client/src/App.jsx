@@ -6,12 +6,14 @@ import Footer from './components/footer/Footer';
 import CardDetail from './components/card/CardDetail';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
+import Drawer from './components/drawer/Drawer';
 
 function App() {
 
   return (
     <>
       <Router>
+        <Drawer />
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
