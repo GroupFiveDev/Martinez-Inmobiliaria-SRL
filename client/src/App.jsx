@@ -12,16 +12,14 @@ import { useDrawer } from './hooks/useDrawer';
 import Proyects from './components/proyects/Proyects';
 
 function App() {
-
   const { isOpen, openDrawer, closeDrawer } = useDrawer()
 
   return (
     <>
       <Router>
-        <Drawer />
+        <button onClick={openDrawer} className="fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-40">ADMIN</button>
         <NavBar />
         <Drawer isOpen={isOpen} closeDrawer={closeDrawer} />
-        <button onClick={openDrawer} className="fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-40">ADMIN</button>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/card/:id" component={CardDetail} />
