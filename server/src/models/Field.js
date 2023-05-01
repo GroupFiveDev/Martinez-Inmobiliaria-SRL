@@ -25,9 +25,6 @@ module.exports = (sequelize) => {
       hectares: {
         type: DataTypes.INTEGER,
       },
-      lots: {
-        type: DataTypes.INTEGER,
-      },
       location: {
         type: DataTypes.TEXT,
       },
@@ -40,6 +37,14 @@ module.exports = (sequelize) => {
       images: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         defaultValue: [],
+      },
+      archived: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      sold: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     { timestamps: false }
