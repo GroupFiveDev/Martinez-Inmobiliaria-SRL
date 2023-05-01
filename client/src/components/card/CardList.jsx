@@ -55,12 +55,14 @@ export default function CardList() {
   return (
     <div className="flex justify-center items-center w-full">
       <div className="flex flex-col w-fit">
-        <div className="flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
-          <Filter />
-          <button onClick={toggleView} className=" w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">Cambiar vista</button>
-          <div className={`${fields?.filter(e => !e.archived).length > 6 ? "" : "hidden"}`}>
-            <Pagination cardsPerPage={cardsPerPage} cards={fields?.length} pagination={pagination} currentPage={currentPage}
-              handlePrevious={handlePrevious} handleNext={handleNext} />
+        <div className="w-full flex justify-center">
+          <div className="flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center mb-2 w-[98%]">
+            <Filter />
+            <button onClick={toggleView} className=" w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">Cambiar vista</button>
+            <div className={`${fields?.filter(e => !e.archived).length > 6 ? "" : "hidden"}`}>
+              <Pagination cardsPerPage={cardsPerPage} cards={fields?.length} pagination={pagination} currentPage={currentPage}
+                handlePrevious={handlePrevious} handleNext={handleNext} />
+            </div>
           </div>
         </div>
         <div className={`${view === "grid" ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2" : ""}`}>
