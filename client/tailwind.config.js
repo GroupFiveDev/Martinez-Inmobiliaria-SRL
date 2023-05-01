@@ -9,11 +9,16 @@ export default {
     extend: {
       animation: {
         movimiento: "movimiento 900ms ease 1",
+        movimientoLeftRight: "movimiento 1800ms ease 1",
       },
       keyframes: {
         movimiento: {
           "0%": { opacity: 0, top: 0 },
           "100%": { opacity: 1, top: "125px" },
+        },
+        movimientoLeftRight: {
+          "0%": { opacity: 0, left: 0 },
+          "100%": { opacity: 1, left: "125px" },
         },
       },
       colors: {
