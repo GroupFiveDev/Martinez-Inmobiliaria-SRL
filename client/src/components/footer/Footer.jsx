@@ -8,13 +8,13 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-[#368a8c] p-4 h-fit md:h-fit">
-        <div className="w-full">
+        <div className="w-full relative">
           <div className="  md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
               <img src={logo} alt="TyJ_Logo" className='w-[80%] sm:w-40 sm:h-40 hover:cursor-pointer hover:opacity-50' onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); history.push("/") }} />
             </div>
 
-            <div className='flex flex-col items-center my-6'>
+            <div className='md:absolute flex flex-col items-center my-6 w-full'>
               <h2 className="text-sm font-semibold text-white uppercase mb-2 font-Montserrat">Seguinos</h2>
               <div className="flex space-x-6 sm:justify-center">
                 <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
