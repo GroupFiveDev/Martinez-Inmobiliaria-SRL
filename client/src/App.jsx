@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <Router>
-        <button onClick={openDrawer} className="fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-40">ADMIN</button>
+        <button onClick={openDrawer} className="fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-50">ADMIN</button>
         <NavBar />
         <Drawer isOpen={isOpen} closeDrawer={closeDrawer} />
         <Switch>
