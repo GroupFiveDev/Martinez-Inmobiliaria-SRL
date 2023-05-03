@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
 
             <div className="flex justify-center md:mr-10 md:flex gap-8 sm:grid-cols-3 md:flex-row-reverse items-center">
-              <div className='flex flex-col gap-5 text-center'>
+              <div className='flex flex-col gap-5 text-center z-10'>
                 <Link to="/">
                   <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase">Inicio</h2>
                 </Link>
