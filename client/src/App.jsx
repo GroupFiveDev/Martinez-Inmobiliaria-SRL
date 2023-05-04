@@ -10,10 +10,11 @@ import Drawer from './components/drawer/Drawer';
 import Archives from './components/archives/Archives';
 import { useDrawer } from './hooks/useDrawer';
 import Proyects from './components/proyects/Proyects';
+import Admin from './components/admin/Admin';
+
 
 function App() {
   const { isOpen, openDrawer, closeDrawer } = useDrawer()
-
   return (
     <>
       <Router>
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/Contacto" component={Contact} />
           <Route exact path="/Archivados" component={Archives} />
           <Route exact path="/Proyectos" component={Proyects} />
+          <Route exact path="/Admin" component={Admin} />
         </Switch>
         <Footer />
       </Router>

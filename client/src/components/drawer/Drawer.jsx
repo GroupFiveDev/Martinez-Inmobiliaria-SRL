@@ -1,7 +1,15 @@
+import { signOut } from "firebase/auth"
 import { Link } from "react-router-dom"
+import { auth } from "../../config/firebase/firebase"
 
 export default function Drawer({ isOpen, closeDrawer }) {
   const handleCloseDrawer = e => e.stopPropagation()
+
+  async function handleLogout() {
+    await signOut(auth)
+    closeDrawer()
+    console.log("user signed out");
+  }
 
   return (
     <div className={`bg-transparent w-[100%] h-screen top-0 fixed z-50 ${isOpen ? "" : "hidden"} animate-movimientoLeftRight`} onClick={closeDrawer}>
@@ -14,7 +22,7 @@ export default function Drawer({ isOpen, closeDrawer }) {
           <Link to="/Archivados">
             <button onClick={closeDrawer} type="button" className="text-white bg-[#368a8c] hover:bg-[#1b4546] focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Archivados</button>
           </Link>
-          <button onClick={closeDrawer} type="button" className="text-white bg-black hover:bg-red-500 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Salir del modo admin</button>
+          <button onClick={handleLogout} type="button" className="text-white bg-black hover:bg-red-500 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Salir del modo admin</button>
         </div>
       </div>
     </div>
