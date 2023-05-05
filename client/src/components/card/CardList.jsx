@@ -61,7 +61,7 @@ export default function CardList() {
   return (
     <div className="flex justify-center items-center w-full">
       <div className="flex flex-col w-fit">
-        <div className="w-screen flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
+        <div className="flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
           <Filter />
           <button
             onClick={toggleView}
