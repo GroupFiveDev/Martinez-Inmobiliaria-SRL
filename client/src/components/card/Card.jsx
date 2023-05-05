@@ -4,10 +4,12 @@ import trash from '../../assets/icons/trash.png'
 import { useState } from 'react';
 import Modal from '../modal/Modal';
 import { useModal } from '../../hooks/useModal';
+import { useAuth } from '../../context/authContext';
 
 export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
   const [loading, setLoading] = useState(0)
   const { isOpen, openModal, closeModal } = useModal()
+  const { user } = useAuth()
 
   async function deleted() {
     setLoading(1)
@@ -75,7 +77,7 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
             </div>
           </div>
         </Link>
-        <div className='bottom-0 w-full flex flex-col justify-center items-center'>
+        <div className={`${user ? "flex" : "hidden"} bottom-0 w-full flex-col justify-center items-center`}>
           <button type="button" className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2">
             Modificar
           </button>
@@ -83,15 +85,15 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
             {sold ? "Quitar vendido" : "Poner como vendido"}
           </button>
         </div>
-        <button onClick={openModal} type="button" className="absolute top-0 right-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2">
+        <button onClick={openModal} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 right-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2`}>
           <img src={trash} className='w-5 h-5 mr-1' alt="deleted" />
           Eliminar
         </button>
-        <button onClick={handleArchived} type="button" className="absolute top-0 left-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center ml-2 mb-2 mt-2">
+        <button onClick={handleArchived} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 left-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center ml-2 mb-2 mt-2`}>
           {archived ? "Desarchivar" : "Archivar"}
         </button>
 
-      </div>
+      </div >
     </>
   )
 }

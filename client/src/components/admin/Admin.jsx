@@ -1,9 +1,11 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../config/firebase/firebase.js'
 import { useState } from "react";
-
+import { useAuth } from "../../context/authContext";
+import { useHistory } from "react-router-dom";
 
 export default function Admin() {
+  const history = useHistory()
+  const { login } = useAuth()
+
   const [user, setUser] = useState({
     email: null,
     password: null
@@ -12,9 +14,11 @@ export default function Admin() {
   async function handleSubmit(e) {
     e.preventDefault()
     try {
-      const userCredentials = await createUserWithEmailAndPassword(auth, user.email, user.password)
+      const userCredentials = await login(user.email, user.password)
+      console.log(userCredentials);
+      history.push("/")
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 
@@ -24,13 +28,14 @@ export default function Admin() {
       [e.target.name]: e.target.value
     })
   }
+
   return (
     <>
       <div className="w-full flex justify-center items-center h-[500px] bg-slate-500">
-        <form action="" className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
-          <label htmlFor="">Email</label>
+        <form className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
+          <label htmlFor="email">Email</label>
           <input type="email" placeholder="email@gmail.com" className="mb-4" onChange={handleChange} name="email" />
-          <label htmlFor="">Contraseña</label>
+          <label htmlFor="password">Contraseña</label>
           <input type="password" placeholder="*******" className="mb-4" onChange={handleChange} name="password" />
           <button type="submit">Entrar </button>
         </form>

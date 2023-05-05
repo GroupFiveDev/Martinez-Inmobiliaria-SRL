@@ -1,14 +1,13 @@
 import { signOut } from "firebase/auth"
 import { Link } from "react-router-dom"
-import { auth } from "../../config/firebase/firebase"
+import { logout } from "../../context/authContext"
 
 export default function Drawer({ isOpen, closeDrawer }) {
   const handleCloseDrawer = e => e.stopPropagation()
 
   async function handleLogout() {
-    await signOut(auth)
+    await logout()
     closeDrawer()
-    console.log("user signed out");
   }
 
   return (
