@@ -13,7 +13,7 @@ export default function NavBar() {
 
   return (
     <nav className="bg-[#368a8c] ">
-      <div className='absolute left-5 gap-5 mt-4 hidden md:flex'>
+      <div className='absolute left-5 gap-5 mt-4 hidden md:flex z-40'>
         <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
           <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' color='white' />
         </a>

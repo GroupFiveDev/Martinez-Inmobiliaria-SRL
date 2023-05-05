@@ -2,8 +2,12 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import Card from "../card/Card"
 import Skeleton from "../skeleton/Skeleton"
+import { useAuth } from "../../context/authContext"
+import { useHistory } from "react-router-dom"
 
 export default function Archives() {
+  const { user } = useAuth()
+  const history = useHistory()
   const [fields, setFields] = useState([])
   const [departaments, setDepartaments] = useState([])
   const [boolean, setBoolean] = useState(false)
@@ -17,12 +21,13 @@ export default function Archives() {
   }, [boolean])
 
   //Fetching departaments
-  // useEffect(() => {
-  // (async function () {
-  //   const result = await axios.get("/departaments")
-  //   setDepartaments(result.data)
-  // })()
-  // }, [])
+  useEffect(() => {
+    // (async function () {
+    //   const result = await axios.get("/departaments")
+    //   setDepartaments(result.data)
+    // })()
+    !user && history.push("/")
+  }, [])
 
 
   return (
