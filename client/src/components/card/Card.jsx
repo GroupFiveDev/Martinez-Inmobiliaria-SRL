@@ -20,13 +20,13 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
   }
 
   async function handleArchived() {
-    await axios.patch(`/fields/${id}`, { archived: !archived })
-    setBoolean(!boolean)
+    await axios.patch(`/fields/${id}`, { archived: !archived });
+    setBoolean(!boolean);
   }
 
   async function handleSold() {
-    await axios.patch(`/fields/${id}`, { sold: !sold })
-    setBoolean(!boolean)
+    await axios.patch(`/fields/${id}`, { sold: !sold });
+    setBoolean(!boolean);
   }
 
   return (
@@ -56,24 +56,52 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
       {/* ************** */}
       <div className={`relative max-w-sm bg-[#368b8c26] border border-gray-200 rounded-lg shadow m-3 ${loading ? "opacity-50" : ""}`}>
         <Link to={`/card/${id}`}>
-          <div className='flex flex-col justify-center relative'>
-            <img className={`rounded-t-lg ${sold || archived ? "blur-sm" : ""}`} src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg" alt="" />
-            <div className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"}`}>
-              <h1 className='text-white font-bold text-3xl font-Montserrat'>VENDIDO</h1>
+          <div className="flex flex-col justify-center relative">
+            <img
+              className={`rounded-t-lg ${sold || archived ? "blur-sm" : ""}`}
+              src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"
+              alt=""
+            />
+            <div
+              className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"
+                }`}
+            >
+              <h1 className="text-white font-bold text-3xl font-Montserrat">
+                VENDIDO
+              </h1>
             </div>
-            <div className={`absolute bg-[#000000c1] w-full h-14 flex bottom-5 justify-center items-center ${archived ? "" : "hidden"}`}>
-              <h1 className='text-white font-bold text-3xl font-Montserrat'>ARCHIVADO</h1>
+            <div
+              className={`absolute bg-[#000000c1] w-full h-14 flex bottom-5 justify-center items-center ${archived ? "" : "hidden"
+                }`}
+            >
+              <h1 className="text-white font-bold text-3xl font-Montserrat">
+                ARCHIVADO
+              </h1>
             </div>
           </div>
           <div className="p-5">
             <div className="px-5">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{titulo}</h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{descripcion}</p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">HECTÁREAS: {hectareas}</p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Lotes: {lotes}</p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Ubicación: {ubicacion}</p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Aptitud: {terrain}</p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">$ {price}</p>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {titulo}
+              </h5>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                {descripcion}
+              </p>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                HECTÁREAS: {hectareas}
+              </p>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lotes: {lotes}
+              </p>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Ubicación: {ubicacion}
+              </p>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Aptitud: {terrain}
+              </p>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                $ {price}
+              </p>
             </div>
           </div>
         </Link>
@@ -81,7 +109,11 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
           <button type="button" className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2">
             Modificar
           </button>
-          <button onClick={handleSold} type="button" className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2">
+          <button
+            onClick={handleSold}
+            type="button"
+            className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2"
+          >
             {sold ? "Quitar vendido" : "Poner como vendido"}
           </button>
         </div>
@@ -95,5 +127,5 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
 
       </div >
     </>
-  )
+  );
 }
