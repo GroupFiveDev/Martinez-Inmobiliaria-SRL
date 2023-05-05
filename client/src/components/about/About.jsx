@@ -17,8 +17,8 @@ export default function About() {
       </div>
 
       {/* Nuestros valores */}
-      <div className="w-full flex flex-col items-center justify-center bg-[#368a8c] pb-5">
-        <h1 className="text-6xl text-gray-600 flex text-center my-10 font-Montserrat">Nuestros valores</h1>
+      <div className="w-full flex flex-col items-center justify-center bg-[#368a8c] py-10">
+        <h1 className="text-6xl text-black flex text-center mb-10 font-Montserrat">Nuestros valores</h1>
         <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
           <div className="flex flex-col items-center text-center w-80">
@@ -28,7 +28,7 @@ export default function About() {
 
             <div className="mt-3">
               <p className="text-2xl text-gray-900 font-Montserrat">VOCACIÓN DE SERVICIO</p>
-              <p className="text-md mt-4 text-gray-900 ">Siempre estamos al servicio del cliente generando soluciones para cada necesidad.</p>
+              <p className="text-md mt-4 text-gray-900 font-Montserrat">Siempre estamos al servicio del cliente generando soluciones para cada necesidad.</p>
             </div>
           </div>
 
@@ -39,7 +39,7 @@ export default function About() {
 
             <div className="mt-3">
               <p className="text-2xl text-gray-900 font-Montserrat">SIMPLICIDAD</p>
-              <p className="text-md mt-4 text-gray-900 ">Creemos que si el proceso es simple, es doblemente bueno.</p>
+              <p className="text-md mt-4 text-gray-900 font-Montserrat">Creemos que si el proceso es simple, es doblemente bueno.</p>
             </div>
           </div>
 
@@ -50,7 +50,7 @@ export default function About() {
 
             <div className="mt-3">
               <p className="text-2xl text-gray-900 font-Montserrat">COMPROMISO</p>
-              <p className="text-md mt-4 text-gray-900 ">Tenemos la capacidad de sentir los objetivos del cliente como objetivos propios y eso nos facilita entender sus motivaciones y objetivos.</p>
+              <p className="text-md mt-4 text-gray-900 font-Montserrat">Tenemos la capacidad de sentir los objetivos del cliente como objetivos propios y eso nos facilita entender sus motivaciones y objetivos.</p>
             </div>
           </div>
 
@@ -61,7 +61,7 @@ export default function About() {
 
             <div className="mt-3">
               <p className="text-2xl text-gray-900 font-Montserrat">ESTAR MOTIVADOS</p>
-              <p className="text-md mt-4 text-gray-900 ">Nos mantiene decididos y ágiles.</p>
+              <p className="text-md mt-4 text-gray-900 font-Montserrat">Nos mantiene decididos y ágiles.</p>
             </div>
           </div>
 
@@ -72,7 +72,7 @@ export default function About() {
 
             <div className="mt-3">
               <p className="text-2xl text-gray-900 font-Montserrat">LOGROS COMPARTIDOS</p>
-              <p className="text-md mt-4 text-gray-900 ">Individualmente somos buenos, pero juntos somos geniales.</p>
+              <p className="text-md mt-4 text-gray-900 font-Montserrat">Individualmente somos buenos, pero juntos somos geniales.</p>
             </div>
           </div>
 
@@ -83,7 +83,7 @@ export default function About() {
 
             <div className="mt-3">
               <p className="text-2xl text-gray-900 font-Montserrat">CONOCIMIENTO</p>
-              <p className="text-md mt-4 text-gray-900 ">Informamos el paso a paso en cada tipo de proceso.</p>
+              <p className="text-md mt-4 text-gray-900 font-Montserrat">Informamos el paso a paso en cada tipo de proceso.</p>
             </div>
           </div>
 

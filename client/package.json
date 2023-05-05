@@ -11,6 +11,7 @@
   "author": "Group Five Dev",
   "dependencies": {
     "axios": "^1.3.6",
+    "firebase": "^9.21.0",
     "flowbite": "1.6.5",
     "flowbite-react": "0.4.3",
     "react": "18.2.0",

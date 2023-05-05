@@ -8,13 +8,13 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-[#368a8c] p-4 h-fit md:h-fit">
-        <div className="w-full">
+        <div className="w-full relative">
           <div className="  md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
               <img src={logo} alt="TyJ_Logo" className='w-[80%] sm:w-40 sm:h-40 hover:cursor-pointer hover:opacity-50' onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); history.push("/") }} />
             </div>
 
-            <div className='flex flex-col items-center my-6'>
+            <div className='md:absolute flex flex-col items-center my-6 w-full'>
               <h2 className="text-sm font-semibold text-white uppercase mb-2 font-Montserrat">Seguinos</h2>
               <div className="flex space-x-6 sm:justify-center">
                 <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
 
             <div className="flex justify-center md:mr-10 md:flex gap-8 sm:grid-cols-3 md:flex-row-reverse items-center">
-              <div className='flex flex-col gap-5 text-center'>
+              <div className='flex flex-col gap-5 text-center z-10'>
                 <Link to="/">
                   <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase">Inicio</h2>
                 </Link>
@@ -39,12 +39,8 @@ export default function Footer() {
                 </Link>
               </div>
               <div className='flex flex-col gap-5 text-center'>
-                {/* <Link to="/"> */}
-                <a className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Campos</a>
-                {/* </Link> */}
-                {/* <Link to="/"> */}
-                <a className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" >Departamentos</a>
-                {/* </Link> */}
+                <a onClick={() => history.push("/")} className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Campos</a>
+                <a onClick={() => history.push("/")} className="font-Montserrat z-10 hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Departamentos</a>
                 <Link to="/Proyectos">
                   <a className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" >Proyectos</a>
                 </Link>

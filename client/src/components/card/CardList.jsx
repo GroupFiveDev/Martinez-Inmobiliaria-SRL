@@ -61,7 +61,7 @@ export default function CardList() {
   return (
     <div className="flex justify-center items-center w-full">
       <div className="flex flex-col w-fit">
-        <div className="w-screen flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
+        <div className="flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
           <Filter />
           <button
             onClick={toggleView}
@@ -70,9 +70,8 @@ export default function CardList() {
             Cambiar vista
           </button>
           <div
-            className={`${
-              fields?.filter((e) => !e.archived).length > 6 ? "" : "hidden"
-            }`}
+            className={`${fields?.filter((e) => !e.archived).length > 6 ? "" : "hidden"
+              }`}
           >
             <Pagination
               cardsPerPage={cardsPerPage}
@@ -85,54 +84,53 @@ export default function CardList() {
           </div>
         </div>
         <div
-          className={`${
-            view === "grid"
-              ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2"
-              : ""
-          }`}
+          className={`${view === "grid"
+            ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2"
+            : ""
+            }`}
         >
           {fields.length
             ? fields.map(
-                view === "grid"
-                  ? (card, i) =>
-                      !card.archived && (
-                        <Card
-                          key={i}
-                          id={card.id}
-                          titulo={card.title}
-                          descripcion={card.description}
-                          hectareas={card.hectares}
-                          lotes={card.lots}
-                          ubicacion={card.location}
-                          terrain={card.terrain}
-                          price={card.price}
-                          images={card.images}
-                          boolean={boolean}
-                          sold={card.sold}
-                          setBoolean={setBoolean}
-                          archived={card.archived}
-                        />
-                      )
-                  : (card, i) =>
-                      !card.archived && (
-                        <Card2
-                          key={i}
-                          id={card.id}
-                          titulo={card.title}
-                          descripcion={card.description}
-                          hectareas={card.hectares}
-                          lotes={card.lots}
-                          ubicacion={card.location}
-                          terrain={card.terrain}
-                          price={card.price}
-                          images={card.images}
-                          boolean={boolean}
-                          sold={card.sold}
-                          setBoolean={setBoolean}
-                          archived={card.archived}
-                        />
-                      )
-              )
+              view === "grid"
+                ? (card, i) =>
+                  !card.archived && (
+                    <Card
+                      key={i}
+                      id={card.id}
+                      titulo={card.title}
+                      descripcion={card.description}
+                      hectareas={card.hectares}
+                      lotes={card.lots}
+                      ubicacion={card.location}
+                      terrain={card.terrain}
+                      price={card.price}
+                      images={card.images}
+                      boolean={boolean}
+                      sold={card.sold}
+                      setBoolean={setBoolean}
+                      archived={card.archived}
+                    />
+                  )
+                : (card, i) =>
+                  !card.archived && (
+                    <Card2
+                      key={i}
+                      id={card.id}
+                      titulo={card.title}
+                      descripcion={card.description}
+                      hectareas={card.hectares}
+                      lotes={card.lots}
+                      ubicacion={card.location}
+                      terrain={card.terrain}
+                      price={card.price}
+                      images={card.images}
+                      boolean={boolean}
+                      sold={card.sold}
+                      setBoolean={setBoolean}
+                      archived={card.archived}
+                    />
+                  )
+            )
             : [0, 1, 2, 3, 4, 5].map((e, i) => <Skeleton key={e + "*"} />)}
         </div>
       </div>
