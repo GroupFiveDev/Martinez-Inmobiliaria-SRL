@@ -24,6 +24,26 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const { title, description, hectares, location, terrain, price, images } =
+      req.body;
+    return res.json(
+      await createFields(
+        title,
+        description,
+        hectares,
+        location,
+        terrain,
+        price,
+        images
+      )
+    );
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
 router.patch("/:id", async (req, res) => {
   try {
     const { id } = req.params;
