@@ -122,6 +122,30 @@ async function deleteField(id) {
   }
 }
 
+async function createField(
+  title,
+  description,
+  hectares,
+  location,
+  terrain,
+  price,
+  images
+) {
+  try {
+    await Field.create({
+      title,
+      description,
+      hectares,
+      location,
+      terrain,
+      price,
+      images,
+    });
+  } catch (error) {
+    return error;
+  }
+}
+
 async function getFieldById(id) {
   try {
     const field = await Field.findOne({
