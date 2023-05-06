@@ -43,4 +43,24 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const { title, description, rooms, location, bathrooms, price, images } =
+      req.body;
+    return res.json(
+      await createApartment(
+        title,
+        description,
+        rooms,
+        location,
+        bathrooms,
+        price,
+        images
+      )
+    );
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
 module.exports = router;

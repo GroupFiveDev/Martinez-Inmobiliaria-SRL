@@ -51,9 +51,34 @@ async function deleteApartment(id) {
   }
 }
 
+async function createApartment(
+  title,
+  description,
+  rooms,
+  location,
+  bathrooms,
+  price,
+  images
+) {
+  try {
+    await Apartment.create({
+      title,
+      description,
+      rooms,
+      location,
+      bathrooms,
+      price,
+      images,
+    });
+  } catch (error) {
+    return error;
+  }
+}
+
 module.exports = {
   getApartments,
   getApartmentById,
   editApartment,
   deleteApartment,
+  createApartment,
 };
