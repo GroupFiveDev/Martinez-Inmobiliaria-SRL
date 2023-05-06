@@ -20,4 +20,23 @@ async function getApartmentById(id) {
   }
 }
 
-module.exports = { getApartments, getApartmentById };
+async function editApartment(id, data) {
+  try {
+    const apartment = await Apartment.findOne({
+      where: { id },
+    });
+    if (data.title) apartment.title = data.title;
+    if (data.description) apartment.description = data.description;
+    if (data.rooms) apartment.rooms = data.rooms;
+    if (data.location) apartment.location = data.location;
+    if (data.bathrooms) apartment.bathrooms = data.bathrooms;
+    if (data.price) apartment.price = data.price;
+    if (data.images) apartment.images = data.images;
+    if (data.archived !== null) apartment.archived = data.archived;
+    if (data.sold !== null) apartment.sold = data.sold;
+  } catch (error) {
+    return error;
+  }
+}
+
+module.exports = { getApartments, getApartmentById, editApartment };

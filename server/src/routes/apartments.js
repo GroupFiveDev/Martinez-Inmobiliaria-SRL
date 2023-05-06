@@ -25,6 +25,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.use("/", async);
+router.patch("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    return res.json(await editApartment(id, req.body));
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+});
 
 module.exports = router;
