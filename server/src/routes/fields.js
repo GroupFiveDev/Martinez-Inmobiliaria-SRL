@@ -6,6 +6,7 @@ const {
   getFieldById,
   editField,
   createField,
+  // getFields,
 } = require("../controllers/fields.js");
 
 router.get("/", async (req, res) => {
@@ -15,6 +16,14 @@ router.get("/", async (req, res) => {
     return res.status(404).json(error);
   }
 });
+
+// router.get("/", async (req, res) => {
+//   try {
+//     return res.json(await getFields());
+//   } catch (error) {
+//     return res.status(404).json(error);
+//   }
+// });
 
 router.get("/:id", async (req, res) => {
   try {
