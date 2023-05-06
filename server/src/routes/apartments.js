@@ -34,4 +34,13 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    return res.json(await deleteApartment(id));
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+});
+
 module.exports = router;

@@ -39,4 +39,21 @@ async function editApartment(id, data) {
   }
 }
 
-module.exports = { getApartments, getApartmentById, editApartment };
+async function deleteApartment(id) {
+  try {
+    const deleted = await Apartment.destroy({
+      where: { id },
+    });
+
+    return deleted === 1 ? "Apartment deleted." : "Error";
+  } catch (error) {
+    return error;
+  }
+}
+
+module.exports = {
+  getApartments,
+  getApartmentById,
+  editApartment,
+  deleteApartment,
+};

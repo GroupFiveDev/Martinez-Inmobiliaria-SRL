@@ -116,7 +116,7 @@ async function deleteField(id) {
       where: { id },
     });
 
-    return deleted === 1 ? "Field delete." : "Error";
+    return deleted === 1 ? "Field deleted." : "Error";
   } catch (error) {
     return error;
   }
