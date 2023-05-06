@@ -6,6 +6,7 @@ const {
   getApartmentById,
   editApartment,
   createApartment,
+  createApartments,
 } = require("../controllers/apartments.js");
 
 router.get("/", async (req, res) => {

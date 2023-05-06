@@ -110,6 +110,15 @@ async function createFields() {
 }
 // ************************************
 
+async function getFields() {
+  try {
+    const fields = await Field.findlAll();
+    return fields;
+  } catch (error) {
+    return error;
+  }
+}
+
 async function deleteField(id) {
   try {
     const deleted = await Field.destroy({
