@@ -2,19 +2,28 @@ const { Router } = require("express");
 const router = Router();
 const {
   deleteApartment,
-  getApartments,
+  //   getApartments,
   getApartmentById,
   editApartment,
   createApartment,
+  createApartments,
 } = require("../controllers/apartments.js");
 
 router.get("/", async (req, res) => {
   try {
-    return res.json(await getApartments());
+    return res.json(await createApartments());
   } catch (error) {
     return res.status(404).json(error);
   }
 });
+
+// router.get("/", async (req, res) => {
+//   try {
+//     return res.json(await getApartments());
+//   } catch (error) {
+//     return res.status(404).json(error);
+//   }
+// });
 
 router.get("/:id", async (req, res) => {
   try {
@@ -40,6 +49,26 @@ router.delete("/:id", async (req, res) => {
     return res.json(await deleteApartment(id));
   } catch (error) {
     return res.status(404).json(error);
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const { title, description, rooms, location, bathrooms, price, images } =
+      req.body;
+    return res.json(
+      await createApartment(
+        title,
+        description,
+        rooms,
+        location,
+        bathrooms,
+        price,
+        images
+      )
+    );
+  } catch (error) {
+    return res.status(500).json(error);
   }
 });
 
