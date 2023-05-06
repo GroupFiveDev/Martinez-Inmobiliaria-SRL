@@ -8,3 +8,16 @@ async function getApartments() {
     return error;
   }
 }
+
+async function getApartmentById(id) {
+  try {
+    const apartment = await Apartment.findOne({
+      where: { id },
+    });
+    return apartment;
+  } catch (error) {
+    return error;
+  }
+}
+
+module.exports = { getApartments, getApartmentById };
