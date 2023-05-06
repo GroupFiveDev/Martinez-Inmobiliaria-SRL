@@ -116,7 +116,7 @@ async function deleteField(id) {
       where: { id },
     });
 
-    return deleted === 1 ? "Field delete." : "Error";
+    return deleted === 1 ? "Field deleted." : "Error";
   } catch (error) {
     return error;
   }
@@ -182,4 +182,10 @@ async function editField(id, data) {
   }
 }
 
-module.exports = { createFields, deleteField, getFieldById, editField };
+module.exports = {
+  createFields,
+  deleteField,
+  getFieldById,
+  editField,
+  createField,
+};
