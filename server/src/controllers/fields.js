@@ -182,4 +182,10 @@ async function editField(id, data) {
   }
 }
 
-module.exports = { createFields, deleteField, getFieldById, editField };
+module.exports = {
+  createFields,
+  deleteField,
+  getFieldById,
+  editField,
+  createField,
+};

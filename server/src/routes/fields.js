@@ -5,6 +5,7 @@ const {
   deleteField,
   getFieldById,
   editField,
+  createField,
 } = require("../controllers/fields.js");
 
 router.get("/", async (req, res) => {
@@ -29,7 +30,7 @@ router.post("/", async (req, res) => {
     const { title, description, hectares, location, terrain, price, images } =
       req.body;
     return res.json(
-      await createFields(
+      await createField(
         title,
         description,
         hectares,
