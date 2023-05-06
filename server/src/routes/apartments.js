@@ -2,7 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const {
   deleteApartment,
-  getApartments,
+  //   getApartments,
   getApartmentById,
   editApartment,
   createApartment,
@@ -11,11 +11,19 @@ const {
 
 router.get("/", async (req, res) => {
   try {
-    return res.json(await getApartments());
+    return res.json(await createApartments());
   } catch (error) {
     return res.status(404).json(error);
   }
 });
+
+// router.get("/", async (req, res) => {
+//   try {
+//     return res.json(await getApartments());
+//   } catch (error) {
+//     return res.status(404).json(error);
+//   }
+// });
 
 router.get("/:id", async (req, res) => {
   try {
