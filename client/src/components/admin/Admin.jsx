@@ -15,7 +15,6 @@ export default function Admin() {
     e.preventDefault()
     try {
       const userCredentials = await login(user.email, user.password)
-      console.log(userCredentials);
       history.push("/")
     } catch (error) {
       console.log(error.message);

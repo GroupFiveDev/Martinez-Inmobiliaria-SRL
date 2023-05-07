@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 
-module.exports = (sequelize) => {
+module.exports = async (sequelize) => {
   sequelize.define(
     "field",
 

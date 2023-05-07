@@ -2,6 +2,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import trash from "../../assets/icons/trash.png";
 import { useState } from "react";
+import { useAuth } from '../../context/authContext'
 
 export default function Card2({
   id,
@@ -19,6 +20,7 @@ export default function Card2({
   setBoolean,
 }) {
   const [loading, setLoading] = useState(0);
+  const { user } = useAuth()
 
   async function deleteField() {
     setLoading(1);
@@ -46,7 +48,7 @@ export default function Card2({
               <button
                 onClick={() => deleteField()}
                 type="button"
-                className="text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2"
+                className={`${user ? "flex" : "hidden"} text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2`}
               >
                 <img src={trash} className="w-5 h-5 mr-1" alt="deleted" />
                 Eliminar
@@ -54,7 +56,7 @@ export default function Card2({
               <button
                 onClick={handleArchived}
                 type="button"
-                className="text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center ml-2 mb-2 mt-2"
+                className={`${user ? "flex" : "hidden"} text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center ml-2 mb-2 mt-2`}
               >
                 {archived ? "Desarchivar" : "Archivar"}
               </button>
@@ -93,14 +95,14 @@ export default function Card2({
               </div>
               <button
                 type="button"
-                className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2"
+                className={`${user ? "flex" : "hidden"} bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2`}
               >
                 Modificar
               </button>
               <button
                 onClick={handleSold}
                 type="button"
-                className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2"
+                className={`${user ? "flex" : "hidden"} bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2`}
               >
                 {sold ? "Quitar vendido" : "Poner como vendido"}
               </button>
