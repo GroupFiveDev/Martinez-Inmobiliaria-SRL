@@ -1,7 +1,7 @@
 const { Property } = require("../db.js");
 
 // Solamente para ambiente de desarrollo
-async function createFields() {
+async function createProperties() {
   const properties = [
     {
       type: "field",
@@ -201,14 +201,12 @@ async function createFields() {
     },
   ];
   try {
-    const propertiesDB = await Property.findAll();
+    let propertiesDB = await Property.findAll();
     if (propertiesDB.length) {
       return propertiesDB;
     }
 
-    await Property.bulkCreate(properties);
-    const propertiesDB2 = await Property.findAll();
-    return propertiesDB2;
+    return await Property.bulkCreate(properties);
   } catch (error) {
     return error;
   }
@@ -297,7 +295,7 @@ async function editField(id, data) {
 }
 
 module.exports = {
-  createFields,
+  createProperties,
   deleteField,
   getFieldById,
   editField,

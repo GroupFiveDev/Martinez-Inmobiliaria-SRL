@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const {
-  createFields,
+  createProperties,
   deleteField,
   getFieldById,
   editField,
@@ -11,7 +11,7 @@ const {
 
 router.get("/", async (req, res) => {
   try {
-    return res.json(await createFields());
+    return res.json(await createProperties());
   } catch (error) {
     return res.status(404).json(error);
   }
