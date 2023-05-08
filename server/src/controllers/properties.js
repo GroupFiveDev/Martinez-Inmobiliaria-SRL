@@ -1,7 +1,7 @@
 const { Property } = require("../db.js");
 
 // Solamente para ambiente de desarrollo
-async function createFields() {
+async function createProperties() {
   const properties = [
     {
       type: "field",
@@ -201,105 +201,109 @@ async function createFields() {
     },
   ];
   try {
-    const propertiesDB = await Property.findAll();
+    let propertiesDB = await Property.findAll();
     if (propertiesDB.length) {
       return propertiesDB;
     }
 
-    await Property.bulkCreate(properties);
-    const propertiesDB2 = await Property.findAll();
-    return propertiesDB2;
+    return await Property.bulkCreate(properties);
   } catch (error) {
     return error;
   }
 }
 // ************************************
 
-async function getFields() {
+async function getProperties() {
   try {
-    const fields = await Field.findlAll();
-    return fields;
+    const properties = await Property.findlAll();
+    return properties;
   } catch (error) {
     return error;
   }
 }
 
-async function deleteField(id) {
+async function deleteProperty(id) {
   try {
-    const deleted = await Field.destroy({
+    const deleted = await Property.destroy({
       where: { id },
     });
 
-    return deleted === 1 ? "Field deleted." : "Error";
+    return deleted === 1 ? "Property deleted." : "Error";
   } catch (error) {
     return error;
   }
 }
 
-async function createField(
+async function createProperty(
   title,
   description,
   hectares,
   location,
   terrain,
+  rooms,
+  bathrooms,
   price,
-  images
+  images,
+  type
 ) {
   try {
-    await Field.create({
+    await Property.create({
       title,
       description,
       hectares,
       location,
       terrain,
+      rooms,
+      bathrooms,
       price,
       images,
+      type,
     });
   } catch (error) {
     return error;
   }
 }
 
-async function getFieldById(id) {
+async function getPropertyById(id) {
   try {
-    const field = await Field.findOne({
+    const property = await Property.findOne({
       where: { id },
     });
-    return field;
+    return property;
   } catch (error) {
     return error;
   }
 }
 
-async function editField(id, data) {
+async function editProperty(id, data) {
   try {
-    const field = await Field.findOne({
+    const property = await Property.findOne({
       where: { id },
     });
 
-    if (data.title) field.title = data.title;
-    if (data.description) field.description = data.description;
-    if (data.hectares) field.hectares = data.hectares;
-    if (data.location) field.location = data.location;
-    if (data.terrain) field.terrain = data.terrain;
-    if (data.price) field.price = data.price;
-    if (data.images) field.images = data.images;
-    if (data.archived !== null) field.archived = data.archived;
-    if (data.sold !== null) field.sold = data.sold;
+    if (data.title) property.title = data.title;
+    if (data.description) property.description = data.description;
+    if (data.hectares) property.hectares = data.hectares;
+    if (data.location) property.location = data.location;
+    if (data.terrain) property.terrain = data.terrain;
+    if (data.price) property.price = data.price;
+    if (data.images) property.images = data.images;
+    if (data.archived !== null) property.archived = data.archived;
+    if (data.sold !== null) property.sold = data.sold;
 
-    await field.save();
-    await field.reload();
+    await property.save();
+    await property.reload();
 
-    return field;
+    return property;
   } catch (error) {
     return error;
   }
 }
 
 module.exports = {
-  createFields,
-  deleteField,
-  getFieldById,
-  editField,
-  createField,
+  createProperties,
+  deleteProperty,
+  getPropertyById,
+  editProperty,
+  createProperty,
 };
