@@ -97,10 +97,12 @@ export default function CardList() {
                     <Card
                       key={i}
                       id={card.id}
+                      type={card.type}
                       titulo={card.title}
                       descripcion={card.description}
                       hectareas={card.hectares}
-                      lotes={card.lots}
+                      rooms={card.rooms}
+                      bathrooms={card.bathrooms}
                       ubicacion={card.location}
                       terrain={card.terrain}
                       price={card.price}
@@ -116,10 +118,12 @@ export default function CardList() {
                     <Card2
                       key={i}
                       id={card.id}
+                      type={card.type}
                       titulo={card.title}
                       descripcion={card.description}
                       hectareas={card.hectares}
-                      lotes={card.lots}
+                      rooms={card.rooms}
+                      bathrooms={card.bathrooms}
                       ubicacion={card.location}
                       terrain={card.terrain}
                       price={card.price}

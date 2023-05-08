@@ -1,8 +1,8 @@
-const { Field } = require("../db.js");
+const { Property } = require("../db.js");
 
 // Solamente para ambiente de desarrollo
 async function createFields() {
-  const fields = [
+  const properties = [
     {
       type: "field",
       title: "Campo La Pampa",
@@ -94,16 +94,121 @@ async function createFields() {
         "https://example.com/image2.jpg",
       ],
     },
+    {
+      type: "apartment",
+      title: "Hermoso departamento en Palermo",
+      description:
+        "Departamento moderno y acogedor en el corazón de Palermo Soho",
+      location: "Palermo, Buenos Aires",
+      price: 120000,
+      images: [
+        "https://ejemplo.com/img1.jpg",
+        "https://ejemplo.com/img2.jpg",
+        "https://ejemplo.com/img3.jpg",
+      ],
+      rooms: 2,
+      bathrooms: 1,
+    },
+    {
+      type: "apartment",
+      title: "Luminoso departamento en Belgrano",
+      description:
+        "Departamento con excelente iluminación natural y vistas panorámicas en Belgrano",
+      location: "Belgrano, Buenos Aires",
+      price: 90000,
+      images: [
+        "https://ejemplo.com/img4.jpg",
+        "https://ejemplo.com/img5.jpg",
+        "https://ejemplo.com/img6.jpg",
+      ],
+      rooms: 3,
+      bathrooms: 2,
+    },
+    {
+      type: "apartment",
+      title: "Amplio departamento en San Telmo",
+      description:
+        "Departamento de gran tamaño y ambientes amplios en el barrio histórico de San Telmo",
+      location: "San Telmo, Buenos Aires",
+      price: 150000,
+      images: [
+        "https://ejemplo.com/img7.jpg",
+        "https://ejemplo.com/img8.jpg",
+        "https://ejemplo.com/img9.jpg",
+      ],
+      rooms: 4,
+      bathrooms: 2,
+    },
+    {
+      type: "apartment",
+      title: "Departamento con jardín en Nuñez",
+      description:
+        "Departamento con hermoso jardín privado en el barrio de Nuñez",
+      location: "Nuñez, Buenos Aires",
+      price: 180000,
+      images: [
+        "https://ejemplo.com/img10.jpg",
+        "https://ejemplo.com/img11.jpg",
+        "https://ejemplo.com/img12.jpg",
+      ],
+      rooms: 2,
+      bathrooms: 1,
+    },
+    {
+      type: "apartment",
+      title: "Departamento con terraza en Recoleta",
+      description:
+        "Departamento con amplia terraza y vistas panorámicas en el exclusivo barrio de Recoleta",
+      location: "Recoleta, Buenos Aires",
+      price: 220000,
+      images: [
+        "https://ejemplo.com/img13.jpg",
+        "https://ejemplo.com/img14.jpg",
+        "https://ejemplo.com/img15.jpg",
+      ],
+      rooms: 3,
+      bathrooms: 2,
+    },
+    {
+      type: "apartment",
+      title: "Departamento a estrenar en Caballito",
+      description:
+        "Departamento nuevo a estrenar en el barrio de Caballito, con excelente ubicación y accesibilidad",
+      location: "Caballito, Buenos Aires",
+      price: 100000,
+      images: [
+        "https://ejemplo.com/img16.jpg",
+        "https://ejemplo.com/img17.jpg",
+        "https://ejemplo.com/img18.jpg",
+      ],
+      rooms: 1,
+      bathrooms: 1,
+    },
+    {
+      type: "apartment",
+      title: "Departamento en el centro de Córdoba",
+      description:
+        "Departamento céntrico en la ciudad de Córdoba, con excelente conectividad y cercanía a puntos de interés",
+      location: "Centro, Córdoba",
+      price: 80000,
+      images: [
+        "https://ejemplo.com/img19.jpg",
+        "https://ejemplo.com/img20.jpg",
+        "https://ejemplo.com/img21.jpg",
+      ],
+      rooms: 2,
+      bathrooms: 1,
+    },
   ];
   try {
-    const fieldDB = await Field.findAll();
-    if (fieldDB.length) {
-      return fieldDB;
+    const propertiesDB = await Property.findAll();
+    if (propertiesDB.length) {
+      return propertiesDB;
     }
 
-    await Field.bulkCreate(fields);
-    const fieldDB2 = await Field.findAll();
-    return fieldDB2;
+    await Property.bulkCreate(properties);
+    const propertiesDB2 = await Property.findAll();
+    return propertiesDB2;
   } catch (error) {
     return error;
   }
