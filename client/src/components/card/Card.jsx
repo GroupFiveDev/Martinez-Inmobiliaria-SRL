@@ -6,7 +6,7 @@ import Modal from '../modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { useAuth } from '../../context/authContext';
 
-export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
+export default function Card({ id, type, titulo, descripcion, hectareas, rooms, bathrooms, lotes, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
   const [loading, setLoading] = useState(0)
   const { isOpen, openModal, closeModal } = useModal()
   const { user } = useAuth()
@@ -62,18 +62,12 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
               src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"
               alt=""
             />
-            <div
-              className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"
-                }`}
-            >
+            <div className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"}`}>
               <h1 className="text-white font-bold text-3xl font-Montserrat">
                 VENDIDO
               </h1>
             </div>
-            <div
-              className={`absolute bg-[#000000c1] w-full h-14 flex bottom-5 justify-center items-center ${archived ? "" : "hidden"
-                }`}
-            >
+            <div className={`absolute bg-[#000000c1] w-full h-14 flex bottom-5 justify-center items-center ${archived ? "" : "hidden"}`}>
               <h1 className="text-white font-bold text-3xl font-Montserrat">
                 ARCHIVADO
               </h1>
@@ -87,12 +81,21 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 {descripcion}
               </p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                HECTÁREAS: {hectareas}
-              </p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Lotes: {lotes}
-              </p>
+              {
+                type === "field" ?
+                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    HECTÁREAS: {hectareas}
+                  </p>
+                  :
+                  <>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                      Habitaciones: {rooms}
+                    </p>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                      Baños: {bathrooms}
+                    </p>
+                  </>
+              }
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 Ubicación: {ubicacion}
               </p>
@@ -105,7 +108,7 @@ export default function Card({ id, titulo, descripcion, hectareas, lotes, ubicac
             </div>
           </div>
         </Link>
-        <div className={`${user ? "flex" : "hidden"} bottom-0 w-full flex-col justify-center items-center`}>
+        <div className={`${user ? "flex" : "hidden"} w-full flex-col justify-center items-center relative bottom-0`}>
           <button type="button" className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2 mt-2">
             Modificar
           </button>
