@@ -1,10 +1,8 @@
 const { Router } = require("express");
-const fields = require("./fields.js");
-const apartments = require("./apartments.js");
+const properties = require("./properties.js");
 
 const router = Router();
 
-router.use("/fields", fields);
-router.use("/apartments", apartments);
+router.use("/properties", properties);
 
 module.exports = router;

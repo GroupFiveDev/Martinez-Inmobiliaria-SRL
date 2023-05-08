@@ -1,17 +1,17 @@
 const { Router } = require("express");
 const router = Router();
 const {
-  createFields,
-  deleteField,
-  getFieldById,
-  editField,
-  createField,
-  // getFields,
-} = require("../controllers/fields.js");
+  createProperties,
+  deleteProperty,
+  getPropertyById,
+  editProperty,
+  createProperty,
+  // getProperties,
+} = require("../controllers/properties.js");
 
 router.get("/", async (req, res) => {
   try {
-    return res.json(await createFields());
+    return res.json(await createProperties());
   } catch (error) {
     return res.status(404).json(error);
   }
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
 // router.get("/", async (req, res) => {
 //   try {
-//     return res.json(await getFields());
+//     return res.json(await getProperties());
 //   } catch (error) {
 //     return res.status(404).json(error);
 //   }
@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    return res.json(await getFieldById(id));
+    return res.json(await getPropertyById(id));
   } catch (error) {
     return res.status(404).json(error);
   }
@@ -36,17 +36,30 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { title, description, hectares, location, terrain, price, images } =
-      req.body;
+    const {
+      title,
+      description,
+      hectares,
+      location,
+      terrain,
+      rooms,
+      bathrooms,
+      price,
+      images,
+      type,
+    } = req.body;
     return res.json(
-      await createField(
+      await createProperty(
         title,
         description,
         hectares,
         location,
         terrain,
+        rooms,
+        bathrooms,
         price,
-        images
+        images,
+        type
       )
     );
   } catch (error) {
@@ -57,7 +70,7 @@ router.post("/", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    return res.json(await editField(id, req.body));
+    return res.json(await editProperty(id, req.body));
   } catch (error) {
     return res.status(404).json(error);
   }
@@ -66,7 +79,7 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    return res.json(await deleteField(id));
+    return res.json(await deleteProperty(id));
   } catch (error) {
     return res.status(404).json(error);
   }
