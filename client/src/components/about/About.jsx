@@ -9,10 +9,8 @@ export default function About() {
 
       {/* Info */}
       <div className="w-full relative bg-[#51535b] flex items-center lg:px-[300px] p-10 sm:h-96">
-        <div className="absolute top-0 left-0 hidden lg:flex w-52 h-20 z-40 rallado">
-        </div>
-        <div className="absolute bottom-0 right-0 hidden h-full lg:flex w-24 z-40 rallado">
-        </div>
+        <div className="absolute top-0 left-0 hidden lg:flex w-52 h-20 z-40 rallado" />
+        <div className="absolute bottom-0 right-0 hidden h-full lg:flex w-24 z-40 rallado" />
         <p className="text-lg text-center text-white ">Brindamos servicios inmobiliarios exclusivamente de compra/venta y tasaciones urbanas y rurales mediante prácticas modernas para que nuestro cliente pueda alcanzar sus objetivos en el menor tiempo posible, sin estrés, generando una experiencia digna de repetir o recomendar.  Generalmente nuestro servicio comienza realizando una valuación del inmueble, creando informes de alta calidad con mucha información de valor para que cada cliente pueda tener una visión clara del mercado y comprender de forma detallada qué factores determinan el valor de su propiedad.</p>
       </div>
 
