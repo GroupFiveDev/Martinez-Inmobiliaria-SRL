@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
       bathrooms,
       price,
       images,
+      type,
     } = req.body;
     return res.json(
       await createProperty(
@@ -57,7 +58,8 @@ router.post("/", async (req, res) => {
         rooms,
         bathrooms,
         price,
-        images
+        images,
+        type
       )
     );
   } catch (error) {
