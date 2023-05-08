@@ -215,13 +215,46 @@ async function createFields() {
 }
 // ************************************
 
+async function getFields() {
+  try {
+    const fields = await Field.findlAll();
+    return fields;
+  } catch (error) {
+    return error;
+  }
+}
+
 async function deleteField(id) {
   try {
     const deleted = await Field.destroy({
       where: { id },
     });
 
-    return deleted === 1 ? "Field delete." : "Error";
+    return deleted === 1 ? "Field deleted." : "Error";
+  } catch (error) {
+    return error;
+  }
+}
+
+async function createField(
+  title,
+  description,
+  hectares,
+  location,
+  terrain,
+  price,
+  images
+) {
+  try {
+    await Field.create({
+      title,
+      description,
+      hectares,
+      location,
+      terrain,
+      price,
+      images,
+    });
   } catch (error) {
     return error;
   }
@@ -263,4 +296,10 @@ async function editField(id, data) {
   }
 }
 
-module.exports = { createFields, deleteField, getFieldById, editField };
+module.exports = {
+  createFields,
+  deleteField,
+  getFieldById,
+  editField,
+  createField,
+};
