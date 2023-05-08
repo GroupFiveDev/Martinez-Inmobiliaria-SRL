@@ -44,7 +44,7 @@ export default function Card2({
       <Link to={`/card/${id}`}>
         <div class="relative p-10">
           <div class="w-full lg:max-w-full lg:flex">
-            <div className="left-10 z-50 absolute top-10  flex justify-center items-center">
+            <div className="left-10 z-50 absolute top-10 flex justify-center items-center">
               <button
                 onClick={() => deleteField()}
                 type="button"
@@ -62,28 +62,21 @@ export default function Card2({
               </button>
             </div>
             <img
-              class={`h-auto lg:h-auto lg:w-auto flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden${sold || archived ? "blur-sm" : ""
-                }`}
+              class={`h-auto lg:h-auto lg:w-auto flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden${sold || archived ? "blur-sm" : ""}`}
               src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"
               title=""
             />
-            <div
-              className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"
-                }`}
-            >
+            <div className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"}`} >
               <h1 className="text-white font-bold text-3xl font-Montserrat">
                 VENDIDO
               </h1>
             </div>
-            <div
-              className={`absolute bg-[#000000c1] w-full h-14 flex bottom-5 justify-center items-center ${archived ? "" : "hidden"
-                }`}
-            >
+            <div className={`absolute bg-[#000000c1] w-full h-14 flex bottom-5 justify-center items-center ${archived ? "" : "hidden"}`}>
               <h1 className="text-white font-bold text-3xl font-Montserrat">
                 ARCHIVADO
               </h1>
             </div>
-            <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+            <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full">
               <div class="mb-8">
                 <div class="text-gray-900 font-bold text-xl mb-2">{titulo}</div>
                 <p class="text-gray-700 text-base">{descripcion}</p>
