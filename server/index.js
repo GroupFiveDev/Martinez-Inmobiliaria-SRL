@@ -6,5 +6,7 @@ conn.sync({ force: true }).then(() => {
     console.log(
       `Server listening at ${process.env.PORT} DBNAME: ${conn.config.database}`
     );
+    console.log("");
+    console.error("Hiciste pull y merge origin/develop antes de codear? :)");
   });
 });
