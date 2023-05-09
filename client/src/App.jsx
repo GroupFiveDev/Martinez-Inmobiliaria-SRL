@@ -6,9 +6,7 @@ import Footer from './components/footer/Footer';
 import CardDetail from './components/card/CardDetail';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
-import Drawer from './components/drawer/Drawer';
 import Archives from './components/archives/Archives';
-import { useDrawer } from './hooks/useDrawer';
 import Proyects from './components/proyects/Proyects';
 import Admin from './components/admin/Admin';
 import CreateProperty from './components/createField/CreateProperty';
@@ -28,7 +26,7 @@ function App() {
             <Route exact path="/Archivados" component={Archives} />
             <Route exact path="/Proyectos" component={Proyects} />
             <Route exact path="/Admin" component={Admin} />
-            <Route path="/create" component={CreateProperty}/>
+            <Route path="/create" component={CreateProperty} />
           </Switch>
           <Footer />
         </Router>

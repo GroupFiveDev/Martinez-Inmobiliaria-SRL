@@ -1,4 +1,3 @@
-import { signOut } from "firebase/auth"
 import { Link } from "react-router-dom"
 import { logout } from "../../context/authContext"
 
@@ -16,8 +15,9 @@ export default function Drawer({ isOpen, closeDrawer }) {
         <button className="absolute top-0 right-0 m-4 text-xl text-white hover:text-black font-bold font-Montserrat" onClick={closeDrawer}>X</button>
         <div className="w-full flex flex-col items-center justify-center mt-5 gap-5">
           <h1 className="my-1 text-white font-bold font-Montserrat text-xl">Admin</h1>
-          <button onClick={closeDrawer} type="button" className="text-white bg-[#368a8c] hover:bg-[#1b4546] focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Subir campo</button>
-          <button onClick={closeDrawer} type="button" className="text-white bg-[#368a8c] hover:bg-[#1b4546] focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Subir departamento</button>
+          <Link to="/Create">
+            <button onClick={closeDrawer} type="button" className="text-white bg-[#368a8c] hover:bg-[#1b4546] focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Subir propiedad</button>
+          </Link>
           <Link to="/Archivados">
             <button onClick={closeDrawer} type="button" className="text-white bg-[#368a8c] hover:bg-[#1b4546] focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Archivados</button>
           </Link>
