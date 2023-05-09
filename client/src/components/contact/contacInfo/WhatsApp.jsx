@@ -12,9 +12,9 @@ export default function WhatsApp() {
         </a>
       </div>
       <div className='w-full flex flex-col items-center justify-center'>
-        <p class="text-lg text-[#368a8c] md:text-gray-600 font-Montserrat">WhatsApp</p>
-        <p class="text-lg text-white">+54 2473-509269</p>
-        <p class="text-lg text-white">+54 2473</p>
+        <p className="text-lg text-white font-Montserrat">WhatsApp</p>
+        <p className="text-lg text-white">+54 2473-509269</p>
+        <p className="text-lg text-white">+54 2473</p>
       </div>
       <hr className="my-6 mx-6 border-gray-200 lg:my-8" />
     </div>

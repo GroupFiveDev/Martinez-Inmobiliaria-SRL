@@ -13,13 +13,13 @@ export default function Phone() {
         </a>
       </div>
       <div className='w-full flex flex-col items-center justify-center'>
-        <p class="text-lg text-[#368a8c] md:text-gray-600 font-Montserrat">Llamanos</p>
+        <p className="text-lg text-white font-Montserrat">Llamanos</p>
         <div className='flex flex-col justify-center items-center gap-4 mt-4'>
           <a href="tel:2473509269" target="_blank" className='hover:cursor-pointer'>
-            <p class="text-lg text-white p-3 border-[#368a8c] hover:opacity-50 md:border-white border-2">Martinez Thiago</p>
+            <p className="text-lg text-white p-3 border-[#368a8c] hover:opacity-50 md:border-white border-2">Martinez Thiago</p>
           </a>
           <a href="tel:2473509269" target="_blank" className='hover:cursor-pointer'>
-            <p class="text-lg text-white p-3 border-[#368a8c] hover:opacity-50 md:border-white border-2">Nessi Joaquin</p>
+            <p className="text-lg text-white p-3 border-[#368a8c] hover:opacity-50 md:border-white border-2">Nessi Joaquin</p>
           </a>
         </div>
 
