@@ -20,7 +20,6 @@ export default function Home() {
       <div className='h-[300px] md:h-[600px] div-image-home' />
       <Fields />
       <WhatsApp />
-      <h1>NBame:{user?.email}</h1>
     </>
   )
 }
