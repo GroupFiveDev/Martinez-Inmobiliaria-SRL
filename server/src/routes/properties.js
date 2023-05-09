@@ -6,12 +6,22 @@ const {
   getPropertyById,
   editProperty,
   createProperty,
+  orderProperties,
   // getProperties,
 } = require("../controllers/properties.js");
 
 router.get("/", async (req, res) => {
   try {
     return res.json(await createProperties());
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+});
+
+router.get("/order/:value", async (req, res) => {
+  try {
+    const { value } = req.params;
+    return res.json(await orderProperties(value));
   } catch (error) {
     return res.status(404).json(error);
   }

@@ -201,7 +201,9 @@ async function createProperties() {
     },
   ];
   try {
-    let propertiesDB = await Property.findAll();
+    let propertiesDB = await Property.findAll({
+      order: [["id", "ASC"]],
+    });
     if (propertiesDB.length) {
       return propertiesDB;
     }
@@ -215,7 +217,9 @@ async function createProperties() {
 
 async function getProperties() {
   try {
-    const properties = await Property.findlAll();
+    const properties = await Property.findAll({
+      order: [["id", "ASC"]],
+    });
     return properties;
   } catch (error) {
     return error;
@@ -300,10 +304,41 @@ async function editProperty(id, data) {
   }
 }
 
+async function orderProperties(value) {
+  try {
+    let propertiesDB;
+    if (value === "<") {
+      propertiesDB = await Property.findAll({
+        order: [["price", "ASC"]],
+      });
+    }
+    if (value === ">") {
+      propertiesDB = await Property.findAll({
+        order: [["price", "DESC"]],
+      });
+    }
+    // probar estos dos ultimos if
+    if (value === "nuevas") {
+      propertiesDB = await Property.findAll({
+        order: [["createdAt", "DESC"]],
+      });
+    }
+    if (value === "antiguas") {
+      propertiesDB = await Property.findAll({
+        order: [["createdAt", "DESC"]],
+      });
+    }
+    return propertiesDB;
+  } catch (error) {
+    return error;
+  }
+}
+
 module.exports = {
   createProperties,
   deleteProperty,
   getPropertyById,
   editProperty,
   createProperty,
+  orderProperties,
 };
