@@ -12,8 +12,9 @@ async function createProperties() {
       terrain: "Ganadero",
       price: 1000000,
       images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
+        "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
+        "https://i.pinimg.com/736x/0d/83/f4/0d83f4474c77d94966d16c8eccf6c92d--white-cottage-argentina.jpg",
+        "https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/SBEJYXLPVRCNTGO4UMGT4ZGLYU.jpg",
       ],
     },
     {
@@ -100,6 +101,8 @@ async function createProperties() {
       description:
         "Departamento moderno y acogedor en el corazón de Palermo Soho",
       location: "Palermo, Buenos Aires",
+      square: 32,
+      garage: 2,
       price: 120000,
       images: [
         "https://ejemplo.com/img1.jpg",
@@ -115,6 +118,7 @@ async function createProperties() {
       description:
         "Departamento con excelente iluminación natural y vistas panorámicas en Belgrano",
       location: "Belgrano, Buenos Aires",
+      square: 32,
       price: 90000,
       images: [
         "https://ejemplo.com/img4.jpg",
@@ -130,6 +134,8 @@ async function createProperties() {
       description:
         "Departamento de gran tamaño y ambientes amplios en el barrio histórico de San Telmo",
       location: "San Telmo, Buenos Aires",
+      square: 32,
+      garage: 2,
       price: 150000,
       images: [
         "https://ejemplo.com/img7.jpg",
@@ -145,6 +151,8 @@ async function createProperties() {
       description:
         "Departamento con hermoso jardín privado en el barrio de Nuñez",
       location: "Nuñez, Buenos Aires",
+      square: 32,
+      garage: 2,
       price: 180000,
       images: [
         "https://ejemplo.com/img10.jpg",
@@ -160,6 +168,8 @@ async function createProperties() {
       description:
         "Departamento con amplia terraza y vistas panorámicas en el exclusivo barrio de Recoleta",
       location: "Recoleta, Buenos Aires",
+      square: 32,
+      garage: 2,
       price: 220000,
       images: [
         "https://ejemplo.com/img13.jpg",
@@ -175,6 +185,8 @@ async function createProperties() {
       description:
         "Departamento nuevo a estrenar en el barrio de Caballito, con excelente ubicación y accesibilidad",
       location: "Caballito, Buenos Aires",
+      square: 32,
+      garage: 2,
       price: 100000,
       images: [
         "https://ejemplo.com/img16.jpg",
@@ -190,6 +202,8 @@ async function createProperties() {
       description:
         "Departamento céntrico en la ciudad de Córdoba, con excelente conectividad y cercanía a puntos de interés",
       location: "Centro, Córdoba",
+      square: 32,
+      garage: 2,
       price: 80000,
       images: [
         "https://ejemplo.com/img19.jpg",

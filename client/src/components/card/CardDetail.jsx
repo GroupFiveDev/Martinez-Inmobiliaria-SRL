@@ -6,6 +6,8 @@ import axios from "axios";
 import Location from '../contact/contacInfo/Location'
 import bathroom from '../../assets/icons/bathrooms.png'
 import room from '../../assets/icons/rooms.png'
+import squareIc from '../../assets/icons/squareIc.png'
+import garaje from '../../assets/icons/garaje.png'
 
 export default function CardDetail() {
   const { id } = useParams();
@@ -21,6 +23,7 @@ export default function CardDetail() {
       const result = await axios.get(`/properties/${id}`);
       setProperty(result.data);
     })();
+    window.scrollTo({ top: 0, left: 0 })
   }, []);
 
   return (
@@ -39,7 +42,7 @@ export default function CardDetail() {
           {/* imagen */}
           <div className="px-2 md:w-2/3 xl:w-full">
             <img
-              src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"
+              src={id == 1 ? property?.images[activeImageIndex] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
               alt={property?.title}
               className="w-full object-cover rounded-lg shadow-lg"
             />
@@ -47,7 +50,7 @@ export default function CardDetail() {
               {property?.images.map((image, index) => (
                 <button key={index} onClick={() => handleImageClick(index)}>
                   <img
-                    src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"
+                    src={id == 1 ? image : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
                     alt={property?.title}
                     className={`w-full object-cover rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
                   />
@@ -64,46 +67,41 @@ export default function CardDetail() {
                 property?.type === "field" ?
                   <>
                     <div className="text-white flex flex-col gap-4">
-                      <span><span className="font-bold">HECTÁREAS: </span> {property?.hectares}</span>
-                      <span><span className="font-bold">APTITUD: </span> {property?.terrain}</span>
+                      <span><span className={`${property?.hectareas ? "" : "hidden"}font-bold`}>HECTÁREAS: </span> {property?.hectares}</span>
+                      <span><span className={`${property?.terrain ? "" : "hidden"}font-bold`}>APTITUD: </span> {property?.terrain}</span>
                     </div>
                   </>
                   :
                   <>
                     <div className='flex gap-5'>
-                      <p className="mb-3 dark:text-gray-400 flex items-end gap-1 font-bold text-white">
+                      <p className={`${property?.rooms ? "" : "hidden"}mb-3 dark:text-gray-400 flex items-end gap-1 font-bold text-white`}>
                         <img src={room} alt="romm" className='w-7' />
-                        <p>
-                          {property?.rooms}
-                        </p>
+                        {property?.rooms}
                       </p>
-                      <p className="mb-3 text-white dark:text-gray-400 flex items-end gap-1 font-bold">
+                      <p className={`${property?.bathrooms ? "" : "hidden"}mb-3 text-white dark:text-gray-400 flex items-end gap-1 font-bold`}>
                         <img src={bathroom} alt="romm" className='w-7' />
-                        <p>
-                          {property?.bathrooms}
-                        </p>
+                        {property?.bathrooms}
                       </p>
-                      <p className="mb-3 text-white dark:text-gray-400 flex items-end font-bold">
-                        {property?.squares} 70 squares
+                      <p className={`${property?.garage ? "" : "hidden"}mb-3 text-white dark:text-gray-400 flex items-end font-bold`}>
+                        <img src={squareIc} alt="romm" className='w-7' />
+                        {property?.square}
                       </p>
                     </div>
                   </>
               }
             </div>
-            <div className="text-white">
-              <span className="font-bold">UBICACIÓN: </span>
+            <div className={`${property?.location ? "flex" : "hidden"}text-white flex gap-2`}>
+              <span className="font-bold">UBICACIÓN:</span>
               <span>{property?.location}</span>
             </div>
-
-            <div className="text-white font-bold">
-              <span>$ </span>
-              <span>{property?.price}</span>
+            <div className={`${property?.price ? "" : "flex"} text-white font-bold`}>
+              <span>$ {property?.price}</span>
             </div>
-          </div>
-
-        </div>
+          </div >
+        </div >
         {/* redes */}
-        <div className="md:absolute right-0 top-0 h-full flex flex-col justify-center w-full md:w-fit">
+        <div className="md:absolute right-0 top-0 h-full flex flex-col justify-center w-full md:w-fit" >
+          <h1 className="text-center mb-4 font-Montserrat text-white text-3xl">Contacto</h1>
           <WhatsApp />
           <Location />
           <Phone />
