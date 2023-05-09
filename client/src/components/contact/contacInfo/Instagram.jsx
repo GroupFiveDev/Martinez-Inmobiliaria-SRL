@@ -10,7 +10,7 @@ export default function Instagram() {
           <AiFillInstagram size={"1.5rem"} className='hover:opacity-50 w-8 h-8' />
         </a>
         <a className='flex justify-center items-center' href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
-          <p class="text-lg text-[#368a8c] sm:text-black font-Montserrat">Instagram</p>
+          <p className="text-lg text-white font-Montserrat">Instagram</p>
         </a>
       </div>
     </div>

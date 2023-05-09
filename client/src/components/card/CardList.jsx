@@ -92,6 +92,8 @@ export default function CardList() {
                       hectareas={card.hectares}
                       rooms={card.rooms}
                       bathrooms={card.bathrooms}
+                      garage={card.garage}
+                      square={card.square}
                       ubicacion={card.location}
                       terrain={card.terrain}
                       price={card.price}
@@ -113,6 +115,8 @@ export default function CardList() {
                       hectareas={card.hectares}
                       rooms={card.rooms}
                       bathrooms={card.bathrooms}
+                      garage={card.garage}
+                      square={card.square}
                       ubicacion={card.location}
                       terrain={card.terrain}
                       price={card.price}

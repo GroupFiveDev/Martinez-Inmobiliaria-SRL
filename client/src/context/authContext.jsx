@@ -10,8 +10,8 @@ export function useAuth() {
 }
 
 export async function signup(email, password) {
-  const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-  return userCredentials
+  // const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+  // return userCredentials
 }
 
 export async function login(email, password) {

@@ -28,6 +28,12 @@ module.exports = async (sequelize) => {
     bathrooms: {
       type: DataTypes.INTEGER,
     },
+    garage: {
+      type: DataTypes.INTEGER,
+    },
+    square: {
+      type: DataTypes.INTEGER,
+    },
     price: {
       type: DataTypes.INTEGER,
     },
