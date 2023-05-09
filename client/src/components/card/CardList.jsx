@@ -7,15 +7,8 @@ import Skeleton from "../skeleton/Skeleton";
 import Card2 from "./Card2";
 
 export default function CardList() {
-  const [fields, setFields] = useState([]);
+  const [properties, setProperties] = useState([]);
   const [boolean, setBoolean] = useState(false);
-
-  useEffect(() => {
-    (async function () {
-      const fieldsDB = await axios.get("/fields");
-      setFields(fieldsDB.data);
-    })();
-  }, [boolean]);
 
   const [view, setView] = useState("grid");
 
@@ -28,13 +21,13 @@ export default function CardList() {
 
   const last = currentPage * cardsPerPage;
   const first = last - cardsPerPage;
-  const currentCards = fields?.length ? fields.slice(first, last) : [];
-  const numberOfPages = fields.length && fields / cardsPerPage;
+  const currentCards = properties?.length ? properties.slice(first, last) : [];
+  const numberOfPages = properties.length && properties / cardsPerPage;
 
   const pagination = (numberPage) => {
     setCurrentPage(numberPage);
     document.getElementById(`${currentPage}`).classList.remove("active");
-    document.getElementById(`${numberPage}`).classList.toggle("active");
+    document.getElementById(`${numberPage}`).classList.toggle("active"); propertiesDB
   };
   const handleNext = (event) => {
     event.preventDefault();
@@ -58,24 +51,25 @@ export default function CardList() {
       : document.getElementById(`${currentPage}`).classList.toggle("active");
   };
 
+  useEffect(() => {
+    (async function () {
+      const propertiesDB = await axios.get("/properties");
+      setProperties(propertiesDB.data);
+    })();
+  }, [boolean]);
+
   return (
     <div className="flex justify-center items-center w-full">
       <div className="flex flex-col w-fit">
         <div className="flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
-          <Filter />
-          <button
-            onClick={toggleView}
-            className=" w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-          >
+          <Filter setProperties={setProperties} />
+          <button onClick={toggleView} className="hidden md:flex w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
             Cambiar vista
           </button>
-          <div
-            className={`${fields?.filter((e) => !e.archived).length > 6 ? "" : "hidden"
-              }`}
-          >
+          <div className={`${properties?.filter((e) => !e.archived).length > 6 ? "" : "hidden"}`}>
             <Pagination
               cardsPerPage={cardsPerPage}
-              cards={fields?.length}
+              cards={properties?.length}
               pagination={pagination}
               currentPage={currentPage}
               handlePrevious={handlePrevious}
@@ -83,14 +77,9 @@ export default function CardList() {
             />
           </div>
         </div>
-        <div
-          className={`${view === "grid"
-            ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2"
-            : ""
-            }`}
-        >
-          {fields.length
-            ? fields.map(
+        <div className={`${view === "grid" ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2" : ""}`}>
+          {properties.length
+            ? properties.map(
               view === "grid"
                 ? (card, i) =>
                   !card.archived && (

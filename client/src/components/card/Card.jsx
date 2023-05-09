@@ -1,31 +1,33 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import trash from '../../assets/icons/trash.png'
+import bathroom from '../../assets/icons/bathrooms.png'
+import room from '../../assets/icons/rooms.png'
 import { useState } from 'react';
 import Modal from '../modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { useAuth } from '../../context/authContext';
 
-export default function Card({ id, type, titulo, descripcion, hectareas, rooms, bathrooms, lotes, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
+export default function Card({ id, type, titulo, descripcion, hectareas, rooms, bathrooms, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
   const [loading, setLoading] = useState(0)
   const { isOpen, openModal, closeModal } = useModal()
   const { user } = useAuth()
 
   async function deleted() {
     setLoading(1)
-    await axios.delete(`/fields/${id}`)
+    await axios.delete(`/properties/${id}`)
     setBoolean(!boolean)
     setLoading(0)
     closeModal()
   }
 
   async function handleArchived() {
-    await axios.patch(`/fields/${id}`, { archived: !archived });
+    await axios.patch(`/properties/${id}`, { archived: !archived });
     setBoolean(!boolean);
   }
 
   async function handleSold() {
-    await axios.patch(`/fields/${id}`, { sold: !sold });
+    await axios.patch(`/properties/${id}`, { sold: !sold });
     setBoolean(!boolean);
   }
 
@@ -83,24 +85,32 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
               </p>
               {
                 type === "field" ?
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    HECTÁREAS: {hectareas}
-                  </p>
-                  :
                   <>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      Habitaciones: {rooms}
+                      HECTÁREAS: {hectareas}
                     </p>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      Baños: {bathrooms}
+                      Aptitud: {terrain}
                     </p>
                   </>
+                  :
+                  <div className='flex gap-5'>
+                    <p className="mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-1 font-bold">
+                      <img src={room} alt="romm" className='w-7' />
+                      <p>
+                        {rooms}
+                      </p>
+                    </p>
+                    <p className="mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-1 font-bold">
+                      <img src={bathroom} alt="romm" className='w-7' />
+                      <p>
+                        {bathrooms}
+                      </p>
+                    </p>
+                  </div>
               }
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 Ubicación: {ubicacion}
-              </p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Aptitud: {terrain}
               </p>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 $ {price}
