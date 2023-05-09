@@ -8,26 +8,26 @@ import Modal from '../modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { useAuth } from '../../context/authContext';
 
-export default function Card({ id, type, titulo, descripcion, hectareas, rooms, bathrooms, lotes, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
+export default function Card({ id, type, titulo, descripcion, hectareas, rooms, bathrooms, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
   const [loading, setLoading] = useState(0)
   const { isOpen, openModal, closeModal } = useModal()
   const { user } = useAuth()
 
   async function deleted() {
     setLoading(1)
-    await axios.delete(`/fields/${id}`)
+    await axios.delete(`/properties/${id}`)
     setBoolean(!boolean)
     setLoading(0)
     closeModal()
   }
 
   async function handleArchived() {
-    await axios.patch(`/fields/${id}`, { archived: !archived });
+    await axios.patch(`/properties/${id}`, { archived: !archived });
     setBoolean(!boolean);
   }
 
   async function handleSold() {
-    await axios.patch(`/fields/${id}`, { sold: !sold });
+    await axios.patch(`/properties/${id}`, { sold: !sold });
     setBoolean(!boolean);
   }
 

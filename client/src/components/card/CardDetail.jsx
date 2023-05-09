@@ -4,6 +4,8 @@ import Phone from "../contact/contacInfo/Phone";
 import WhatsApp from "../contact/contacInfo/WhatsApp";
 import axios from "axios";
 import Location from '../contact/contacInfo/Location'
+import bathroom from '../../assets/icons/bathrooms.png'
+import room from '../../assets/icons/rooms.png'
 
 export default function CardDetail() {
   const { id } = useParams();
@@ -16,11 +18,11 @@ export default function CardDetail() {
 
   useEffect(() => {
     (async function () {
-      const result = await axios.get(`/fields/${id}`);
+      const result = await axios.get(`/properties/${id}`);
       setProperty(result.data);
     })();
   }, []);
-  console.log(property);
+
   return (
     <>
       <div className="bg-[#51535b] pt-5 flex flex-col md:flex-row w-full justify-center items-center relative">
@@ -42,7 +44,7 @@ export default function CardDetail() {
               className="w-full object-cover rounded-lg shadow-lg"
             />
             <div className="mt-4 grid grid-cols-3 gap-4">
-              {/* {property?.images.map((image, index) => (
+              {property?.images.map((image, index) => (
                 <button key={index} onClick={() => handleImageClick(index)}>
                   <img
                     src="https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"
@@ -50,26 +52,50 @@ export default function CardDetail() {
                     className={`w-full object-cover rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
                   />
                 </button>
-              ))} */}
+              ))}
             </div>
           </div>
 
           {/* detalles */}
-          <div className="md:w-1/2 lg:w-1/2 px-4 flex justify-start flex-col items-start w-full text-white mt-4">
+          <div className="md:w-1/2 lg:w-1/2 px-4 flex justify-start flex-col items-start w-full text-white mt-4 mb-4 gap-4">
             <p className="text-xl mb-4">{property?.description}</p>
-            <div className="mb-4 text-white">
-              <span className="font-bold">HECTÁREAS: </span>
-              <span>{property?.hectares}</span>
+            <div className="text-white">
+              {
+                property?.type === "field" ?
+                  <>
+                    <div className="text-white flex flex-col gap-4">
+                      <span><span className="font-bold">HECTÁREAS: </span> {property?.hectares}</span>
+                      <span><span className="font-bold">APTITUD: </span> {property?.terrain}</span>
+                    </div>
+                  </>
+                  :
+                  <>
+                    <div className='flex gap-5'>
+                      <p className="mb-3 dark:text-gray-400 flex items-end gap-1 font-bold text-white">
+                        <img src={room} alt="romm" className='w-7' />
+                        <p>
+                          {property?.rooms}
+                        </p>
+                      </p>
+                      <p className="mb-3 text-white dark:text-gray-400 flex items-end gap-1 font-bold">
+                        <img src={bathroom} alt="romm" className='w-7' />
+                        <p>
+                          {property?.bathrooms}
+                        </p>
+                      </p>
+                      <p className="mb-3 text-white dark:text-gray-400 flex items-end font-bold">
+                        {property?.squares} 70 squares
+                      </p>
+                    </div>
+                  </>
+              }
             </div>
-            <div className="mb-4 text-white">
+            <div className="text-white">
               <span className="font-bold">UBICACIÓN: </span>
               <span>{property?.location}</span>
             </div>
-            <div className="mb-4 text-white">
-              <span className="font-bold">APTITUD: </span>
-              <span>{property?.terrain}</span>
-            </div>
-            <div className="mb-4 text-white font-bold">
+
+            <div className="text-white font-bold">
               <span>$ </span>
               <span>{property?.price}</span>
             </div>
