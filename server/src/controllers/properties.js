@@ -1,3 +1,4 @@
+
 const { Property } = require("../db.js");
 
 // Solamente para ambiente de desarrollo
@@ -318,35 +319,32 @@ async function editProperty(id, data) {
   }
 }
 
-async function orderProperties(value) {
+async function orderAndFilterProperties(obj) {
+  console.log(obj);
   try {
-    let propertiesDB;
-    if (value === "<") {
-      propertiesDB = await Property.findAll({
-        order: [["price", "ASC"]],
-      });
+    let filterValue = {}
+    if(obj.order){
+      filterValue.order = [obj.order]
     }
-    if (value === ">") {
-      propertiesDB = await Property.findAll({
-        order: [["price", "DESC"]],
-      });
+    if(obj.filter){
+      filterValue.where = {"type": obj.filter}
     }
-    // probar estos dos ultimos if
-    if (value === "nuevas") {
-      propertiesDB = await Property.findAll({
-        order: [["createdAt", "DESC"]],
-      });
-    }
-    if (value === "antiguas") {
-      propertiesDB = await Property.findAll({
-        order: [["createdAt", "DESC"]],
-      });
-    }
-    return propertiesDB;
+    console.log("*", filterValue);
+    
+    
+      return await Property.findAll(
+        filterValue
+      );
+    
+    
   } catch (error) {
+    console.log(error);
     return error;
+  
   }
 }
+
+
 
 module.exports = {
   createProperties,
@@ -354,5 +352,6 @@ module.exports = {
   getPropertyById,
   editProperty,
   createProperty,
-  orderProperties,
+  orderAndFilterProperties,
+  
 };
