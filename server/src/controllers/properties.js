@@ -304,6 +304,10 @@ async function editProperty(id, data) {
     if (data.hectares) property.hectares = data.hectares;
     if (data.location) property.location = data.location;
     if (data.terrain) property.terrain = data.terrain;
+    if (data.rooms) property.rooms = data.rooms;
+    if (data.bathrooms) property.bathrooms = data.bathrooms;
+    if (data.garage) property.garage = data.garage;
+    if (data.square) property.square = data.square;
     if (data.price) property.price = data.price;
     if (data.images) property.images = data.images;
     if (data.archived !== null) property.archived = data.archived;
@@ -318,32 +322,11 @@ async function editProperty(id, data) {
   }
 }
 
-async function orderProperties(value) {
+async function orderAndFilterProperties(obj) {
   try {
-    let propertiesDB;
-    if (value === "<") {
-      propertiesDB = await Property.findAll({
-        order: [["price", "ASC"]],
-      });
-    }
-    if (value === ">") {
-      propertiesDB = await Property.findAll({
-        order: [["price", "DESC"]],
-      });
-    }
-    // probar estos dos ultimos if
-    if (value === "nuevas") {
-      propertiesDB = await Property.findAll({
-        order: [["createdAt", "DESC"]],
-      });
-    }
-    if (value === "antiguas") {
-      propertiesDB = await Property.findAll({
-        order: [["createdAt", "DESC"]],
-      });
-    }
-    return propertiesDB;
+    return await Property.findAll(obj);
   } catch (error) {
+    console.log(error);
     return error;
   }
 }
@@ -354,5 +337,5 @@ module.exports = {
   getPropertyById,
   editProperty,
   createProperty,
-  orderProperties,
+  orderAndFilterProperties,
 };

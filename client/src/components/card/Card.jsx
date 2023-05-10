@@ -146,9 +146,6 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
           </div>
         </Link >
         <div className={`${user ? "flex" : "hidden"} w-full flex-col justify-center items-center relative bottom-0`}>
-          <button type="button" className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mb-2">
-            Modificar
-          </button>
           <button
             onClick={handleSold}
             type="button"
