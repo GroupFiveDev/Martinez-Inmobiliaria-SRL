@@ -19,7 +19,12 @@ export default function Pagination({
         </div>
         {numOfPages?.map((page) => {
           return (
-            <button className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" id={page} key={page} onClick={() => pagination(page)}>
+            <button
+              className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              id={page}
+              key={page}
+              onClick={() => pagination(page)}
+            >
               {page}
             </button>
           );
@@ -32,9 +37,8 @@ export default function Pagination({
   );
 }
 
-
-
-{/* <nav aria-label="Page navigation example">
+{
+  /* <nav aria-label="Page navigation example">
   <ul className="inline-flex items-center -space-x-px">
     <li>
       <a href="#" className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -60,4 +64,5 @@ export default function Pagination({
       </a>
     </li>
   </ul>
-</nav> */}
+</nav> */
+}

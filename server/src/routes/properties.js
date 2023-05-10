@@ -6,7 +6,7 @@ const {
   getPropertyById,
   editProperty,
   createProperty,
-  orderProperties,
+  orderAndFilterProperties,
   // getProperties,
 } = require("../controllers/properties.js");
 
@@ -18,10 +18,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/order/:value", async (req, res) => {
+router.get("/orderAndFilter/:value", async (req, res) => {
   try {
     const { value } = req.params;
-    return res.json(await orderProperties(value));
+    return res.json(await orderAndFilterProperties(JSON.parse(value)));
   } catch (error) {
     return res.status(404).json(error);
   }
