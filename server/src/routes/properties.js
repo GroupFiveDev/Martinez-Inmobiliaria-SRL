@@ -27,8 +27,6 @@ router.get("/orderAndFilter/:value", async (req, res) => {
   }
 });
 
-
-
 // router.get("/", async (req, res) => {
 //   try {
 //     return res.json(await getProperties());

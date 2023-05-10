@@ -1,4 +1,3 @@
-
 const { Property } = require("../db.js");
 
 // Solamente para ambiente de desarrollo
@@ -305,6 +304,10 @@ async function editProperty(id, data) {
     if (data.hectares) property.hectares = data.hectares;
     if (data.location) property.location = data.location;
     if (data.terrain) property.terrain = data.terrain;
+    if (data.rooms) property.rooms = data.rooms;
+    if (data.bathrooms) property.bathrooms = data.bathrooms;
+    if (data.garage) property.garage = data.garage;
+    if (data.square) property.square = data.square;
     if (data.price) property.price = data.price;
     if (data.images) property.images = data.images;
     if (data.archived !== null) property.archived = data.archived;
@@ -320,31 +323,13 @@ async function editProperty(id, data) {
 }
 
 async function orderAndFilterProperties(obj) {
-  console.log(obj);
   try {
-    let filterValue = {}
-    if(obj.order){
-      filterValue.order = [obj.order]
-    }
-    if(obj.filter){
-      filterValue.where = {"type": obj.filter}
-    }
-    console.log("*", filterValue);
-    
-    
-      return await Property.findAll(
-        filterValue
-      );
-    
-    
+    return await Property.findAll(obj);
   } catch (error) {
     console.log(error);
     return error;
-  
   }
 }
-
-
 
 module.exports = {
   createProperties,
@@ -353,5 +338,4 @@ module.exports = {
   editProperty,
   createProperty,
   orderAndFilterProperties,
-  
 };
