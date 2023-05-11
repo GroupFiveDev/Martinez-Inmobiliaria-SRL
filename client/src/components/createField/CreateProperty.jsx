@@ -1,5 +1,6 @@
 const CreateProperty = () => {
     <div>
+        <h1>hola</h1>
         <form>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
