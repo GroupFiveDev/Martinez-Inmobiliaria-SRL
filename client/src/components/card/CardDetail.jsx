@@ -12,12 +12,15 @@ import garaje from '../../assets/icons/garaje.png'
 import Edit from "../edit/Edit.jsx";
 import Check from "../check/Check.jsx";
 import Close from "../close/Close.jsx";
+import Loading from '../modal/Loading.jsx'
+import { useModal } from "../../hooks/useModal.js";
 
 export default function CardDetail() {
   const { id } = useParams();
+  const { isOpen, closeModal, openModal } = useModal()
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [property, setProperty] = useState();
-  let [change, setChange] = useState()
+  const [change, setChange] = useState()
   const [edit, setEdit] = useState({
     type: null,
     title: null,
@@ -64,7 +67,10 @@ export default function CardDetail() {
   }
 
   const handleOnSave = async () => {
+    openModal()
     const result = await axios.patch(`/properties/${id}`, property)
+    setChange(false)
+    closeModal()
   }
 
   useEffect(() => {
@@ -75,7 +81,6 @@ export default function CardDetail() {
       })();
     }
     window.scrollTo({ top: 0, left: 0 })
-
   }, []);
 
   return (
@@ -83,6 +88,9 @@ export default function CardDetail() {
       {
         change && <Prompt message="¿No hay cambios guardados, desea salir igual?" />
       }
+      <Loading isOpen={isOpen}>
+        <h1 className="font-Montserrat text-white font-bold text-xl">Guardando cambios...</h1>
+      </Loading>
       <div className="absolute bottom-0 left-0 hidden h-full xl:flex w-24 z-40 rallado" />
       <div className="xl:w-[50%] flex flex-col">
 
@@ -131,7 +139,7 @@ export default function CardDetail() {
               property?.type === "field" ?
                 <>
                   <div className="text-white flex flex-col gap-4">
-                    <p className={`${property?.hectares ? "" : "hidden"} gap-2 flex items-center font-bold text-white`}>
+                    <div className={`${property?.hectares ? "" : "hidden"} gap-2 flex items-center font-bold text-white`}>
                       HECTÁREAS:
                       <div className={`${edit.hectares ? "hidden" : "flex"}`}>
                         {property?.hectares}
@@ -140,54 +148,54 @@ export default function CardDetail() {
                       <Edit value={edit.hectares} onClick={() => setEdit({ ...edit, hectares: !edit.hectares })} user={user} />
                       <Check value={edit.hectares} onClick={() => { setEdit({ ...edit, hectares: !edit.hectares }); handleOnChange("hectaresProperty") }} />
                       <Close value={edit.hectares} onClick={() => setEdit({ ...edit, hectares: !edit.hectares })} />
-                    </p>
-                    <p className={`${property?.terrain ? "" : "hidden"} gap-2 flex items-center font-bold text-white`}>
+                    </div>
+                    <div className={`${property?.terrain ? "" : "hidden"} gap-2 flex items-center font-bold text-white`}>
                       APTITUD:
                       <div className={`${edit.terrain ? "hidden" : "flex"}`}>
                         {property?.terrain}
                       </div>
-                      <select name="terrain" id="terrainProperty" className={`${edit.terrain ? "flex" : "hidden"} w-[80%] text-black`}>
-                        <option value="Ganadero" selected={property.terrain === "Ganadero"}>Ganadero</option>
-                        <option value="Agrícola" selected={property.terrain === "Agrícola"}>Agrícola</option>
-                        <option value="Mixto" selected={property.terrain === "Mixto"}>Mixto</option>
+                      <select name="terrain" id="terrainProperty" defaultValue={property.terrain === "Ganadero" ? "Ganadero" : property.terrain === "Agrícola" ? "Agrícola" : "Mixto"} className={`${edit.terrain ? "flex" : "hidden"} w-[80%] text-black`}>
+                        <option value="Ganadero">Ganadero</option>
+                        <option value="Agrícola">Agrícola</option>
+                        <option value="Mixto">Mixto</option>
                       </select>
                       <Edit value={edit.terrain} onClick={() => setEdit({ ...edit, terrain: !edit.terrain })} user={user} />
-                      <Check value={edit.terrain} onClick={() => { setEdit({ ...edit, terrain: !edit.terrain }); handleOnChange("apartmentProperty") }} />
+                      <Check value={edit.terrain} onClick={() => { setEdit({ ...edit, terrain: !edit.terrain }); handleOnChange("terrainProperty") }} />
                       <Close value={edit.terrain} onClick={() => setEdit({ ...edit, terrain: !edit.terrain })} />
-                    </p>
+                    </div>
                   </div>
                 </>
                 :
                 <>
                   <div className={`flex flex-wrap justify-center items-center ${edit.rooms ? "gap-10" : "gap-5"}`}>
-                    <p className={`${property?.rooms ? "" : "hidden"} flex items-center font-bold text-white`}>
+                    <div className={`${property?.rooms ? "" : "hidden"} flex items-center font-bold text-white`}>
                       <img src={room} alt="romm" className='w-7' />
-                      <div className={`${edit.rooms ? "hidden" : "flex"}`}>
+                      <span className={`${edit.rooms ? "hidden" : "flex"}`}>
                         {property?.rooms}
-                      </div>
+                      </span>
                       <input type="number" name="rooms" id="roomsProperty" defaultValue={property?.rooms} className={`${edit.rooms ? "flex" : "hidden"} w-16 h-10 text-black`} />
-                    </p>
-                    <p className={`${property?.bathrooms ? "" : "hidden"}text-white flex items-center font-bold`}>
+                    </div>
+                    <div className={`${property?.bathrooms ? "" : "hidden"}text-white flex items-center font-bold`}>
                       <img src={bathroom} alt="romm" className='w-7' />
-                      <div className={`${edit.rooms ? "hidden" : "flex"}`}>
+                      <span className={`${edit.rooms ? "hidden" : "flex"}`}>
                         {property?.bathrooms}
-                      </div>
+                      </span>
                       <input type="number" name="bathrooms" id="bathroomsProperty" defaultValue={property?.bathrooms} className={`${edit.rooms ? "flex" : "hidden"} w-16 h-10 text-black`} />
-                    </p>
-                    <p className={`${property?.garage ? "" : "hidden"}text-white flex items-center font-bold`}>
+                    </div>
+                    <div className={`${property?.garage ? "flex" : "hidden"} text-white items-center font-bold`}>
                       <img src={garaje} alt="romm" className='w-7' />
-                      <div className={`${edit.rooms ? "hidden" : "flex"}`}>
+                      <span className={`${edit.rooms ? "hidden" : "flex"}`}>
                         {property?.garage}
-                      </div>
+                      </span>
                       <input type="number" name="garage" id="garageProperty" defaultValue={property?.garage} className={`${edit.rooms ? "flex" : "hidden"} w-16 h-10 text-black`} />
-                    </p>
-                    <p className={`${property?.square ? "" : "hidden"}text-white flex items-center font-bold`}>
+                    </div>
+                    <div className={`${property?.square ? "" : "hidden"}text-white flex items-center font-bold`}>
                       <img src={squareIc} alt="romm" className='w-7' />
-                      <div className={`${edit.rooms ? "hidden" : "flex"}`}>
+                      <span className={`${edit.rooms ? "hidden" : "flex"}`}>
                         {property?.square}
-                      </div>
+                      </span>
                       <input type="number" name="square" id="squareProperty" defaultValue={property?.square} className={`${edit.rooms ? "flex" : "hidden"} w-16 h-10 text-black`} />
-                    </p>
+                    </div>
                     <div className="flex">
                       <Edit value={edit.rooms} onClick={() => setEdit({ ...edit, rooms: !edit.rooms })} user={user} />
                       <Check value={edit.rooms} onClick={() => { setEdit({ ...edit, rooms: !edit.rooms }); handleOnChange("apartmentProperty") }} />
@@ -199,7 +207,7 @@ export default function CardDetail() {
           </div>
 
           <div className={`${property?.location ? "flex" : "hidden"}text-white flex flex-wrap items-center gap-2`}>
-            <p className={`${property?.location ? "" : "hidden"} gap-2 flex font-bold text-white items-center text-center flex-wrap`}>
+            <div className={`${property?.location ? "" : "hidden"} gap-2 flex font-bold text-white items-center text-center flex-wrap `}>
               UBICACIÓN:
               <div className={`${edit.location ? "hidden" : "flex"}`}>
                 {property?.location}
@@ -208,10 +216,10 @@ export default function CardDetail() {
               <Edit value={edit.location} onClick={() => setEdit({ ...edit, location: !edit.location })} user={user} />
               <Check value={edit.location} onClick={() => { setEdit({ ...edit, location: !edit.location }); handleOnChange("locationProperty") }} />
               <Close value={edit.location} onClick={() => setEdit({ ...edit, location: !edit.location })} />
-            </p>
+            </div>
           </div>
           <div className={`${property?.price ? "" : "flex"} text-white font-bold`}>
-            <p className={`${property?.price ? "" : "hidden"} gap-2 flex items-center font-bold text-white mb-3`}>
+            <div className={`${property?.price ? "" : "hidden"} gap-2 flex items-center font-bold text-white mb-3`}>
               $
               <div className={`${edit.price ? "hidden" : "flex"}`}>
                 {property?.price}
@@ -220,16 +228,16 @@ export default function CardDetail() {
               <Edit value={edit.price} onClick={() => setEdit({ ...edit, price: !edit.price })} user={user} />
               <Check value={edit.price} onClick={() => { setEdit({ ...edit, price: !edit.price }); handleOnChange("priceProperty") }} />
               <Close value={edit.price} onClick={() => setEdit({ ...edit, price: !edit.price })} />
-            </p>
+            </div>
           </div>
         </div >
         <div className="w-full flex justify-center">
-          <button className="w-fit p-3 bg-[#368a8c] mb-5 font-Montserrat text-white hover:bg-[#1d3a3b] " onClick={handleOnSave}> Guardar cambios </button>
+          <button className={`${user ? "" : "hidden"} w-fit p-3 bg-[#368a8c] mb-5 font-Montserrat text-white hover:bg-[#1d3a3b]`} onClick={handleOnSave}> Guardar cambios </button>
         </div>
       </div >
 
       {/* redes */}
-      <div div className="md:absolute right-0 top-0 h-full flex flex-col justify-center w-full md:w-fit" >
+      <div className="md:absolute right-0 top-0 h-full flex flex-col justify-center w-full md:w-fit" >
         <h1 className="text-center mb-4 font-Montserrat text-white text-3xl">Contacto</h1>
         <WhatsApp />
         <Location />

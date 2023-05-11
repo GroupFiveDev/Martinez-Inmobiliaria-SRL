@@ -59,14 +59,14 @@ export default function NavBar() {
               </div>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className=" block py-2 pl-3 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <a href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className=" block py-2 pl-3 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Campos
-              </Link>
+              </a>
             </li>
             <li className='h-fit md:hidden'>
-              <Link to={pathname !== "/" ? "/#campos" : "#campos"} onClick={() => setIsOpen(!isOpen)} className="block py-2 pl-3 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <a href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-3 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Departamentos
-              </Link>
+              </a>
             </li>
             <li className="hidden md:flex h-fit">
               <Link to="/" className="mx-5">
