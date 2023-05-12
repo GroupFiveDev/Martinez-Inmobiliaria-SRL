@@ -1,13 +1,13 @@
 export default function Pagination({
-  cardsPerPage,
-  cards,
+  propertiesPerPage,
+  properties,
   pagination,
   handleNext,
   handlePrevious,
   currentPage,
 }) {
   const numOfPages = [];
-  const amountOfPages = Math.ceil(cards / cardsPerPage);
+  const amountOfPages = Math.ceil(properties / propertiesPerPage);
   for (let i = 1; i <= amountOfPages; i++) {
     numOfPages.push(i);
   }

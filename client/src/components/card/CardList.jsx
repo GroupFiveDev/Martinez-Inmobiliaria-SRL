@@ -17,12 +17,12 @@ export default function CardList() {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(6);
+  const [propertiesPerPage] = useState(6);
 
-  const last = currentPage * cardsPerPage;
-  const first = last - cardsPerPage;
-  const currentCards = properties?.length ? properties.slice(first, last) : [];
-  const numberOfPages = properties.length && properties / cardsPerPage;
+  const last = currentPage * propertiesPerPage;
+  const first = last - propertiesPerPage;
+  const currentproperties = properties.slice(first, last);
+  const numberOfPages = properties.length / propertiesPerPage;
 
   const pagination = (numberPage) => {
     setCurrentPage(numberPage);
@@ -30,6 +30,7 @@ export default function CardList() {
     document.getElementById(`${numberPage}`).classList.toggle("active");
     propertiesDB;
   };
+
   const handleNext = (event) => {
     event.preventDefault();
     currentPage <= numberOfPages
@@ -76,8 +77,8 @@ export default function CardList() {
             }`}
           >
             <Pagination
-              cardsPerPage={cardsPerPage}
-              cards={properties?.length}
+              propertiesPerPage={propertiesPerPage}
+              properties={properties?.length}
               pagination={pagination}
               currentPage={currentPage}
               handlePrevious={handlePrevious}
@@ -89,11 +90,11 @@ export default function CardList() {
           className={`${
             view === "grid"
               ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2"
-              : ""
+              : "w-screen"
           }`}
         >
-          {currentCards.length
-            ? currentCards.map(
+          {currentproperties.length
+            ? currentproperties.map(
                 view === "grid"
                   ? (card, i) =>
                       !card.archived && (
