@@ -1,5 +1,12 @@
 export default function Modal({ children, isOpen }) {
 
+  const body = document.getElementById("body")
+  if (isOpen) {
+    body.className = "overflow-y-hidden"
+  } else {
+    body.className = ""
+  }
+
   return (
     <div className={`${isOpen === false ? "hidden" : "flex"} w-full h-screen fixed top-0 left-0 z-50 justify-center items-center`}>
       <div className="fixed flex flex-col justify-center items-center min-w-[320px] max-w-[480px] min-h-[150px] max-h-[600px] text-center bg-gray-700 rounded-lg">

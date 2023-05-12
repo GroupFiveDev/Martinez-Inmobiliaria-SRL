@@ -78,6 +78,9 @@ export default function CardDetail() {
   }
 
   const handleLoadImages = () => {
+    if (imagesCount === property?.images.length + 1) {
+      return
+    }
     setImagesCount(imagesCount + 1)
   }
 
@@ -99,6 +102,7 @@ export default function CardDetail() {
       containerLoader.className = "justify-center items-center w-full h-full bg-[#368a8c] absolute top-0 z-50 hidden"
       body.className = "overflow-auto"
     } else {
+      window.scrollTo({ top: 0, left: 0 })
       containerLoader.className = "justify-center items-center w-full h-full bg-[#368a8c] absolute top-0 z-50 flex"
       body.className = "overflow-y-hidden"
     }
@@ -116,7 +120,7 @@ export default function CardDetail() {
       </div>
       <div className={`w-full min-h-screen flex justify-center relative bg-gray-600`}>
         <div className="absolute bottom-0 left-0 hidden h-full xl:flex w-24 z-40 rallado" />
-        <div className="flex flex-col justify-center pt-4 w-[60%]">
+        <div className="flex flex-col justify-center pt-4 w-[95%] xl:w-[60%]">
           {/* titulo */}
           <div className="bg-[#368a8c] mb-5 flex items-center gap-2 w-full">
             <h1 className={`${edit.title ? "hidden" : ""} text-3xl text-start ml-3 font-bold text-white font-Montserrat`}>
@@ -127,14 +131,14 @@ export default function CardDetail() {
             <Check value={edit.title} onClick={() => { setEdit({ ...edit, title: !edit.title }); handleOnChange("titleProperty") }} />
             <Close value={edit.title} onClick={() => setEdit({ ...edit, title: !edit.title })} />
           </div>
-          <div className="flex justify-between">
-            <div className="xl:w-[70%] flex flex-col">
+          <div className="flex flex-col xl:flex-row md:justify-between">
+            <div className="xl:w-[70%] flex flex-col items-center">
               {change && <Prompt message="¿No hay cambios guardados, desea salir igual?" />}
               <Loading isOpen={isOpen}>
                 <h1 className="font-Montserrat text-white font-bold text-xl">Guardando cambios...</h1>
               </Loading>
               {/* imagen */}
-              <div className="px-2 md:w-2/3 xl:w-full">
+              <div className="px-2  xl:w-full">
                 <img
                   src={id == 1 ? property?.images[activeImageIndex] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
                   onLoad={handleLoadImages}
@@ -262,7 +266,7 @@ export default function CardDetail() {
                 </div>
               </div >
             </div >
-            <div className="w-[30%] flex flex-col items-center px-4">
+            <div className="w-full xl:w-[30%] flex flex-col items-center px-4">
               <h1 className="text-center mb-4 font-Montserrat text-white text-3xl w-full bg-[#368a8c]">Contacto</h1>
               <WhatsApp />
               <Location />
