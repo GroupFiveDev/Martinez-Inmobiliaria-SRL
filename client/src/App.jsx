@@ -10,27 +10,32 @@ import Archives from './components/archives/Archives';
 import Proyects from './components/proyects/Proyects';
 import Admin from './components/admin/Admin';
 import CreateProperty from './components/createField/CreateProperty';
-import { AuthProvider } from './context/authContext.jsx'
+import Drawer from './components/drawer/Drawer';
+import { useDrawer } from './hooks/useDrawer';
+import { useAuth } from './context/authContext';
 
 function App() {
+  const { openDrawer, closeDrawer, isOpen } = useDrawer()
+  const { user } = useAuth()
+
   return (
     <>
-      <AuthProvider>
-        <Router>
-          <NavBar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/card/:id" component={CardDetail} />
-            <Route exact path="/Nosotros" component={About} />
-            <Route exact path="/Contacto" component={Contact} />
-            <Route exact path="/Archivados" component={Archives} />
-            <Route exact path="/Proyectos" component={Proyects} />
-            <Route exact path="/Admin" component={Admin} />
-            <Route path="/create" component={CreateProperty} />
-          </Switch>
-          <Footer />
-        </Router>
-      </AuthProvider >
+      <Router>
+        <NavBar />
+        <button onClick={openDrawer} className={`${user ? "flex" : ""}hidden fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-50`}>ADMIN</button>
+        <Drawer isOpen={isOpen} closeDrawer={closeDrawer} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/card/:id" component={CardDetail} />
+          <Route exact path="/Nosotros" component={About} />
+          <Route exact path="/Contacto" component={Contact} />
+          <Route exact path="/Archivados" component={Archives} />
+          <Route exact path="/Proyectos" component={Proyects} />
+          <Route exact path="/Admin" component={Admin} />
+          <Route path="/create" component={CreateProperty} />
+        </Switch>
+        <Footer />
+      </Router>
     </>
   )
 }
