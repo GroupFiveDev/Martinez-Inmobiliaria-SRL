@@ -22,7 +22,7 @@ function App() {
     <>
       <Router>
         <NavBar />
-        <button onClick={openDrawer} className={`${user ? "flex" : ""}hidden fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-50`}>ADMIN</button>
+        <button onClick={openDrawer} className={`${user ? "flex" : ""}hidden fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-[100]`}>ADMIN</button>
         <Drawer isOpen={isOpen} closeDrawer={closeDrawer} />
         <Switch>
           <Route exact path="/" component={Home} />
