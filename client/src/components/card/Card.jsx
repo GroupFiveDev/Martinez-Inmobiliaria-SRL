@@ -4,6 +4,7 @@ import trash from '../../assets/icons/trash.png'
 import bathroom from '../../assets/icons/bathrooms.png'
 import room from '../../assets/icons/rooms.png'
 import garaje from '../../assets/icons/garaje.png'
+import squareIc from '../../assets/icons/squareIc.png'
 import vaca from '../../assets/icons/silueta-de-vaca.png'
 import maiz from '../../assets/icons/maiz.png'
 import { useState } from 'react';
@@ -133,6 +134,10 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                     <p className={`${garage ? "" : "hidden"} mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-4 font-bold`}>
                       <img src={garaje} alt="garage" className='w-7' />
                       {garage}
+                    </p>
+                    <p className={`${square ? "" : "hidden"} mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-4 font-bold`}>
+                      <img src={squareIc} alt="square" className='w-7' />
+                      {square}
                     </p>
                   </div>
               }
