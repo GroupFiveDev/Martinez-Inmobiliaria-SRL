@@ -275,7 +275,7 @@ async function createProperty(
       rooms,
       bathrooms,
       price,
-      images,
+      // images,
       type,
     });
   } catch (error) {

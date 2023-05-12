@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/Archivados" component={Archives} />
           <Route exact path="/Proyectos" component={Proyects} />
           <Route exact path="/Admin" component={Admin} />
-          <Route path="/create" component={CreateProperty} />
+          <Route exact path="/create" component={CreateProperty} />
         </Switch>
         <Footer />
       </Router>
