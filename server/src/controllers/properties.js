@@ -262,10 +262,18 @@ async function createProperty(
   rooms,
   bathrooms,
   price,
+  garage,
+  square,
   images,
   type
 ) {
   try {
+    hectares = Number(hectares);
+    rooms = Number(rooms);
+    bathrooms = Number(bathrooms);
+    price = Number(price);
+    garage = Number(garage);
+    square = Number(square);
     await Property.create({
       title,
       description,
@@ -275,7 +283,9 @@ async function createProperty(
       rooms,
       bathrooms,
       price,
-      // images,
+      garage,
+      square,
+      images,
       type,
     });
   } catch (error) {
