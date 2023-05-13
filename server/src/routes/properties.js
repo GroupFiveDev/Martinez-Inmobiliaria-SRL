@@ -55,6 +55,8 @@ router.post("/", async (req, res) => {
       rooms,
       bathrooms,
       price,
+      garage,
+      square,
       images,
       type,
     } = req.body;
@@ -68,6 +70,8 @@ router.post("/", async (req, res) => {
         rooms,
         bathrooms,
         price,
+        garage,
+        square,
         images,
         type
       )
