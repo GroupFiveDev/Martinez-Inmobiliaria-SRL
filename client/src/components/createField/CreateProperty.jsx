@@ -43,6 +43,14 @@ const CreateProperty = () => {
         }
     }
 
+    const fieldOrApartment = (form) => {
+        if(form.type === "field") {
+            return true;
+        } else if(form.type === "apartment") {
+            return false;
+        }
+    }
+
     return(
         <div className="m-10">
             <h1 className="flex justify-center font-bold mb-5">Crear Propiedad:</h1>
@@ -67,7 +75,7 @@ const CreateProperty = () => {
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hectareas</label>
-                            <input onChange={handleChange} type="number" id="hectares" name="hectares" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                            <input onChange={handleChange} disabled={!(fieldOrApartment(form))} type="number" id="hectares" name="hectares" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ubicación</label>
@@ -75,23 +83,28 @@ const CreateProperty = () => {
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Terreno</label> {/* Agrícola, Mixto o Ganadero */}
-                            <input onChange={handleChange} type="text" id="terrain" name="terrain" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <select onChange={handleChange} disabled={!(fieldOrApartment(form))} type="text" id="terrain" name="terrain" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                <option value="">...</option>
+                                <option value="Agrícola">Agrícola</option>
+                                <option value="Mixto">Mixto</option>
+                                <option value="Ganadero">Ganadero</option>
+                            </select>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Habitaciones</label>
-                            <input onChange={handleChange} type="number" id="rooms" name="rooms" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="rooms" name="rooms" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Baños</label>
-                            <input onChange={handleChange} type="number" id="bathrooms" name="bathrooms" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="bathrooms" name="bathrooms" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Garage</label>
-                            <input onChange={handleChange} type="number" id="garage" name="garage" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="garage" name="garage" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metros cuadrados</label>
-                            <input onChange={handleChange} type="number" id="garage" name="garage" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="garage" name="garage" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
