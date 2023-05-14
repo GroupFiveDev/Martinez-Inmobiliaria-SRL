@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <>
-      <div className='h-[300px] md:h-[600px] div-image-home' />
+      <div className='h-[82vh] md:h-[80vh] div-image-home' />
       <Fields />
       <WhatsApp />
     </>
