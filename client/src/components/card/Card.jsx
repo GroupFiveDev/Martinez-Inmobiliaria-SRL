@@ -64,7 +64,7 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
         </div>
       </Modal>
       {/* ************** */}
-      <div className={`relative max-w-sm bg-[#368b8c26] border border-gray-200 rounded-lg shadow m-3 ${loading ? "opacity-50" : ""}`}>
+      <div className={`flex flex-col justify-between relative max-w-sm bg-[#368b8c26] border border-gray-200 rounded-lg shadow m-3 ${loading ? "opacity-50" : ""}`}>
         <div className='w-full absolute top-0 left-0 z-[100] flex justify-center'>
           <div role="status" className={`${loading ? "" : "hidden"} flex m-2`}>
             <svg aria-hidden="true" className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-[#368a8c]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +98,7 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                 {titulo}
               </h5>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {descripcion}
+                {descripcion?.length > 96 ? descripcion?.slice(0, 96).concat("...") : descripcion}
               </p>
               {
                 type === "field" ?
@@ -152,6 +152,7 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
         </Link >
         <div className={`${user ? "flex" : "hidden"} w-full flex-col justify-center items-center relative bottom-0`}>
           <button
+            name="sold"
             onClick={handleSold}
             type="button"
             className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mt-2"
@@ -159,11 +160,11 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
             {sold ? "Quitar vendido" : "Poner como vendido"}
           </button>
         </div>
-        <button onClick={openModal} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 right-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2`}>
+        <button name="delete" onClick={openModal} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 right-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2`}>
           <img src={trash} className='w-5 h-5 mr-1' alt="deleted" />
           Eliminar
         </button>
-        <button onClick={handleArchived} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 left-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center ml-2 mb-2 mt-2`}>
+        <button name="archive" onClick={handleArchived} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 left-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center ml-2 mb-2 mt-2`}>
           {archived ? "Desarchivar" : "Archivar"}
         </button>
       </div >

@@ -17,19 +17,19 @@ export default function CardList() {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(6);
+  const [propertiesPerPage] = useState(6);
 
-  const last = currentPage * cardsPerPage;
-  const first = last - cardsPerPage;
-  const currentCards = properties?.length ? properties.slice(first, last) : [];
-  const numberOfPages = properties.length && properties / cardsPerPage;
+  const last = currentPage * propertiesPerPage;
+  const first = last - propertiesPerPage;
+  const currentproperties = properties.slice(first, last);
+  const numberOfPages = properties.length / propertiesPerPage;
 
   const pagination = (numberPage) => {
     setCurrentPage(numberPage);
     document.getElementById(`${currentPage}`).classList.remove("active");
     document.getElementById(`${numberPage}`).classList.toggle("active");
-    propertiesDB;
   };
+
   const handleNext = (event) => {
     event.preventDefault();
     currentPage <= numberOfPages
@@ -55,7 +55,7 @@ export default function CardList() {
   useEffect(() => {
     (async function () {
       const propertiesDB = await axios.get("/properties");
-      setProperties(propertiesDB.data);
+      setProperties(propertiesDB.data.filter(e => e.archived === false));
     })();
   }, [boolean]);
 
@@ -65,8 +65,9 @@ export default function CardList() {
         <div className="flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
           <Filter setProperties={setProperties} />
           <button
+            name="toggleView"
             onClick={toggleView}
-            className="hidden md:flex w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            className="hidden md:flex w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5"
           >
             Cambiar vista
           </button>
@@ -75,8 +76,8 @@ export default function CardList() {
               }`}
           >
             <Pagination
-              cardsPerPage={cardsPerPage}
-              cards={properties?.length}
+              propertiesPerPage={propertiesPerPage}
+              properties={properties?.length}
               pagination={pagination}
               currentPage={currentPage}
               handlePrevious={handlePrevious}
@@ -87,35 +88,35 @@ export default function CardList() {
         <div
           className={`${view === "grid"
             ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2"
-            : ""
+            : "w-screen"
             }`}
         >
-          {currentCards.length
-            ? currentCards.map(
+          {currentproperties.length
+            ? currentproperties.map(
               view === "grid"
                 ? (card, i) =>
-                  !card.archived && (
-                    <Card
-                      key={i}
-                      id={card.id}
-                      type={card.type}
-                      titulo={card.title}
-                      descripcion={card.description}
-                      hectareas={card.hectares}
-                      rooms={card.rooms}
-                      bathrooms={card.bathrooms}
-                      garage={card.garage}
-                      square={card.square}
-                      ubicacion={card.location}
-                      terrain={card.terrain}
-                      price={card.price}
-                      images={card.images}
-                      boolean={boolean}
-                      sold={card.sold}
-                      setBoolean={setBoolean}
-                      archived={card.archived}
-                    />
-                  )
+                  // !card.archived && (
+                  <Card
+                    key={i}
+                    id={card.id}
+                    type={card.type}
+                    titulo={card.title}
+                    descripcion={card.description}
+                    hectareas={card.hectares}
+                    rooms={card.rooms}
+                    bathrooms={card.bathrooms}
+                    garage={card.garage}
+                    square={card.square}
+                    ubicacion={card.location}
+                    terrain={card.terrain}
+                    price={card.price}
+                    images={card.images}
+                    boolean={boolean}
+                    sold={card.sold}
+                    setBoolean={setBoolean}
+                    archived={card.archived}
+                  />
+                // )
                 : (card, i) =>
                   !card.archived && (
                     <Card2
