@@ -191,7 +191,7 @@ export default function CardDetail() {
                 </div>
                 <div className="mt-4 grid grid-cols-3 gap-4">
                   {property?.images.map((image, index) => (
-                    <button name="carrusel" key={index} onClick={() => handleImageClick(index)}>
+                    <button aria-label="carrusel" key={index} onClick={() => handleImageClick(index)}>
                       <img
                         src={
                           id == 1
@@ -533,7 +533,7 @@ export default function CardDetail() {
           </div >
           <div className="w-full flex justify-center">
             <button
-              name="save"
+              aria-label="save"
               className={`${user ? "" : "hidden"
                 } w-fit p-3 bg-[#368a8c] mb-5 font-Montserrat text-white hover:bg-[#1d3a3b]`}
               onClick={handleOnSave}

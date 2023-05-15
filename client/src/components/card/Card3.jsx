@@ -44,11 +44,11 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
       <Modal isOpen={isOpen} closeModal={closeModal}>
         <h1 className='p-5 text-white font-Montserrat'>Seguro que quieres eliminar esta propiedad?</h1>
         <div className='w-full flex justify-center items-end gap-5'>
-          <button name="accept" className="mb-3 md:my-0 w-fit text-center font-Montserrat bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 hover:bg-green-500 block p-2.5" onClick={deleted}>
+          <button aria-label="accept" className="mb-3 md:my-0 w-fit text-center font-Montserrat bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 hover:bg-green-500 block p-2.5" onClick={deleted}>
             Sí, eliminar.
           </button>
 
-          <button name="cancel" onClick={closeModal} className="mb-3 md:my-0 w-fit text-center font-Montserrat bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 hover:bg-red-400 block p-2.5">
+          <button aria-label="cancel" onClick={closeModal} className="mb-3 md:my-0 w-fit text-center font-Montserrat bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 hover:bg-red-400 block p-2.5">
             Cancelar
           </button>
           <div className='w-full absolute top-0 left-0'>
@@ -60,10 +60,11 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
               <span className="sr-only">Loading...</span>
             </div>
           </div>
-        </div>
-      </Modal>
+        </div >
+      </Modal >
       {/* ************** */}
-      <div className={`relative max-w-sm bg-[#368b8c26] border border-gray-200 rounded-lg shadow m-3 ${loading ? "opacity-50" : ""}`}>
+      <div div className={`relative max-w-sm bg-[#368b8c26] border border-gray-200 rounded-lg shadow m-3 ${loading ? "opacity-50" : ""}`
+      }>
         <div className='w-full absolute top-0 left-0 z-[100] flex justify-center'>
           <div role="status" className={`${loading ? "" : "hidden"} flex m-2`}>
             <svg aria-hidden="true" className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-[#368a8c]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,22 +148,22 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
         </Link >
         <div className={`${user ? "flex" : "hidden"} w-full flex-col justify-center items-center relative bottom-0`}>
           <button
-            name="sold"
+            aria-label="sold"
             onClick={handleSold}
             type="button"
             className="bottom-0 w-[90%] text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 inline-flex justify-center items-center mt-2"
           >
             {sold ? "Quitar vendido" : "Poner como vendido"}
           </button>
-        </div>
-        <button name="delete" onClick={openModal} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 right-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2`}>
+        </div >
+        <button aria-label="delete" onClick={openModal} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 right-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center mr-2 mb-2 mt-2`}>
           <img src={trash} className='w-5 h-5 mr-1' alt="deleted" />
           Eliminar
-        </button>
-        <button name="archive" onClick={handleArchived} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 left-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center ml-2 mb-2 mt-2`}>
+        </button >
+        <button aria-label="archive" onClick={handleArchived} type="button" className={`${user ? "flex" : "hidden"} absolute top-0 left-0 text-white bg-[#368a8c] hover:bg-[#2c7172] font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center ml-2 mb-2 mt-2`}>
           {archived ? "Desarchivar" : "Archivar"}
-        </button>
-      </div >
+        </button >
+      </div>
     </>
   );
 }
