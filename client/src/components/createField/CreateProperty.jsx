@@ -33,7 +33,37 @@ const CreateProperty = () => {
         // console.log(form)
     }
 
+    const validate = (form) => {
+        let errors = {};
+        if(Number(form.price) > 0) {
+            errors.price = "-El número debe ser menor a 0"
+        }
+        if(Number(form.rooms) > 0) {
+            errors.rooms = "-El número debe ser menor a 0"
+        }
+        if(Number(form.bathrooms) > 0) {
+            errors.bathrooms = "-El número debe ser menor a 0"
+        }
+        if(Number(form.garage) > 0) {
+            errors.garage = "-El número debe ser menor a 0"
+        }
+        if(Number(form.square) > 0) {
+            errors.square = "-El número debe ser menor a 0"
+        }
+        if(Number(form.hectares) > 0) {
+            errors.hectares = "-El número debe ser menor a 0"
+        }
+        return errors;
+    }
+
+    let errorMsg = validate(form);
+
     const handleSubmit = async (e) => {
+        e.preventDefault()
+        if(Object.values(errorMsg).length) {
+            return alert(Object.values(errorMsg).join('\n'), "error")
+        }
+
         try {
             // console.log(form)
             await axios.post("/properties", form)
@@ -76,6 +106,7 @@ const CreateProperty = () => {
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hectareas</label>
                             <input onChange={handleChange} disabled={!(fieldOrApartment(form))} type="number" id="hectares" name="hectares" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                            <p>{errorMsg.hectares}</p>
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ubicación</label>
@@ -93,22 +124,27 @@ const CreateProperty = () => {
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Habitaciones</label>
                             <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="rooms" name="rooms" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <p>{errorMsg.rooms}</p>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Baños</label>
                             <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="bathrooms" name="bathrooms" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <p>{errorMsg.bathrooms}</p>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Garage</label>
                             <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="garage" name="garage" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <p>{errorMsg.garage}</p>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metros cuadrados</label>
                             <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="garage" name="garage" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <p>{errorMsg.square}</p>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
                             <input onChange={handleChange} type="number" id="price" name="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <p>{errorMsg.price}</p>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagenes</label>
