@@ -14,16 +14,16 @@ const CreateProperty = () => {
         bathrooms: "",
         garage: "",
         square: "",
-        price: "", 
+        price: "",
         images: [],
     })
 
     const handleChange = (e) => {
-        if(e.target.name === "images") {
+        if (e.target.name === "images") {
             setForm({
-                    ...form,
-                    images: images.push(e.target.value),
-                })
+                ...form,
+                images: images.push(e.target.value),
+            })
         } else {
             setForm({
                 ...form,
@@ -69,19 +69,19 @@ const CreateProperty = () => {
             await axios.post("/properties", form)
             alert("Propiedad Creada")
         } catch (error) {
-            console.log(error)            
+            console.log(error)
         }
     }
 
     const fieldOrApartment = (form) => {
-        if(form.type === "field") {
+        if (form.type === "field") {
             return true;
-        } else if(form.type === "apartment") {
+        } else if (form.type === "apartment") {
             return false;
         }
     }
 
-    return(
+    return (
         <div className="m-10">
             <h1 className="flex justify-center font-bold mb-5">Crear Propiedad:</h1>
             <div>
@@ -105,7 +105,7 @@ const CreateProperty = () => {
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hectareas</label>
-                            <input onChange={handleChange} disabled={!(fieldOrApartment(form))} type="number" id="hectares" name="hectares" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                            <input onChange={handleChange} disabled={!(fieldOrApartment(form))} type="number" id="hectares" name="hectares" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             {/* <p>{errorMsg.hectares}</p> */}
                         </div>
                         <div>
@@ -152,12 +152,12 @@ const CreateProperty = () => {
                         </div>
                     </div>
                     <div className="flex justify-center items-center">
-                        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Crear propiedad</button>
+                        <button name="submit" type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Crear propiedad</button>
                     </div>
                 </form>
             </div>
         </div>
-        
+
     )
 }
 

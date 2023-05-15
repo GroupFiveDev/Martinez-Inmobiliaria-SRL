@@ -14,10 +14,10 @@ export default function NavBar() {
   return (
     <nav className="bg-[#368a8c] z-[60] relative">
       <div className='absolute left-5 gap-5 mt-4 hidden md:flex z-40'>
-        <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
+        <a name="instagram" href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
           <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' color='white' />
         </a>
-        <a href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
+        <a name="wsp" href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
           <AiOutlineWhatsApp size={"1.5rem"} className='hover:opacity-50' color='white' />
         </a>
       </div>
@@ -28,7 +28,7 @@ export default function NavBar() {
           <Link to="/">
             <img src={logo} className="w-40 scale-150" alt="inmobiliaria_Logo" />
           </Link>
-          <button onClick={() => setIsOpen(!isOpen)} type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+          <button onClick={() => setIsOpen(!isOpen)} name="dropdown" type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
             <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
           </button>
         </div>
@@ -42,7 +42,7 @@ export default function NavBar() {
               </Link>
             </li>
             <li className='hidden md:flex h-fit'>
-              <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-black md:p-0 md:w-auto">
+              <button name="dropdown" id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-black md:p-0 md:w-auto">
                 Comprar
                 <svg className="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
@@ -50,21 +50,21 @@ export default function NavBar() {
               <div id="dropdownNavbar" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Campos</a>
+                    <a name="fields" href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Campos</a>
                   </li>
                   <li>
-                    <a href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Departamentos</a>
+                    <a name="apartments" href="#campos" onClick={() => history.push("/")} className="text-lg block px-4 py-2 hover:bg-gray-100">Departamentos</a>
                   </li>
                 </ul>
               </div>
             </li>
             <li className='h-fit md:hidden'>
-              <a href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className=" block py-2 pl-3 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <a name="fields" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className=" block py-2 pl-3 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Campos
               </a>
             </li>
             <li className='h-fit md:hidden'>
-              <a href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-3 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <a name="apartments" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-3 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Departamentos
               </a>
             </li>
@@ -84,7 +84,7 @@ export default function NavBar() {
               </Link>
             </li>
             <li className='h-fit md:hidden'>
-              <a href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
+              <a name="call" href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-3 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0">
                 Llamanos
               </a>
             </li>
