@@ -17,18 +17,19 @@ export default function CardList() {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(6);
+  const [propertiesPerPage] = useState(6);
 
-  const last = currentPage * cardsPerPage;
-  const first = last - cardsPerPage;
-  const currentCards = properties?.length ? properties.slice(first, last) : [];
-  const numberOfPages = properties.length && properties / cardsPerPage;
+  const last = currentPage * propertiesPerPage;
+  const first = last - propertiesPerPage;
+  const currentproperties = properties.slice(first, last);
+  const numberOfPages = properties.length / propertiesPerPage;
 
   const pagination = (numberPage) => {
     setCurrentPage(numberPage);
     document.getElementById(`${currentPage}`).classList.remove("active");
     document.getElementById(`${numberPage}`).classList.toggle("active");
   };
+
   const handleNext = (event) => {
     event.preventDefault();
     currentPage <= numberOfPages
@@ -70,12 +71,13 @@ export default function CardList() {
             Cambiar vista
           </button>
           <div
-            className={`${properties?.filter((e) => !e.archived).length > 6 ? "" : "hidden"
-              }`}
+            className={`${
+              properties?.filter((e) => !e.archived).length > 6 ? "" : "hidden"
+            }`}
           >
             <Pagination
-              cardsPerPage={cardsPerPage}
-              cards={properties?.length}
+              propertiesPerPage={propertiesPerPage}
+              properties={properties?.length}
               pagination={pagination}
               currentPage={currentPage}
               handlePrevious={handlePrevious}
@@ -84,61 +86,62 @@ export default function CardList() {
           </div>
         </div>
         <div
-          className={`${view === "grid"
-            ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2"
-            : ""
-            }`}
+          className={`${
+            view === "grid"
+              ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2"
+              : "w-screen"
+          }`}
         >
-          {currentCards.length
-            ? currentCards.map(
-              view === "grid"
-                ? (card, i) =>
-                  !card.archived && (
-                    <Card
-                      key={i}
-                      id={card.id}
-                      type={card.type}
-                      titulo={card.title}
-                      descripcion={card.description}
-                      hectareas={card.hectares}
-                      rooms={card.rooms}
-                      bathrooms={card.bathrooms}
-                      garage={card.garage}
-                      square={card.square}
-                      ubicacion={card.location}
-                      terrain={card.terrain}
-                      price={card.price}
-                      images={card.images}
-                      boolean={boolean}
-                      sold={card.sold}
-                      setBoolean={setBoolean}
-                      archived={card.archived}
-                    />
-                  )
-                : (card, i) =>
-                  !card.archived && (
-                    <Card2
-                      key={i}
-                      id={card.id}
-                      type={card.type}
-                      titulo={card.title}
-                      descripcion={card.description}
-                      hectareas={card.hectares}
-                      rooms={card.rooms}
-                      bathrooms={card.bathrooms}
-                      garage={card.garage}
-                      square={card.square}
-                      ubicacion={card.location}
-                      terrain={card.terrain}
-                      price={card.price}
-                      images={card.images}
-                      boolean={boolean}
-                      sold={card.sold}
-                      setBoolean={setBoolean}
-                      archived={card.archived}
-                    />
-                  )
-            )
+          {currentproperties.length
+            ? currentproperties.map(
+                view === "grid"
+                  ? (card, i) =>
+                      !card.archived && (
+                        <Card
+                          key={i}
+                          id={card.id}
+                          type={card.type}
+                          titulo={card.title}
+                          descripcion={card.description}
+                          hectareas={card.hectares}
+                          rooms={card.rooms}
+                          bathrooms={card.bathrooms}
+                          garage={card.garage}
+                          square={card.square}
+                          ubicacion={card.location}
+                          terrain={card.terrain}
+                          price={card.price}
+                          images={card.images}
+                          boolean={boolean}
+                          sold={card.sold}
+                          setBoolean={setBoolean}
+                          archived={card.archived}
+                        />
+                      )
+                  : (card, i) =>
+                      !card.archived && (
+                        <Card2
+                          key={i}
+                          id={card.id}
+                          type={card.type}
+                          titulo={card.title}
+                          descripcion={card.description}
+                          hectareas={card.hectares}
+                          rooms={card.rooms}
+                          bathrooms={card.bathrooms}
+                          garage={card.garage}
+                          square={card.square}
+                          ubicacion={card.location}
+                          terrain={card.terrain}
+                          price={card.price}
+                          images={card.images}
+                          boolean={boolean}
+                          sold={card.sold}
+                          setBoolean={setBoolean}
+                          archived={card.archived}
+                        />
+                      )
+              )
             : [0, 1, 2, 3, 4, 5].map((e, i) => <Skeleton key={e + "*"} />)}
         </div>
       </div>
