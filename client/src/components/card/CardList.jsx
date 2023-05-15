@@ -28,7 +28,6 @@ export default function CardList() {
     setCurrentPage(numberPage);
     document.getElementById(`${currentPage}`).classList.remove("active");
     document.getElementById(`${numberPage}`).classList.toggle("active");
-    propertiesDB;
   };
   const handleNext = (event) => {
     event.preventDefault();
@@ -66,7 +65,7 @@ export default function CardList() {
           <Filter setProperties={setProperties} />
           <button
             onClick={toggleView}
-            className="hidden md:flex w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+            className="hidden md:flex w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5"
           >
             Cambiar vista
           </button>
