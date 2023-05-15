@@ -55,7 +55,8 @@ export default function CardList() {
   useEffect(() => {
     (async function () {
       const propertiesDB = await axios.get("/properties");
-      setProperties(propertiesDB.data);
+      setProperties(propertiesDB.data.filter(e => e.archived === false));
+      console.log(properties);
     })();
   }, [boolean]);
 
@@ -71,9 +72,8 @@ export default function CardList() {
             Cambiar vista
           </button>
           <div
-            className={`${
-              properties?.filter((e) => !e.archived).length > 6 ? "" : "hidden"
-            }`}
+            className={`${properties?.filter((e) => !e.archived).length > 6 ? "" : "hidden"
+              }`}
           >
             <Pagination
               propertiesPerPage={propertiesPerPage}
@@ -86,62 +86,61 @@ export default function CardList() {
           </div>
         </div>
         <div
-          className={`${
-            view === "grid"
-              ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2"
-              : "w-screen"
-          }`}
+          className={`${view === "grid"
+            ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2"
+            : "w-screen"
+            }`}
         >
           {currentproperties.length
             ? currentproperties.map(
-                view === "grid"
-                  ? (card, i) =>
-                      !card.archived && (
-                        <Card
-                          key={i}
-                          id={card.id}
-                          type={card.type}
-                          titulo={card.title}
-                          descripcion={card.description}
-                          hectareas={card.hectares}
-                          rooms={card.rooms}
-                          bathrooms={card.bathrooms}
-                          garage={card.garage}
-                          square={card.square}
-                          ubicacion={card.location}
-                          terrain={card.terrain}
-                          price={card.price}
-                          images={card.images}
-                          boolean={boolean}
-                          sold={card.sold}
-                          setBoolean={setBoolean}
-                          archived={card.archived}
-                        />
-                      )
-                  : (card, i) =>
-                      !card.archived && (
-                        <Card2
-                          key={i}
-                          id={card.id}
-                          type={card.type}
-                          titulo={card.title}
-                          descripcion={card.description}
-                          hectareas={card.hectares}
-                          rooms={card.rooms}
-                          bathrooms={card.bathrooms}
-                          garage={card.garage}
-                          square={card.square}
-                          ubicacion={card.location}
-                          terrain={card.terrain}
-                          price={card.price}
-                          images={card.images}
-                          boolean={boolean}
-                          sold={card.sold}
-                          setBoolean={setBoolean}
-                          archived={card.archived}
-                        />
-                      )
-              )
+              view === "grid"
+                ? (card, i) =>
+                  // !card.archived && (
+                  <Card
+                    key={i}
+                    id={card.id}
+                    type={card.type}
+                    titulo={card.title}
+                    descripcion={card.description}
+                    hectareas={card.hectares}
+                    rooms={card.rooms}
+                    bathrooms={card.bathrooms}
+                    garage={card.garage}
+                    square={card.square}
+                    ubicacion={card.location}
+                    terrain={card.terrain}
+                    price={card.price}
+                    images={card.images}
+                    boolean={boolean}
+                    sold={card.sold}
+                    setBoolean={setBoolean}
+                    archived={card.archived}
+                  />
+                // )
+                : (card, i) =>
+                  !card.archived && (
+                    <Card2
+                      key={i}
+                      id={card.id}
+                      type={card.type}
+                      titulo={card.title}
+                      descripcion={card.description}
+                      hectareas={card.hectares}
+                      rooms={card.rooms}
+                      bathrooms={card.bathrooms}
+                      garage={card.garage}
+                      square={card.square}
+                      ubicacion={card.location}
+                      terrain={card.terrain}
+                      price={card.price}
+                      images={card.images}
+                      boolean={boolean}
+                      sold={card.sold}
+                      setBoolean={setBoolean}
+                      archived={card.archived}
+                    />
+                  )
+            )
             : [0, 1, 2, 3, 4, 5].map((e, i) => <Skeleton key={e + "*"} />)}
         </div>
       </div>
