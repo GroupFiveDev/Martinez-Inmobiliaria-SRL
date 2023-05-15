@@ -94,10 +94,10 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
           </div>
           <div className="p-5">
             <div className="px-5">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                 {titulo}
-              </h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              </h1>
+              <p className="mb-3 font-normal text-gray-700">
                 {descripcion?.length > 96 ? descripcion?.slice(0, 96).concat("...") : descripcion}
               </p>
               {
@@ -114,37 +114,37 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                           :
                           <img src={maiz} alt="maiz" className='w-7' />
                     }
-                    <p className={`${hectareas ? "" : "hidden"} mb-3 mt-3 font-normal text-gray-700 dark:text-gray-400`}>
+                    <p className={`${hectareas ? "" : "hidden"} mb-3 mt-3 font-normal text-gray-700`}>
                       HECTÁREAS: {hectareas}
                     </p>
-                    <p className={`${terrain ? "" : "hidden"} mb-3 font-normal text-gray-700 dark:text-gray-400`}>
+                    <p className={`${terrain ? "" : "hidden"} mb-3 font-normal text-gray-700`}>
                       Aptitud: {terrain}
                     </p>
                   </>
                   :
                   <div className='flex gap-5'>
-                    <p className={`${rooms ? "" : "hidden"} mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-4 font-bold`}>
+                    <p className={`${rooms ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
                       <img src={room} alt="romm" className='w-7' />
                       {rooms}
                     </p>
-                    <p className={`${bathrooms ? "" : "hidden"} mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-4 font-bold`}>
+                    <p className={`${bathrooms ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
                       <img src={bathroom} alt="romm" className='w-7' />
                       {bathrooms}
                     </p>
-                    <p className={`${garage ? "" : "hidden"} mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-4 font-bold`}>
+                    <p className={`${garage ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
                       <img src={garaje} alt="garage" className='w-7' />
                       {garage}
                     </p>
-                    <p className={`${square ? "" : "hidden"} mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-4 font-bold`}>
+                    <p className={`${square ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
                       <img src={squareIc} alt="square" className='w-7' />
                       {square}
                     </p>
                   </div>
               }
-              <p className={`${ubicacion ? "flex" : "hidden"} mb-3 font-normal text-gray-700 dark:text-gray-400`}>
+              <p className={`${ubicacion ? "flex" : "hidden"} mb-3 font-normal text-gray-700`}>
                 Ubicación: {ubicacion}
               </p>
-              <p className={`${price ? "" : "flex"} mb-3 font-normal text-gray-700 dark:text-gray-400`}>
+              <p className={`${price ? "" : "flex"} mb-3 font-normal text-gray-700`}>
                 $ {price}
               </p>
             </div>
