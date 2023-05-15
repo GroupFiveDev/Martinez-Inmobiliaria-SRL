@@ -56,7 +56,6 @@ export default function CardList() {
     (async function () {
       const propertiesDB = await axios.get("/properties");
       setProperties(propertiesDB.data.filter(e => e.archived === false));
-      console.log(properties);
     })();
   }, [boolean]);
 
