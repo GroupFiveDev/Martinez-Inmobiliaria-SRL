@@ -65,6 +65,7 @@ export default function CardList() {
         <div className="flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
           <Filter setProperties={setProperties} />
           <button
+            name="toggleView"
             onClick={toggleView}
             className="hidden md:flex w-fit text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5"
           >
