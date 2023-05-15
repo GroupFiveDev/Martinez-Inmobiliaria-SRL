@@ -7,7 +7,7 @@ export default function Footer() {
   const history = useHistory()
   return (
     <>
-      <footer className="bg-[#368a8c] p-4 h-fit md:h-fit">
+      <footer className="bg-[#276163] p-4 h-fit md:h-fit">
         <div className="w-full relative">
           <div className="  md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
