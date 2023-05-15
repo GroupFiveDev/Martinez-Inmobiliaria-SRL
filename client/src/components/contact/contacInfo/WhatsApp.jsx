@@ -7,7 +7,7 @@ export default function WhatsApp() {
     <div className='w-full'>
 
       <div className='flex justify-center'>
-        <a className='flex justify-center items-center bg-[#368a8c] w-14 h-14' href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
+        <a aria-label="wsp" className='flex justify-center items-center bg-[#368a8c] w-14 h-14' href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
           <AiOutlineWhatsApp className='hover:opacity-50 w-8 h-8' />
         </a>
       </div>

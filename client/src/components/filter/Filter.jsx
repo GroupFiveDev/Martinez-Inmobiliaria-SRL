@@ -39,6 +39,7 @@ export default function Filter({ setProperties }) {
         onClick={handleChange}
         name="boton"
         value="field"
+        aria-label="fields"
       >
         {" "}
         Campos{" "}
@@ -48,6 +49,7 @@ export default function Filter({ setProperties }) {
         onClick={handleChange}
         name="boton"
         value="apartment"
+        aria-label="apartments"
       >
         {" "}
         Departamentos{" "}
