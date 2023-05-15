@@ -15,6 +15,7 @@ async function createProperties() {
         "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
         "https://i.pinimg.com/736x/0d/83/f4/0d83f4474c77d94966d16c8eccf6c92d--white-cottage-argentina.jpg",
         "https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/SBEJYXLPVRCNTGO4UMGT4ZGLYU.jpg",
+        "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
       ],
     },
     {
@@ -274,7 +275,7 @@ async function createProperty(
       rooms,
       bathrooms,
       price,
-      images,
+      // images,
       type,
     });
   } catch (error) {
@@ -301,14 +302,14 @@ async function editProperty(id, data) {
 
     if (data.title) property.title = data.title;
     if (data.description) property.description = data.description;
-    if (data.hectares) property.hectares = data.hectares;
+    if (data.hectares) property.hectares = Number(data.hectares);
     if (data.location) property.location = data.location;
     if (data.terrain) property.terrain = data.terrain;
-    if (data.rooms) property.rooms = data.rooms;
-    if (data.bathrooms) property.bathrooms = data.bathrooms;
-    if (data.garage) property.garage = data.garage;
-    if (data.square) property.square = data.square;
-    if (data.price) property.price = data.price;
+    if (data.rooms) property.rooms = Number(data.rooms);
+    if (data.bathrooms) property.bathrooms = Number(data.bathrooms);
+    if (data.garage) property.garage = Number(data.garage);
+    if (data.square) property.square = Number(data.square);
+    if (data.price) property.price = Number(data.price);
     if (data.images) property.images = data.images;
     if (data.archived !== null) property.archived = data.archived;
     if (data.sold !== null) property.sold = data.sold;
@@ -324,9 +325,9 @@ async function editProperty(id, data) {
 
 async function orderAndFilterProperties(obj) {
   try {
+    !obj.order && (obj.order = [["id", "ASC"]]);
     return await Property.findAll(obj);
   } catch (error) {
-    console.log(error);
     return error;
   }
 }
