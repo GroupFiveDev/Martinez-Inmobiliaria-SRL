@@ -12,7 +12,7 @@ export default function NavBar() {
   title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
 
   return (
-    <nav className="bg-[#368a8c] z-[60] relative">
+    <nav className="bg-[#276163] z-[60] relative">
       <div className='absolute left-5 gap-5 mt-4 hidden md:flex z-40'>
         <a aria-label="instagram" href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
           <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' color='white' />
@@ -35,7 +35,7 @@ export default function NavBar() {
 
         {/* pc */}
         <div className={`animate-movimiento max-[768px]:absolute max-[768px]:top-[125px] max-[768px]:lef-0 max-[768px]:right-0 items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30 `} >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:gap-8 md:mt-0 md:border-0 md:bg-[#368a8c] md:items-center">
+          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:gap-8 md:mt-0 md:border-0 md:bg-[#276163] md:items-center">
             <li className='h-fit'>
               <Link to="/" onClick={() => setIsOpen(!isOpen)} className="text-lg block py-2 pl-3 pr-4 text-black rounded md:text-white hover:bg-gray-100 md:hover:bg-transparent hover:text-black md:p-0">
                 Inicio
