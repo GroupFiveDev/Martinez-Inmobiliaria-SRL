@@ -36,7 +36,7 @@ export default function Admin() {
           <input type="email" placeholder="email@gmail.com" className="mb-4" onChange={handleChange} name="email" />
           <label htmlFor="password">Contraseña</label>
           <input type="password" placeholder="*******" className="mb-4" onChange={handleChange} name="password" />
-          <button name="submit" type="submit">Entrar </button>
+          <button aria-label="submit" type="submit">Entrar </button>
         </form>
       </div>
     </>
