@@ -41,6 +41,9 @@ module.exports = async (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.TEXT),
       defaultValue: [],
     },
+    position: {
+      type: DataTypes.JSONB,
+    },
     archived: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

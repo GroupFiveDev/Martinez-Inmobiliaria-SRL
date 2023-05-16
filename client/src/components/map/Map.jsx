@@ -1,7 +1,11 @@
-const { Property } = require("../db.js");
+import { GoogleMap, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import vaca from '../../assets/icons/silueta-de-vaca24.png'
 
-// Solamente para ambiente de desarrollo
-async function createProperties() {
+export default function Map() {
+
+  // const [properties, setProperties] = useState()
   const properties = [
     {
       type: "field",
@@ -271,138 +275,73 @@ async function createProperties() {
       },
     },
   ];
-  try {
-    let propertiesDB = await Property.findAll({
-      order: [["id", "DESC"]],
-    });
-    if (propertiesDB.length) {
-      return propertiesDB;
-    }
+  const [popUpBool, setPopUpBool] = useState(false)
+  const [property, setProperty] = useState()
 
-    return await Property.bulkCreate(properties);
-  } catch (error) {
-    return error;
+  const containerStyle = {
+    width: '100%',
+    height: '100vh'
+  };
+
+  let center = {
+    lat: -33.897129,
+    lng: -61.099456
+  };
+
+  const handleOnClick = (e) => {
+    setPopUpBool(true)
+    setProperty(e)
   }
+
+  // useEffect(() => {
+  //   (async function () {
+  //     const propertiesDB = await axios.get("/properties");
+  //     setProperties(propertiesDB.data.filter(e => e.archived === false));
+  //   })();
+  // }, []);
+
+  return (
+    <>
+      <LoadScript
+        googleMapsApiKey="AIzaSyAFAq9lXTwOcoyK8V-ms4kV8YYlIz2uHz0"
+      >
+        <GoogleMap
+          className="relative"
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={9}
+        >
+          {
+            properties?.length ? properties.map(e => <Marker
+              onClick={() => handleOnClick(e)}
+              position={e.position}
+              icon={{ url: vaca, rotation: 90 }}
+            />)
+              : ""
+          }
+          <Marker
+            position={{
+              lat: -33.897293,
+              lng: -61.098665
+            }}
+
+            icon={{
+              rotation: 90,
+            }}
+
+            options={{ map: GoogleMap }}
+          />
+
+          <div className={`${popUpBool ? "absolute" : "hidden"} w-[400px] h-[400px] bottom-[5%] right-[5%]`}>
+            <div className='w-full h-full relative bg-white flex flex-col items-center'>
+              <button onClick={() => setPopUpBool(false)} className='absolute right-0 top-0 mr-4 text-xl'> X </button>
+              <h1 className='font-Montserrat'>{property?.title}</h1>
+              <img src={property?.images[0]} alt="iamge" className='w-full h-auto' />
+            </div>
+          </div>
+
+        </GoogleMap >
+      </LoadScript>
+    </>
+  )
 }
-// ************************************
-
-async function getProperties() {
-  try {
-    const properties = await Property.findAll({
-      order: [["id", "DESC"]],
-    });
-    return properties;
-  } catch (error) {
-    return error;
-  }
-}
-
-async function deleteProperty(id) {
-  try {
-    const deleted = await Property.destroy({
-      where: { id },
-    });
-
-    return deleted === 1 ? "Property deleted." : "Error";
-  } catch (error) {
-    return error;
-  }
-}
-
-async function createProperty(
-  title,
-  description,
-  hectares,
-  location,
-  terrain,
-  rooms,
-  bathrooms,
-  price,
-  garage,
-  square,
-  images,
-  type
-) {
-  try {
-    hectares = Number(hectares);
-    rooms = Number(rooms);
-    bathrooms = Number(bathrooms);
-    price = Number(price);
-    garage = Number(garage);
-    square = Number(square);
-    await Property.create({
-      title,
-      description,
-      hectares,
-      location,
-      terrain,
-      rooms,
-      bathrooms,
-      price,
-      garage,
-      square,
-      images,
-      type,
-    });
-  } catch (error) {
-    return error;
-  }
-}
-
-async function getPropertyById(id) {
-  try {
-    const property = await Property.findOne({
-      where: { id },
-    });
-    return property;
-  } catch (error) {
-    return error;
-  }
-}
-
-async function editProperty(id, data) {
-  try {
-    const property = await Property.findOne({
-      where: { id },
-    });
-
-    if (data.title) property.title = data.title;
-    if (data.description) property.description = data.description;
-    if (data.hectares) property.hectares = Number(data.hectares);
-    if (data.location) property.location = data.location;
-    if (data.terrain) property.terrain = data.terrain;
-    if (data.rooms) property.rooms = Number(data.rooms);
-    if (data.bathrooms) property.bathrooms = Number(data.bathrooms);
-    if (data.garage) property.garage = Number(data.garage);
-    if (data.square) property.square = Number(data.square);
-    if (data.price) property.price = Number(data.price);
-    if (data.images) property.images = data.images;
-    if (data.archived !== null) property.archived = data.archived;
-    if (data.sold !== null) property.sold = data.sold;
-
-    await property.save();
-    await property.reload();
-
-    return property;
-  } catch (error) {
-    return error;
-  }
-}
-
-async function orderAndFilterProperties(obj) {
-  try {
-    !obj.order && (obj.order = [["id", "DESC"]]);
-    return await Property.findAll(obj);
-  } catch (error) {
-    return error;
-  }
-}
-
-module.exports = {
-  createProperties,
-  deleteProperty,
-  getPropertyById,
-  editProperty,
-  createProperty,
-  orderAndFilterProperties,
-};
