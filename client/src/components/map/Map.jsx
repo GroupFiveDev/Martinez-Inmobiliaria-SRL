@@ -1,280 +1,23 @@
-import { GoogleMap, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import vaca from '../../assets/icons/silueta-de-vaca24.png'
+import vaca2 from '../../assets/icons/silueta-de-vaca24_v2.png'
+import edificio from '../../assets/icons/edificio.png'
+import edificio2 from '../../assets/icons/edificio_v2.png'
+import bathroom from "../../assets/icons/bathrooms.png";
+import room from "../../assets/icons/rooms.png";
+import squareIc from "../../assets/icons/squareIc.png";
+import garaje from "../../assets/icons/garaje.png";
+import logo from "../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png";
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
-export default function Map() {
 
-  // const [properties, setProperties] = useState()
-  const properties = [
-    {
-      type: "field",
-      title: "Campo La Pampa",
-      description: "Amplio campo con terreno ganadero",
-      hectares: 5000,
-      location: "Ruta Nacional 5, Santa Rosa, La Pampa",
-      terrain: "Ganadero",
-      price: 1000000,
-      images: [
-        "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
-        "https://i.pinimg.com/736x/0d/83/f4/0d83f4474c77d94966d16c8eccf6c92d--white-cottage-argentina.jpg",
-        "https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/SBEJYXLPVRCNTGO4UMGT4ZGLYU.jpg",
-        "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
-      ],
-      position: {
-        lat: -34.583436,
-        lng: -58.406165,
-      },
-    },
-    {
-      type: "field",
-      title: "Campo El Dorado",
-      description: "Campo con terreno mixto",
-      hectares: 2000,
-      location: "Ruta Provincial 17, Eldorado, Misiones",
-      terrain: "Mixto",
-      price: 500000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
-      position: {
-        lat: -32.957218,
-        lng: -60.635688,
-      },
-    },
-    {
-      type: "field",
-      title: "Campo El Calafate",
-      description: "Campo con terreno mixto",
-      hectares: 10000,
-      location: "Ruta Provincial 15, El Calafate, Santa Cruz",
-      terrain: "Mixto",
-      price: 1500000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
-      position: {
-        lat: -31.417043,
-        lng: -64.183998,
-      },
-    },
-    {
-      type: "field",
-      title: "Campo Las Pampas",
-      description: "Campo con terreno agrícola",
-      hectares: 7000,
-      location: "Ruta Nacional 5, Junín, Buenos Aires",
-      terrain: "Agrícola",
-      price: 1200000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
-      position: {
-        lat: -27.450578,
-        lng: -58.986316,
-      },
-    },
-    {
-      type: "field",
-      title: "Campo Cuyo",
-      description: "Campo con terreno agrícola",
-      hectares: 3500,
-      location: "Ruta Nacional 40, San Juan, San Juan",
-      terrain: "Agrícola",
-      price: 800000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
-      position: {
-        lat: -34.613128,
-        lng: -58.377232,
-      },
-    },
-    {
-      type: "field",
-      title: "Campo Patagonia",
-      description: "Campo con terreno ganadero",
-      hectares: 12000,
-      location: "Ruta Provincial 25, Esquel, Chubut",
-      terrain: "Ganadero",
-      price: 2000000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
-      position: {
-        lat: -32.890183,
-        lng: -68.84405,
-      },
-    },
-    {
-      type: "field",
-      title: "Campo del Sol",
-      description: "Campo con terreno mixto",
-      hectares: 3000,
-      location: "Ruta Nacional 7, Luján de Cuyo, Mendoza",
-      terrain: "Mixto",
-      price: 700000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
-      position: {
-        lat: -38.949595,
-        lng: -68.062176,
-      },
-    },
-    {
-      type: "apartment",
-      title: "Hermoso departamento en Palermo",
-      description:
-        "Departamento moderno y acogedor en el corazón de Palermo Soho",
-      location: "Palermo, Buenos Aires",
-      square: 32,
-      garage: 2,
-      price: 120000,
-      images: [
-        "https://ejemplo.com/img1.jpg",
-        "https://ejemplo.com/img2.jpg",
-        "https://ejemplo.com/img3.jpg",
-      ],
-      rooms: 2,
-      bathrooms: 1,
-      position: {
-        lat: -26.816797,
-        lng: -65.217553,
-      },
-    },
-    {
-      type: "apartment",
-      title: "Luminoso departamento en Belgrano",
-      description:
-        "Departamento con excelente iluminación natural y vistas panorámicas en Belgrano",
-      location: "Belgrano, Buenos Aires",
-      square: 32,
-      price: 90000,
-      images: [
-        "https://ejemplo.com/img4.jpg",
-        "https://ejemplo.com/img5.jpg",
-        "https://ejemplo.com/img6.jpg",
-      ],
-      rooms: 3,
-      bathrooms: 2,
-      position: {
-        lat: -29.417875,
-        lng: -66.85552,
-      },
-    },
-    {
-      type: "apartment",
-      title: "Amplio departamento en San Telmo",
-      description:
-        "Departamento de gran tamaño y ambientes amplios en el barrio histórico de San Telmo",
-      location: "San Telmo, Buenos Aires",
-      square: 32,
-      garage: 2,
-      price: 150000,
-      images: [
-        "https://ejemplo.com/img7.jpg",
-        "https://ejemplo.com/img8.jpg",
-        "https://ejemplo.com/img9.jpg",
-      ],
-      rooms: 4,
-      bathrooms: 2,
-      position: {
-        lat: -41.648067,
-        lng: -71.615947,
-      },
-    },
-    {
-      type: "apartment",
-      title: "Departamento con jardín en Nuñez",
-      description:
-        "Departamento con hermoso jardín privado en el barrio de Nuñez",
-      location: "Nuñez, Buenos Aires",
-      square: 32,
-      garage: 2,
-      price: 180000,
-      images: [
-        "https://ejemplo.com/img10.jpg",
-        "https://ejemplo.com/img11.jpg",
-        "https://ejemplo.com/img12.jpg",
-      ],
-      rooms: 2,
-      bathrooms: 1,
-      position: {
-        lat: -24.783905,
-        lng: -65.412155,
-      },
-    },
-    {
-      type: "apartment",
-      title: "Departamento con terraza en Recoleta",
-      description:
-        "Departamento con amplia terraza y vistas panorámicas en el exclusivo barrio de Recoleta",
-      location: "Recoleta, Buenos Aires",
-      square: 32,
-      garage: 2,
-      price: 220000,
-      images: [
-        "https://ejemplo.com/img13.jpg",
-        "https://ejemplo.com/img14.jpg",
-        "https://ejemplo.com/img15.jpg",
-      ],
-      rooms: 3,
-      bathrooms: 2,
-      position: {
-        lat: -33.44889,
-        lng: -70.669265,
-      },
-    },
-    {
-      type: "apartment",
-      title: "Departamento a estrenar en Caballito",
-      description:
-        "Departamento nuevo a estrenar en el barrio de Caballito, con excelente ubicación y accesibilidad",
-      location: "Caballito, Buenos Aires",
-      square: 32,
-      garage: 2,
-      price: 100000,
-      images: [
-        "https://ejemplo.com/img16.jpg",
-        "https://ejemplo.com/img17.jpg",
-        "https://ejemplo.com/img18.jpg",
-      ],
-      rooms: 1,
-      bathrooms: 1,
-      position: {
-        lat: -38.71959,
-        lng: -62.265137,
-      },
-    },
-    {
-      type: "apartment",
-      title: "Departamento en el centro de Córdoba",
-      description:
-        "Departamento céntrico en la ciudad de Córdoba, con excelente conectividad y cercanía a puntos de interés",
-      location: "Centro, Córdoba",
-      square: 32,
-      garage: 2,
-      price: 80000,
-      images: [
-        "https://ejemplo.com/img19.jpg",
-        "https://ejemplo.com/img20.jpg",
-        "https://ejemplo.com/img21.jpg",
-      ],
-      rooms: 2,
-      bathrooms: 1,
-      position: {
-        lat: -32.410791,
-        lng: -63.259812,
-      },
-    },
-  ];
+export default function Map({ zoom = 9, center2, id }) {
+
+  const { pathname } = useLocation()
+  const history = useHistory()
+  const [properties, setProperties] = useState()
   const [popUpBool, setPopUpBool] = useState(false)
   const [property, setProperty] = useState()
 
@@ -283,65 +26,144 @@ export default function Map() {
     height: '100vh'
   };
 
-  let center = {
+  let center = useMemo(() => ({
     lat: -33.897129,
     lng: -61.099456
-  };
+  }), [])
 
   const handleOnClick = (e) => {
     setPopUpBool(true)
     setProperty(e)
   }
 
-  // useEffect(() => {
-  //   (async function () {
-  //     const propertiesDB = await axios.get("/properties");
-  //     setProperties(propertiesDB.data.filter(e => e.archived === false));
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async function () {
+      const propertiesDB = await axios.get("/properties");
+      setProperties(propertiesDB.data.filter(e => e.archived === false));
+    })();
+  }, []);
+
+  const OPTIONS = {
+    minZoom: 4,
+    maxZoom: 18,
+    mapTypeId: 'terrain',
+    fullscreenControl: false,
+    zoomControl: false,
+    streetViewControl: true,
+    styles: [
+      {
+        featureType: 'poi',
+        stylers: [{ visibility: 'off' }],
+      },
+    ]
+  }
 
   return (
     <>
       <LoadScript
-        googleMapsApiKey="AIzaSyAFAq9lXTwOcoyK8V-ms4kV8YYlIz2uHz0"
+        googleMapsApiKey={import.meta.env.VITE_API_GOOGLE_KEY}
       >
         <GoogleMap
+          id="map"
           className="relative"
           mapContainerStyle={containerStyle}
-          center={center}
-          zoom={9}
+          center={center2 ? center2 : center}
+          zoom={zoom}
+          options={OPTIONS}
         >
           {
-            properties?.length ? properties.map(e => <Marker
+            properties?.length ? properties.map((e, i) => <Marker
+              key={i}
               onClick={() => handleOnClick(e)}
               position={e.position}
-              icon={{ url: vaca, rotation: 90 }}
+              icon={
+                property ? { url: e.type === "field" && e.id === property.id ? vaca2 : e.type === "field" ? vaca : e.id === property.id ? edificio2 : edificio, rotation: 90 }
+                  : { url: e.type === "field" && e.id === id ? vaca2 : e.type === "field" ? vaca : e.id === id ? edificio2 : edificio, rotation: 90 }
+              }
             />)
               : ""
           }
+
           <Marker
             position={{
-              lat: -33.897293,
-              lng: -61.098665
+              lat: -33.89538827181515,
+              lng: -61.09964234635147
             }}
-
-            icon={{
-              rotation: 90,
-            }}
-
-            options={{ map: GoogleMap }}
           />
 
-          <div className={`${popUpBool ? "absolute" : "hidden"} w-[400px] h-[400px] bottom-[5%] right-[5%]`}>
+          <div className={`${popUpBool ? "absolute" : "hidden"} w-full sm:w-[400px] ${pathname === "/Mapa" ? "bottom-[5%] right-[5%]" : "bottom-0 right-0"}`}>
             <div className='w-full h-full relative bg-white flex flex-col items-center'>
-              <button onClick={() => setPopUpBool(false)} className='absolute right-0 top-0 mr-4 text-xl'> X </button>
-              <h1 className='font-Montserrat'>{property?.title}</h1>
+              <div className='w-full flex justify-between px-4'>
+                <h1 className='font-Montserrat'>{property?.title}</h1>
+                <button onClick={() => { setPopUpBool(false); setProperty(null) }} className='text-xl text-black font-Montserrat'> X </button>
+              </div>
               <img src={property?.images[0]} alt="iamge" className='w-full h-auto' />
+              <div>
+                {property?.type === "field" ? (
+                  <div className="text-black flex flex-col">
+                    <div className={`${property?.hectares ? "" : "hidden"} gap-2 flex items-center font-bold text-black`}>
+                      HECTÁREAS:
+                      <div >
+                        {property?.hectares}
+                      </div>
+                    </div>
+                    <div className={`${property?.terrain ? "" : "hidden"} gap-2 flex items-center font-bold text-black`} >
+                      APTITUD:
+                      <div >
+                        {property?.terrain}
+                      </div>
+                    </div>
+                  </div>
+                ) :
+                  <div className={`flex flex-wrap justify-center items-center gap-5"} my-4`}>
+                    <div className={`${property?.rooms ? "" : "hidden"} mr-2  flex items-center font-bold text-black`}>
+                      <img src={room} alt="romm" className="w-7" />
+                      <span>
+                        {property?.rooms}
+                      </span>
+                    </div>
+                    <div className={`${property?.bathrooms ? "" : "hidden"} mr-2 text-black flex items-center font-bold`}>
+                      <img src={bathroom} alt="romm" className="w-7" />
+                      <span>
+                        {property?.bathrooms}
+                      </span>
+                    </div>
+                    <div className={`${property?.garage ? "flex" : "hidden"} mr-2  text-black items-center font-bold`}>
+                      <img src={garaje} alt="romm" className="w-7" />
+                      <span>
+                        {property?.garage}
+                      </span>
+                    </div>
+                    <div className={`${property?.square ? "" : "hidden"} text-black flex items-center font-bold`}>
+                      <img src={squareIc} alt="romm" className="w-7" />
+                      <span>
+                        {property?.square}
+                      </span>
+                    </div>
+                  </div>
+                }
+                <div className={`${property?.location ? "flex" : "hidden"}text-black flex flex-wrap items-center gap-2`} >
+                  <div className={`gap-2 flex font-bold text-black items-center text-center flex-wrap`} >
+                    UBICACIÓN:
+                    <div>
+                      {property?.location}
+                    </div>
+                  </div>
+                </div>
+                <div className={`${property?.price ? "" : "hidden"} gap-2 flex items-center font-bold text-black mb-3`} >
+                  $
+                  <div>
+                    {property?.price}
+                  </div>
+                </div>
+                <div className='w-full flex justify-center items-center mb-4'>
+                  <button className='font-Montserrat' onClick={() => history.push(`card/${property?.id}`)}> Ver propiedad </button>
+                </div>
+              </div>
             </div>
           </div>
-
         </GoogleMap >
-      </LoadScript>
+      </LoadScript >
     </>
   )
 }
