@@ -7,7 +7,7 @@ export default function Footer() {
   const history = useHistory()
   return (
     <>
-      <footer className="bg-[#368a8c] p-4 h-fit md:h-fit">
+      <footer className="bg-[#276163] p-4 h-fit md:h-fit">
         <div className="w-full relative">
           <div className="  md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
@@ -17,10 +17,10 @@ export default function Footer() {
             <div className='md:absolute flex flex-col items-center my-6 w-full'>
               <h2 className="text-sm font-semibold text-white uppercase mb-2 font-Montserrat">Seguinos</h2>
               <div className="flex space-x-6 sm:justify-center">
-                <a href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
+                <a aria-label="instagram" href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
                   <AiOutlineInstagram className='w-7 h-7 hover:cursor-pointer hover:opacity-50' color='white' />
                 </a>
-                <a href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
+                <a aria-label="wsp" href="https://wa.me/2473509269?text=Hola%20me%20interesaria%20charlar%20sobre%20una%20propiedad%20en%20especifico." target="_blank">
                   <AiOutlineWhatsApp className='w-7 h-7 hover:cursor-pointer hover:opacity-50' color='white' />
                 </a>
               </div>
@@ -39,8 +39,8 @@ export default function Footer() {
                 </Link>
               </div>
               <div className='flex flex-col gap-5 text-center'>
-                <a onClick={() => history.push("/")} className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Campos</a>
-                <a onClick={() => history.push("/")} className="font-Montserrat z-10 hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Departamentos</a>
+                <a aria-label="fields" onClick={() => history.push("/")} className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Campos</a>
+                <a aria-label="apartments" onClick={() => history.push("/")} className="font-Montserrat z-10 hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Departamentos</a>
                 <Link to="/Proyectos">
                   <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" >Proyectos</h2>
                 </Link>

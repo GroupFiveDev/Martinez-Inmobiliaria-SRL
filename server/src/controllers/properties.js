@@ -217,7 +217,7 @@ async function createProperties() {
   ];
   try {
     let propertiesDB = await Property.findAll({
-      order: [["id", "ASC"]],
+      order: [["id", "DESC"]],
     });
     if (propertiesDB.length) {
       return propertiesDB;
@@ -233,7 +233,7 @@ async function createProperties() {
 async function getProperties() {
   try {
     const properties = await Property.findAll({
-      order: [["id", "ASC"]],
+      order: [["id", "DESC"]],
     });
     return properties;
   } catch (error) {
@@ -335,7 +335,7 @@ async function editProperty(id, data) {
 
 async function orderAndFilterProperties(obj) {
   try {
-    !obj.order && (obj.order = [["id", "ASC"]]);
+    !obj.order && (obj.order = [["id", "DESC"]]);
     return await Property.findAll(obj);
   } catch (error) {
     return error;
