@@ -9,6 +9,18 @@ const {
   orderAndFilterProperties,
   // getProperties,
 } = require("../controllers/properties.js");
+// const multer = require("multer");
+// const cloudinary = require("cloudinary").v2;
+
+// Configuración de Cloudinary
+// cloudinary.config({
+//   cloud_name: "dgei1j8pa",
+//   api_key: "836764965398888",
+//   api_secret: "Q7RhBWkAn1zlokzz7Emf4IMHNdw",
+// });
+
+// Configuración de multer para subir archivos
+// const upload = multer({ dest: "uploads/" });
 
 router.get("/", async (req, res) => {
   try {

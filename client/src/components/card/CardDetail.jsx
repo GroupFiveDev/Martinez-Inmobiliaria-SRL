@@ -15,6 +15,7 @@ import Edit from "../edit/Edit.jsx";
 import Check from "../check/Check.jsx";
 import Close from "../close/Close.jsx";
 import Loading from "../modal/Loading.jsx";
+import Map from "../map/Map.jsx";
 
 export default function CardDetail() {
   const history = useHistory();
@@ -128,9 +129,7 @@ export default function CardDetail() {
           </h1>
         </div>
       </div>
-      <div
-        className={`w-full min-h-screen flex justify-center relative bg-gray-600`}
-      >
+      <div className={`w-full min-h-screen flex justify-center relative bg-gray-600`}>
         <div className="absolute bottom-0 left-0 hidden h-full xl:flex w-24 z-40 rallado" />
         <div className="flex flex-col justify-center pt-4 w-[95%] xl:w-[60%]">
           {/* titulo */}
@@ -531,6 +530,9 @@ export default function CardDetail() {
               <hr className="flex md:hidden" />
             </div>
           </div >
+          <div className="my-4">
+            <Map center2={property?.position} zoom={12} id={property?.id} />
+          </div>
           <div className="w-full flex justify-center">
             <button
               aria-label="save"

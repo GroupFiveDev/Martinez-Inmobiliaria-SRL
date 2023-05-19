@@ -17,6 +17,10 @@ async function createProperties() {
         "https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/SBEJYXLPVRCNTGO4UMGT4ZGLYU.jpg",
         "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
       ],
+      position: {
+        lat: -34.583436,
+        lng: -58.406165,
+      },
     },
     {
       type: "field",
@@ -30,6 +34,10 @@ async function createProperties() {
         "https://example.com/image1.jpg",
         "https://example.com/image2.jpg",
       ],
+      position: {
+        lat: -32.957218,
+        lng: -60.635688,
+      },
     },
     {
       type: "field",
@@ -43,6 +51,10 @@ async function createProperties() {
         "https://example.com/image1.jpg",
         "https://example.com/image2.jpg",
       ],
+      position: {
+        lat: -31.417043,
+        lng: -64.183998,
+      },
     },
     {
       type: "field",
@@ -56,6 +68,10 @@ async function createProperties() {
         "https://example.com/image1.jpg",
         "https://example.com/image2.jpg",
       ],
+      position: {
+        lat: -27.450578,
+        lng: -58.986316,
+      },
     },
     {
       type: "field",
@@ -69,6 +85,10 @@ async function createProperties() {
         "https://example.com/image1.jpg",
         "https://example.com/image2.jpg",
       ],
+      position: {
+        lat: -34.613128,
+        lng: -58.377232,
+      },
     },
     {
       type: "field",
@@ -82,6 +102,10 @@ async function createProperties() {
         "https://example.com/image1.jpg",
         "https://example.com/image2.jpg",
       ],
+      position: {
+        lat: -32.890183,
+        lng: -68.84405,
+      },
     },
     {
       type: "field",
@@ -95,6 +119,10 @@ async function createProperties() {
         "https://example.com/image1.jpg",
         "https://example.com/image2.jpg",
       ],
+      position: {
+        lat: -38.949595,
+        lng: -68.062176,
+      },
     },
     {
       type: "apartment",
@@ -112,6 +140,10 @@ async function createProperties() {
       ],
       rooms: 2,
       bathrooms: 1,
+      position: {
+        lat: -26.816797,
+        lng: -65.217553,
+      },
     },
     {
       type: "apartment",
@@ -128,6 +160,10 @@ async function createProperties() {
       ],
       rooms: 3,
       bathrooms: 2,
+      position: {
+        lat: -29.417875,
+        lng: -66.85552,
+      },
     },
     {
       type: "apartment",
@@ -145,6 +181,10 @@ async function createProperties() {
       ],
       rooms: 4,
       bathrooms: 2,
+      position: {
+        lat: -41.648067,
+        lng: -71.615947,
+      },
     },
     {
       type: "apartment",
@@ -162,6 +202,10 @@ async function createProperties() {
       ],
       rooms: 2,
       bathrooms: 1,
+      position: {
+        lat: -24.783905,
+        lng: -65.412155,
+      },
     },
     {
       type: "apartment",
@@ -179,6 +223,10 @@ async function createProperties() {
       ],
       rooms: 3,
       bathrooms: 2,
+      position: {
+        lat: -33.44889,
+        lng: -70.669265,
+      },
     },
     {
       type: "apartment",
@@ -196,6 +244,10 @@ async function createProperties() {
       ],
       rooms: 1,
       bathrooms: 1,
+      position: {
+        lat: -38.71959,
+        lng: -62.265137,
+      },
     },
     {
       type: "apartment",
@@ -213,6 +265,10 @@ async function createProperties() {
       ],
       rooms: 2,
       bathrooms: 1,
+      position: {
+        lat: -32.410791,
+        lng: -63.259812,
+      },
     },
   ];
   try {

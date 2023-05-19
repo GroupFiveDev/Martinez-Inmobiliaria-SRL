@@ -11,6 +11,7 @@ import Proyects from './components/proyects/Proyects';
 import Admin from './components/admin/Admin';
 import CreateProperty from './components/createField/CreateProperty';
 import Drawer from './components/drawer/Drawer';
+import Map from './components/map/Map'
 import { useDrawer } from './hooks/useDrawer';
 import { useAuth } from './context/authContext';
 
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/Proyectos" component={Proyects} />
           <Route exact path="/Admin" component={Admin} />
           <Route exact path="/create" component={CreateProperty} />
+          <Route exact path="/Mapa" component={Map} />
         </Switch>
         <Footer />
       </Router>
