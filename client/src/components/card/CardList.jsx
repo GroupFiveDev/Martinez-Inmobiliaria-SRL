@@ -7,7 +7,7 @@ import Skeleton from "../skeleton/Skeleton";
 import Card2 from "./Card2";
 
 export default function CardList() {
-  const [properties, setProperties] = useState();
+  const [properties, setProperties] = useState([]);
   const [boolean, setBoolean] = useState(false);
 
   const [view, setView] = useState("grid");
@@ -21,8 +21,8 @@ export default function CardList() {
 
   const last = currentPage * propertiesPerPage;
   const first = last - propertiesPerPage;
-  const currentproperties = properties?.slice(first, last);
-  const numberOfPages = properties?.length / propertiesPerPage;
+  const currentproperties = properties.slice(first, last);
+  const numberOfPages = properties.length / propertiesPerPage;
 
   const pagination = (numberPage) => {
     setCurrentPage(numberPage);
@@ -55,10 +55,10 @@ export default function CardList() {
   useEffect(() => {
     (async function () {
       const propertiesDB = await axios.get("/properties");
-      setProperties(propertiesDB.data);
-      // setProperties(propertiesDB.data.filter(e => e.archived === false));
+      setProperties(propertiesDB.data.filter(e => e.archived === false));
     })();
   }, [boolean]);
+  console.log(propertiesDB.data);
 
   return (
     <div className="flex justify-center items-center w-full">
