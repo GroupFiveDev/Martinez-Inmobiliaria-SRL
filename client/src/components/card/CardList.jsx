@@ -55,10 +55,10 @@ export default function CardList() {
   useEffect(() => {
     (async function () {
       const propertiesDB = await axios.get("/properties");
+      console.log(propertiesDB.data);
       setProperties(propertiesDB.data.filter(e => e.archived === false));
     })();
   }, [boolean]);
-  console.log(propertiesDB.data);
 
   return (
     <div className="flex justify-center items-center w-full">
