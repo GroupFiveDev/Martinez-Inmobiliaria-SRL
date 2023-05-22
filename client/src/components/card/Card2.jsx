@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import room from "../../assets/icons/rooms.png";
 import bathroom from "../../assets/icons/bathrooms.png";
 import garaje from "../../assets/icons/garaje.png";
+import squareIc from "../../assets/icons/squareIc.png";
 
 export default function Card2({
   id,
@@ -25,18 +26,16 @@ export default function Card2({
       <Link to={`/card/${id}`}>
         <div className="relative p-10 flex justify-center items-center">
           <div
-            className={`absolute bg-[#368b8cc1] w-[90%] h-14 flex justify-center items-center ${
-              sold ? "" : "hidden"
-            }`}
+            className={`absolute bg-[#368b8cc1] w-[90%] h-14 flex justify-center items-center ${sold ? "" : "hidden"
+              }`}
           >
             <h1 className="text-white font-bold text-3xl font-Montserrat">
               VENDIDO
             </h1>
           </div>
           <div
-            className={`absolute bg-[#000000c1] w-[90%] h-14 flex bottom-5 justify-center items-center ${
-              archived ? "" : "hidden"
-            }`}
+            className={`absolute bg-[#000000c1] w-[90%] h-14 flex bottom-5 justify-center items-center ${archived ? "" : "hidden"
+              }`}
           >
             <h1 className="text-white font-bold text-3xl font-Montserrat">
               ARCHIVADO
@@ -44,9 +43,8 @@ export default function Card2({
           </div>
           <div className="w-full lg:max-w-full lg:flex">
             <img
-              className={`h-auto md:w-[500px] flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden${
-                sold || archived ? "blur-sm" : ""
-              }`}
+              className={`h-auto md:w-[500px] flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden${sold || archived ? "blur-sm" : ""
+                }`}
               src={
                 id === 1
                   ? images[0]
@@ -63,16 +61,14 @@ export default function Card2({
                 {type === "field" ? (
                   <>
                     <p
-                      className={`${
-                        hectareas ? "" : "hidden"
-                      } text-gray-700 text-base`}
+                      className={`${hectareas ? "" : "hidden"
+                        } text-gray-700 text-base`}
                     >
                       HECTÁREAS: {hectareas}
                     </p>
                     <p
-                      className={`${
-                        terrain ? "" : "hidden"
-                      } text-gray-700 text-base`}
+                      className={`${terrain ? "" : "hidden"
+                        } text-gray-700 text-base`}
                     >
                       Aptitud: {terrain}
                     </p>
@@ -81,36 +77,36 @@ export default function Card2({
                   <>
                     <div className="flex gap-5">
                       <p
-                        className={`${
-                          rooms ? "" : "hidden"
-                        } mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-1 font-bold`}
+                        className={`${rooms ? "" : "hidden"
+                          } mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-1 font-bold`}
                       >
                         <img src={room} alt="romm" className="w-7" />
                         {rooms}
                       </p>
                       <p
-                        className={`${
-                          bathrooms ? "" : "hidden"
-                        } mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-1 font-bold`}
+                        className={`${bathrooms ? "" : "hidden"
+                          } mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-1 font-bold`}
                       >
                         <img src={bathroom} alt="romm" className="w-7" />
                         {bathrooms}
                       </p>
                       <p
-                        className={`${
-                          garage ? "" : "hidden"
-                        } mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-1 font-bold`}
+                        className={`${garage ? "" : "hidden"
+                          } mb-3 text-gray-700 dark:text-gray-400 flex items-end gap-1 font-bold`}
                       >
                         <img src={garaje} alt="garage" className="w-7" />
                         {garage}
+                      </p>
+                      <p className={`${square ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
+                        <img src={squareIc} alt="square" className='w-7' />
+                        {square}
                       </p>
                     </div>
                   </>
                 )}
                 <p
-                  className={`${
-                    ubicacion ? "flex" : "hidden"
-                  } text-gray-700 text-base`}
+                  className={`${ubicacion ? "flex" : "hidden"
+                    } text-gray-700 text-base`}
                 >
                   Ubicación: {ubicacion}
                 </p>
