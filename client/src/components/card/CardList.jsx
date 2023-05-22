@@ -55,7 +55,6 @@ export default function CardList() {
   useEffect(() => {
     (async function () {
       const propertiesDB = await axios.get("/properties");
-      console.log(propertiesDB.data);
       setProperties(propertiesDB.data.filter(e => e.archived === false));
     })();
   }, [boolean]);
@@ -63,7 +62,7 @@ export default function CardList() {
   return (
     <div className="flex justify-center items-center w-full">
       <div className="flex flex-col w-fit">
-        <div className="flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center">
+        <div className={`${view !== "grid" && "mx-10"} flex flex-col md:gap-0 md:flex-row md:justify-between items-center md:items-center`}>
           <Filter setProperties={setProperties} />
           <button
             aria-label="toggleView"
@@ -143,6 +142,16 @@ export default function CardList() {
                   )
             )
             : [0, 1, 2, 3, 4, 5].map((e, i) => <Skeleton key={e + "*"} />)}
+        </div>
+        <div className="w-full flex justify-center">
+          <Pagination
+            propertiesPerPage={propertiesPerPage}
+            properties={properties?.length}
+            pagination={pagination}
+            currentPage={currentPage}
+            handlePrevious={handlePrevious}
+            handleNext={handleNext}
+          />
         </div>
       </div>
     </div>

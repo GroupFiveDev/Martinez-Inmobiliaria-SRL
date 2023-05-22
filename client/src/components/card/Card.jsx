@@ -77,7 +77,7 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
         <Link to={`/card/${id}`}>
           <div className="flex flex-col justify-center relative">
             <img
-              className={`rounded-t-lg ${sold || archived ? "blur-sm" : ""} h-[300px]`}
+              className={`rounded-t-lg ${sold ? "blur-sm" : ""} h-[300px]`}
               src={id === 1 ? images[0] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
               alt=""
             />
