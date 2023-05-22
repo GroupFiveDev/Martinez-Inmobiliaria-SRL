@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import Fields from "../fields/Fields"
+import Properties from "../properties/Properties"
 import WhatsApp from "../whatsApp/WhatsApp"
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <>
-      <Fields />
+      <Properties />
       <WhatsApp />
     </>
   )
