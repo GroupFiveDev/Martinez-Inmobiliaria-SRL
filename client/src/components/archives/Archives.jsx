@@ -25,7 +25,7 @@ export default function Archives() {
         <h1 className="md:text-3xl text-2xl text-center font-bold text-gray-800 mb-3 md:mb-0 font-Montserrat">PROPIEDADES ARCHIVADAS</h1>
         <div className="grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2">
           {
-            properties.length ? properties.map((card, i) => <Card key={i} type={card.type} id={card.id} titulo={card.title} descripcion={card.description} hectareas={card.hectares} lotes={card.lots} bathrooms={card.bathrooms} rooms={card.rooms} ubicacion={card.location} terrain={card.terrain} price={card.price} images={card.images} sold={card.sold} archived={card.archived} boolean={boolean}
+            properties.length ? properties.map((card, i) => <Card key={i} type={card.type} id={card.id} titulo={card.title} descripcion={card.description} hectareas={card.hectares} lotes={card.lots} bathrooms={card.bathrooms} rooms={card.rooms} ubicacion={card.location} terrain={card.terrain} price={card.price} images={card.images} garage={card.garage} square={card.square} sold={card.sold} archived={card.archived} boolean={boolean}
               setBoolean={setBoolean} />)
               :
               undefined
