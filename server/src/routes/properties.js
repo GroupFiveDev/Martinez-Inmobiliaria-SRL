@@ -9,6 +9,7 @@ const {
   orderAndFilterProperties,
   // getProperties,
 } = require("../controllers/properties.js");
+//importaciones de cloudinary
 // const multer = require("multer");
 // const cloudinary = require("cloudinary").v2;
 
@@ -21,6 +22,36 @@ const {
 
 // Configuración de multer para subir archivos
 // const upload = multer({ dest: "uploads/" });
+
+// Ruta para crear un nuevo Property con imágenes
+// router.post('/properties', upload.array('images'), async (req, res) => {
+//   try {
+//     const { title, description } = req.body;
+//     const images = [];
+
+//     // Subir imágenes a Cloudinary
+//     const uploadPromises = req.files.map((file) =>
+//       cloudinary.uploader.upload(file.path)
+//     );
+//     const results = await Promise.all(uploadPromises);
+
+//     // Crear un nuevo Property en la base de datos
+//     const property = await Property.create({
+//       title,
+//       description,
+//     });
+
+// Crear registros de imágenes en la base de datos y asociarlos al Property
+// for (let i = 0; i < results.length; i++) {
+//   const result = results[i];
+//   const image = await Image.create({
+//     url: result.secure_url,
+//     PropertyId: property.id,
+//   });
+//   images.push(image);
+// }
+
+//Hay que modificar algunas cosas de lo de cloudinary, aún no funciona
 
 router.get("/", async (req, res) => {
   try {
