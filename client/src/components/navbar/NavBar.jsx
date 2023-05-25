@@ -1,21 +1,40 @@
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
 import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
 import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
-import { useState } from 'react';
+import { useLocation, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import video from '../../assets/la_perla/video.mp4'
 import video2 from '../../assets/la_perla/video_sm.mp4'
 
-export default function NavBar() {
+
+export default function Navbar() {
   const { pathname } = useLocation()
   const history = useHistory()
   const [isOpen, setIsOpen] = useState(false)
+  const [scrollNav, setScrollNav] = useState(false);
 
   const title = document.getElementById("title")
   title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
 
+  const changeNav = () => {
+    if (window.scrollY >= 10) {
+      setScrollNav(true);
+    } else {
+      setScrollNav(false);
+    }
+  };
+
+  useEffect(() => {
+    if (pathname === "/") {
+      window.addEventListener("scroll", changeNav);
+    } else {
+      window.scrollY = 0
+    }
+  }, []);
+
   return (
-    <div className='relative flex justify-center'>
-      <div className={`${pathname === "/" ? "flex" : "hidden"} top-0 w-full`}>
+    <>
+      <div className={`${pathname === "/" ? "flex" : "hidden"} top-0 w-full h-screen`}>
         <video controls={false} autoPlay loop muted className="h-full w-full hidden sm:flex object-cover">
           <source src={video} type="video/mp4" />
           Tu navegador no soporta el elemento de video.
@@ -25,7 +44,8 @@ export default function NavBar() {
           Tu navegador no soporta el elemento de video.
         </video>
       </div>
-      <nav className={`z-[60] ${pathname === "/" ? "absolute bg-gradient-to-b from-black" : "bg-[#276163]"} top-0 w-full `}>
+      {/* <div className={`relative flex justify-center`}> */}
+      <nav className={`z-[60] ${pathname === "/" ? "fixed" : "sticky"} ${pathname === "/" ? "bg-gradient-to-b from-black transition-all ease-in-out duration-1000" : "bg-[#276163]"} top-0 w-full ${scrollNav ? "h-[60px]" : "h-[200px]"}`}>
         <div className='absolute left-5 gap-5 mt-4 hidden md:flex z-40'>
           <a aria-label="instagram" href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
             <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' color='white' />
@@ -64,7 +84,7 @@ export default function NavBar() {
                   Departamentos
                 </a>
               </li>
-              <li className="hidden md:flex h-fit">
+              <li className={`${scrollNav ? "md:hidden" : "md:flex"} hidden md:flex h-fit transition-opacity ease-in-out duration-1000`}>
                 <Link to="/" className="mx-5">
                   <img src={logo} className="w-40 h-40 hover:opacity-50 scale-150" alt="inmobiliaria_Logo" />
                 </Link>
@@ -91,12 +111,10 @@ export default function NavBar() {
               </li>
             </ul>
           </div>
-
         </div>
       </nav >
+      {/* </div > */}
+    </>
+  );
+};
 
-    </div>
-
-
-  )
-}

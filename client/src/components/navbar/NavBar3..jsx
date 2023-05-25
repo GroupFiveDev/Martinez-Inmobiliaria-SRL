@@ -15,7 +15,7 @@ export default function NavBar3() {
 
   return (
     <div className='relative flex justify-center'>
-      <div className={`${pathname === "/" ? "flex" : "hidden"} top-0 w-full`}>
+      <div className={`${pathname === "/" ? "flex" : "hidden"} top-0 w-full h-screen`}>
         <video controls={false} autoPlay loop muted className="h-full w-full hidden sm:flex object-cover">
           <source src={video} type="video/mp4" />
           Tu navegador no soporta el elemento de video.

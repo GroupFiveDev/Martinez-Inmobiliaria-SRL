@@ -321,7 +321,8 @@ async function createProperty(
   garage,
   square,
   images,
-  type
+  type,
+  position
 ) {
   try {
     hectares = Number(hectares);
@@ -330,6 +331,10 @@ async function createProperty(
     price = Number(price);
     garage = Number(garage);
     square = Number(square);
+    position = {
+      lat: Number(position.split(",")[0]),
+      lng: Number(position.split(",")[1]),
+    };
     await Property.create({
       title,
       description,
@@ -341,6 +346,7 @@ async function createProperty(
       price,
       garage,
       square,
+      position,
       images,
       type,
     });
@@ -379,6 +385,11 @@ async function editProperty(id, data) {
     if (data.images) property.images = data.images;
     if (data.archived !== null) property.archived = data.archived;
     if (data.sold !== null) property.sold = data.sold;
+
+    if (data.position) {
+      const arr = data.position.split(",");
+      property.position = { lat: Number(arr[0]), lng: Number(arr[1]) };
+    }
 
     await property.save();
     await property.reload();
