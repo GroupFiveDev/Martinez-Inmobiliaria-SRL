@@ -99,6 +99,7 @@ router.post("/", async (req, res) => {
       bathrooms,
       price,
       garage,
+      position,
       square,
       images,
       type,
@@ -116,7 +117,8 @@ router.post("/", async (req, res) => {
         garage,
         square,
         images,
-        type
+        type,
+        position
       )
     );
   } catch (error) {
