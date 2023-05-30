@@ -12,12 +12,13 @@ export default function Navbar() {
   const history = useHistory()
   const [isOpen, setIsOpen] = useState(false)
   const [scrollNav, setScrollNav] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
   const title = document.getElementById("title")
   title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
 
   const changeNav = () => {
-    if (window.scrollY >= 10) {
+    if (window.scrollY >= 1) {
       setScrollNav(true);
     } else {
       setScrollNav(false);
@@ -44,8 +45,7 @@ export default function Navbar() {
           Tu navegador no soporta el elemento de video.
         </video>
       </div>
-      {/* <div className={`relative flex justify-center`}> */}
-      <nav className={`z-[60] ${pathname === "/" ? "fixed" : "sticky"} ${pathname === "/" ? "bg-gradient-to-b from-black transition-all ease-in-out duration-1000" : "bg-[#276163]"} top-0 w-full ${scrollNav ? "h-[60px]" : "h-[200px]"}`}>
+      <nav className={`z-[60] ${pathname === "/" ? "fixed" : "sticky"} ${pathname === "/" ? "bg-gradient-to-b from-black " : "bg-[#276163]"} top-0 w-full ${scrollNav ? "h-[60px]" : "h-[200px]"} `}>
         <div className='absolute left-5 gap-5 mt-4 hidden md:flex z-40'>
           <a aria-label="instagram" href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
             <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' color='white' />
@@ -84,7 +84,7 @@ export default function Navbar() {
                   Departamentos
                 </a>
               </li>
-              <li className={`${scrollNav ? "md:hidden" : "md:flex"} hidden md:flex h-fit transition-opacity ease-in-out duration-1000`}>
+              <li className={`${scrollNav ? "md:hidden" : "md:flex"} hidden md:flex h-fit`}>
                 <Link to="/" className="mx-5">
                   <img src={logo} className="w-40 h-40 hover:opacity-50 scale-150" alt="inmobiliaria_Logo" />
                 </Link>
@@ -113,7 +113,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav >
-      {/* </div > */}
     </>
   );
 };
