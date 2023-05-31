@@ -25,7 +25,7 @@ export default function NavBar3() {
           Tu navegador no soporta el elemento de video.
         </video>
       </div>
-      <nav className={`z-[60] ${pathname === "/" ? "absolute bg-gradient-to-b from-[#276163]" : "bg-[#276163]"} top-0 w-full `}>
+      <nav className={`z-[60] ${pathname === "/" ? "absolute bg-gradient-to-b from-[#276163]" : "bg-[#276163]"} top-0 w-full`}>
         <div className='absolute left-5 gap-5 mt-4 hidden md:flex z-40'>
           <a aria-label="instagram" href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
             <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' color='white' />
