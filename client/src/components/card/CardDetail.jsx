@@ -16,6 +16,7 @@ import Check from "../check/Check.jsx";
 import Close from "../close/Close.jsx";
 import Loading from "../modal/Loading.jsx";
 import Map from "../map/Map.jsx";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
 export default function CardDetail() {
   const history = useHistory();
@@ -28,6 +29,7 @@ export default function CardDetail() {
   const [principal, setPrincipal] = useState(1)
   const title = useRef(null);
   const [k, setK] = useState(0)
+  const [carrousel, setCarrousel] = useState(0)
   const [edit, setEdit] = useState({
     type: null,
     title: null,
@@ -75,7 +77,7 @@ export default function CardDetail() {
       [name]: input.value,
     });
   };
-  console.log(property);
+
   const handleOnSave = async () => {
     openModal();
     const result = await axios.patch(`/properties/${id}`, property);
@@ -100,6 +102,9 @@ export default function CardDetail() {
         const result = await axios.get(`/properties/${id}`);
         setProperty(result.data);
       })();
+    }
+    if (property) {
+      setCarrousel(property.images.length / 3)
     }
     window.scrollTo({ top: 0, left: 0 });
   }, []);
@@ -178,21 +183,23 @@ export default function CardDetail() {
                         <span className="sr-only">Loading...</span>
                       </div>
                     </div>
-                    <div className="mt-4 grid grid-cols-3 gap-4 relative items-center">
-                      <button className="absolute lef-0 bg-red-500" onClick={() => setK(k - 3)}> Prev </button>
-                      {
-                        property?.images.slice(k, 3 + k).map((image, index) => (
-                          <button aria-label="carrusel" key={index} onClick={() => index !== activeImageIndex && handleImageClick(index)}>
-                            <img
-                              src={id == 1 ? image : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
-                              onLoad={handleLoadImages}
-                              alt={property?.title}
-                              className={`h-[100%] rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
-                            />
-                          </button>
-                        ))
-                      }
-                      <button className="absolute right-0 bg-red-500" onClick={() => setK(k + 3)}> Nex </button>
+                    <div className="w-full relative flex justify-center items-center px-10">
+                      <button className="absolute left-0 w-7 h-7" onClick={() => setK(k - 3)} disabled={k === 0 ? true : false}> <AiOutlineArrowLeft className="w-full h-full" color="white" /> </button>
+                      <div className="mt-4 grid grid-cols-3 gap-4 relative items-center">
+                        {
+                          property?.images.slice(k, 3 + k).map((image, index) => (
+                            <button aria-label="carrusel" key={index} onClick={() => index !== activeImageIndex && handleImageClick(index)}>
+                              <img
+                                src={id == 1 ? image : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
+                                onLoad={handleLoadImages}
+                                alt={property?.title}
+                                className={`h-[100%] rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
+                              />
+                            </button>
+                          ))
+                        }
+                      </div>
+                      <button className="absolute right-0 w-7 h-7" onClick={() => setK(k + 3)} disabled={k + 3 >= property.images.length ? true : false}> <AiOutlineArrowRight className="w-full h-full" color="white" /> </button>
                     </div>
                   </div>
                   :

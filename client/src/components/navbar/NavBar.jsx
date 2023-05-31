@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
+import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview2.png'
 import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
 import { useLocation, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -17,7 +17,8 @@ export default function Navbar() {
   title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
 
   const changeNav = () => {
-    if (window.scrollY >= 10) {
+    setIsOpen(false)
+    if (window.scrollY >= 1) {
       setScrollNav(true);
     } else {
       setScrollNav(false);
@@ -33,8 +34,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <>
-      <div className={`${pathname === "/" ? "flex" : "hidden"} top-0 w-full h-screen`}>
+    <div>
+      <div className={`${pathname === "/" ? "flex" : "hidden"} top-0 w-full h-screen relative`}>
         <video controls={false} autoPlay loop muted className="h-full w-full hidden sm:flex object-cover">
           <source src={video} type="video/mp4" />
           Tu navegador no soporta el elemento de video.
@@ -44,8 +45,7 @@ export default function Navbar() {
           Tu navegador no soporta el elemento de video.
         </video>
       </div>
-      {/* <div className={`relative flex justify-center`}> */}
-      <nav className={`z-[60] ${pathname === "/" ? "fixed" : "sticky"} ${pathname === "/" ? "bg-gradient-to-b from-black transition-all ease-in-out duration-1000" : "bg-[#276163]"} top-0 w-full ${scrollNav ? "h-[60px]" : "h-[200px]"}`}>
+      <nav className={`z-[60] ${pathname === "/" ? "md:fixed absolute" : "flex"} ${pathname === "/" ? "bg-gradient-to-b from-black" : "bg-[#276163]"} top-0 w-full $ md:h-fit`}>
         <div className='absolute left-5 gap-5 mt-4 hidden md:flex z-40'>
           <a aria-label="instagram" href="https://www.instagram.com/tjinmobiliria/" target='_blank'>
             <AiOutlineInstagram size={"1.5rem"} className='hover:opacity-50' color='white' />
@@ -58,8 +58,8 @@ export default function Navbar() {
 
           {/* responsive */}
           <div className="flex w-full justify-between items-center md:order-2 md:hidden">
-            <Link to="/">
-              <img src={logo} className="w-40 scale-150" alt="inmobiliaria_Logo" />
+            <Link to="/" className={`w-40 h-auto`}>
+              <img src={logo} className="w-full hover:opacity-50 " alt="inmobiliaria_Logo" />
             </Link>
             <button onClick={() => setIsOpen(!isOpen)} aria-label="dropdown" type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
               <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
@@ -67,54 +67,35 @@ export default function Navbar() {
           </div>
 
           {/* pc */}
-          <div className={`animate-movimiento max-[768px]:absolute max-[768px]:top-[125px] max-[768px]:lef-0 max-[768px]:right-0 items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30`} >
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:gap-8 md:mt-0 md:border-0 md:bg-transparent md:items-center">
-              <li className='h-fit'>
-                <Link to="/" onClick={() => setIsOpen(!isOpen)} className="text-lg block py-2 pl-1 pr-4 text-black rounded md:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
-                  Inicio
-                </Link>
-              </li>
-              <li className='h-fit'>
-                <a aria-label="fields" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className=" block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
-                  Campos
-                </a>
-              </li>
-              <li className='h-fit'>
-                <a aria-label="apartments" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
-                  Departamentos
-                </a>
-              </li>
-              <li className={`${scrollNav ? "md:hidden" : "md:flex"} hidden md:flex h-fit transition-opacity ease-in-out duration-1000`}>
-                <Link to="/" className="mx-5">
-                  <img src={logo} className="w-40 h-40 hover:opacity-50 scale-150" alt="inmobiliaria_Logo" />
-                </Link>
-              </li>
-              <li className='h-fit'>
-                <Link to="/Mapa" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Mapa" ? "md:text-black" : "md:text-white"}`}>
-                  Ver mapa
-                </Link>
-              </li>
-              <li className='h-fit'>
-                <Link to="/Nosotros" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Nosotros" ? "md:text-black" : "md:text-white"}`}>
-                  Nosotros
-                </Link>
-              </li>
-              <li className='h-fit'>
-                <Link to="/Contacto" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 md:m-0 ${pathname === "/Contacto" ? "md:text-black" : "md:text-white"}`}>
-                  Contacto
-                </Link>
-              </li>
-              <li className='h-fit md:hidden'>
-                <a aria-label="call" href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-1 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
-                  Llamanos
-                </a>
-              </li>
-            </ul>
+          <div className={`animate-movimiento max-[768px]:absolute max-[768px]:top-[125px] max-[768px]:lef-0 max-[768px]:right-0 items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30 gap-5 bg-white md:bg-transparent font-medium pl-5 md:pl-0`} >
+            <Link to="/" onClick={() => { setIsOpen(!isOpen), window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }} className="text-lg block py-2 pl-1 pr-4 text-black rounded md:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+              Inicio
+            </Link>
+            <a aria-label="fields" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className=" block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+              Campos
+            </a>
+            <a aria-label="apartments" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+              Departamentos
+            </a>
+            <Link to="/" className={`w-60 h-auto ${scrollNav && pathname == "/" ? "hidden" : "flex"}`}>
+              <img src={logo} className="w-full hover:opacity-50 hidden md:flex" alt="inmobiliaria_Logo" />
+            </Link>
+            <Link to="/Mapa" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Mapa" ? "md:text-black" : "md:text-white"}`}>
+              Mapa
+            </Link>
+            <Link to="/Nosotros" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Nosotros" ? "md:text-black" : "md:text-white"}`}>
+              Nosotros
+            </Link>
+            <Link to="/Contacto" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 md:m-0 ${pathname === "/Contacto" ? "md:text-black" : "md:text-white"}`}>
+              Contacto
+            </Link>
+            <a aria-label="call" href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-1 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+              Llamanos
+            </a>
           </div>
         </div>
       </nav >
-      {/* </div > */}
-    </>
+    </div>
   );
 };
 
