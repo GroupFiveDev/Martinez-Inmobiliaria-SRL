@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png'
+import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview2.png'
 import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="w-full relative">
           <div className="  md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
-              <img src={logo} alt="TyJ_Logo" className='w-[80%] sm:w-40 sm:h-40 hover:cursor-pointer hover:opacity-50 z-40' onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); history.push("/") }} />
+              <img src={logo} alt="TyJ_Logo" className='w-[50%] h-auto sm:w-40 sm:h-auto hover:cursor-pointer hover:opacity-50 z-40' onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); history.push("/") }} />
             </div>
 
             <div className='md:absolute flex flex-col items-center my-6 w-full'>
@@ -28,7 +28,7 @@ export default function Footer() {
 
             <div className="flex justify-center md:mr-10 md:flex gap-8 sm:grid-cols-3 md:flex-row-reverse items-center">
               <div className='flex flex-col gap-5 text-center z-10'>
-                <Link to="/">
+                <Link to="/" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}>
                   <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase">Inicio</h2>
                 </Link>
                 <Link to="/nosotros">
