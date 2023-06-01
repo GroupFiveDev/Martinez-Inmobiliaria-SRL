@@ -78,7 +78,7 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
           <div className="flex flex-col justify-center relative">
             <img
               className={`rounded-t-lg ${sold ? "blur-sm" : ""} h-[300px]`}
-              src={id === 1 ? images[0] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
+              src={images?.length ? images[0] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
               alt=""
             />
             <div className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"}`}>
@@ -104,12 +104,12 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                 type === "field" ?
                   <>
                     {
-                      terrain.toLowerCase() === "mixto" ?
+                      terrain?.toLowerCase() === "mixto" ?
                         <div className='flex gap-4'>
                           <img src={vaca} alt="vaca" className='w-7' />
                           <img src={maiz} alt="maiz" className='w-7' />
                         </div>
-                        : terrain.toLowerCase() === "ganadero" ?
+                        : terrain?.toLowerCase() === "ganadero" ?
                           <img src={vaca} alt="vaca" className='w-7' />
                           :
                           <img src={maiz} alt="maiz" className='w-7' />

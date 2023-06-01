@@ -170,7 +170,7 @@ export default function CardDetail() {
                   <div className="px-2 xl:w-full">
                     <div className="w-full relative flex justify-center items-center">
                       <img
-                        src={id == 1 ? property?.images[activeImageIndex] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
+                        src={property?.images.length ? property?.images[activeImageIndex] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
                         onLoad={handleLoadImages}
                         alt="imagePrincipal"
                         className={`${principal ? "opacity-25" : ""} w-full object-fill rounded-lg shadow-lg relative`}
@@ -190,7 +190,7 @@ export default function CardDetail() {
                           property?.images.slice(k, 3 + k).map((image, index) => (
                             <button aria-label="carrusel" key={index} onClick={() => index !== activeImageIndex && handleImageClick(index)}>
                               <img
-                                src={id == 1 ? image : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
+                                src={image}
                                 onLoad={handleLoadImages}
                                 alt={property?.title}
                                 className={`h-[100%] rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
