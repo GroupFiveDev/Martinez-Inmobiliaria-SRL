@@ -9,49 +9,8 @@ const {
   orderAndFilterProperties,
   // getProperties,
 } = require("../controllers/properties.js");
-//importaciones de cloudinary
-// const multer = require("multer");
-// const cloudinary = require("cloudinary").v2;
-
-// Configuración de Cloudinary
-// cloudinary.config({
-//   cloud_name: "dgei1j8pa",
-//   api_key: "836764965398888",
-//   api_secret: "Q7RhBWkAn1zlokzz7Emf4IMHNdw",
-// });
-
-// Configuración de multer para subir archivos
-// const upload = multer({ dest: "uploads/" });
-
-// Ruta para crear un nuevo Property con imágenes
-// router.post('/properties', upload.array('images'), async (req, res) => {
-//   try {
-//     const { title, description } = req.body;
-//     const images = [];
-
-//     // Subir imágenes a Cloudinary
-//     const uploadPromises = req.files.map((file) =>
-//       cloudinary.uploader.upload(file.path)
-//     );
-//     const results = await Promise.all(uploadPromises);
-
-//     // Crear un nuevo Property en la base de datos
-//     const property = await Property.create({
-//       title,
-//       description,
-//     });
-
-// Crear registros de imágenes en la base de datos y asociarlos al Property
-// for (let i = 0; i < results.length; i++) {
-//   const result = results[i];
-//   const image = await Image.create({
-//     url: result.secure_url,
-//     PropertyId: property.id,
-//   });
-//   images.push(image);
-// }
-
-//Hay que modificar algunas cosas de lo de cloudinary, aún no funciona
+const multer = require("multer");
+const path = require("path");
 
 router.get("/", async (req, res) => {
   try {
@@ -87,7 +46,22 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+const diskStorage = multer.diskStorage({
+  destination: path.join(__dirname, "../../upload"),
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+// const fileUpload = multer({
+//   storage: diskStorage,
+// }).single("image");
+
+const fileUpload = multer({
+  storage: diskStorage,
+}).array("images", 10);
+
+router.post("/", fileUpload, async (req, res) => {
   try {
     const {
       title,
@@ -104,6 +78,7 @@ router.post("/", async (req, res) => {
       images,
       type,
     } = req.body;
+    console.log("el file: ", req.file);
     return res.json(
       await createProperty(
         title,
@@ -118,7 +93,8 @@ router.post("/", async (req, res) => {
         square,
         images,
         type,
-        position
+        position,
+        req.file
       )
     );
   } catch (error) {

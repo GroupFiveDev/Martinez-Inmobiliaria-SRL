@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from '../../context/authContext';
 import { useHistory } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const CreateProperty = () => {
   const { user } = useAuth()
 
   const history = useHistory()
-  !user && history.push("/")
+  // !user && history.push("/")
 
   const [form, setForm] = useState({
     type: "",
@@ -22,21 +22,26 @@ const CreateProperty = () => {
     square: "",
     position: "",
     price: "",
-    images: [],
+    images: "",
   })
 
+  const [file, setFile] = useState()
+
   const handleChange = (e) => {
+    // if (e.target.name === "images") {
+    //   console.log("entra al if de images");
+    //   return setFile(e.target.files[0])
+    // }
     if (e.target.name === "images") {
-      setForm({
+      return setForm({
         ...form,
-        images: images.push(e.target.value),
-      })
-    } else {
-      setForm({
-        ...form,
-        [e.target.name]: e.target.value
+        images: Object.values(e.target.files),
       })
     }
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
   }
 
   const validate = (form) => {
@@ -65,14 +70,24 @@ const CreateProperty = () => {
   let errorMsg = validate(form);
 
   const handleSubmit = async (e) => {
+    console.log("submit: ", form);
     e.preventDefault()
+    const formdata = new FormData();
+    formdata.append("type", form.type);
+    formdata.append("title", form.title);
+    formdata.append("description", form.description);
+    formdata.append("location", form.location);
+    formdata.append("price", form.price);
+    formdata.append("image", form.images);
+    console.log("***", formdata);
     if (Object.values(errorMsg).length) {
       return alert(Object.values(errorMsg).join('\n'), "error")
     }
 
     try {
-      await axios.post("/properties", form)
-      alert("Propiedad Creada")
+      await axios.post("/properties", formdata)
+        .catch((err) => console.error(err));
+      // alert("Propiedad Creada")
     } catch (error) {
       console.log(error)
     }
@@ -85,6 +100,11 @@ const CreateProperty = () => {
       return false;
     }
   }
+
+  useEffect(() => {
+    console.log(form);
+  }, [form])
+
 
   return (
     <div className="m-10">
@@ -156,10 +176,10 @@ const CreateProperty = () => {
               <input onChange={handleChange} type="number" id="price" name="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
               <p>{errorMsg.price}</p>
             </div>
-            {/* <div className="mb-6">
+            <div className="mb-6">
               <label className="block mb-2 text-sm font-medium text-gray-900">Imagenes</label>
-              <input type="file" id="images" name="images" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-            </div> */}
+              <input onChange={handleChange} type="file" multiple id="images" name="images" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+            </div>
           </div>
           <div className="flex justify-center items-center">
             <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Crear propiedad</button>
