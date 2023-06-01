@@ -22,21 +22,21 @@ const CreateProperty = () => {
     square: "",
     position: "",
     price: "",
-    images: [],
+    image: [],
   })
 
   const handleChange = (e) => {
-    if (e.target.name === "images") {
-      setForm({
+    console.log(e.target.files);
+    if (e.target.name === "image") {
+      return setForm({
         ...form,
-        images: images.push(e.target.value),
-      })
-    } else {
-      setForm({
-        ...form,
-        [e.target.name]: e.target.value
+        image: e.target.files,
       })
     }
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
   }
 
   const validate = (form) => {
@@ -66,12 +66,23 @@ const CreateProperty = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (Object.values(errorMsg).length) {
-      return alert(Object.values(errorMsg).join('\n'), "error")
+    const formdata = new FormData();
+    formdata.append("type", form.type);
+    formdata.append("title", form.title);
+    formdata.append("description", form.description);
+    formdata.append("location", form.location);
+    formdata.append("price", form.price);
+    for (let i = 0; i < form.image.length; i++) {
+      formdata.append("image", form.image[i]);
     }
 
     try {
-      await axios.post("/properties", form)
+      await axios.post("/properties", formdata, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .catch((err) => console.error(err));
       alert("Propiedad Creada")
     } catch (error) {
       console.log(error)
@@ -156,10 +167,10 @@ const CreateProperty = () => {
               <input onChange={handleChange} type="number" id="price" name="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
               <p>{errorMsg.price}</p>
             </div>
-            {/* <div className="mb-6">
+            <div className="mb-6">
               <label className="block mb-2 text-sm font-medium text-gray-900">Imagenes</label>
-              <input type="file" id="images" name="images" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-            </div> */}
+              <input onChange={handleChange} type="file" multiple id="image" name="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+            </div>
           </div>
           <div className="flex justify-center items-center">
             <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Crear propiedad</button>

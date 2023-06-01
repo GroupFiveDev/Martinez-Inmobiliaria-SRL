@@ -1,4 +1,6 @@
 const { Property } = require("../db.js");
+const { uploadImage } = require("../cloudinary.js");
+const fs = require("fs-extra");
 
 // Solamente para ambiente de desarrollo
 async function createProperties() {
@@ -320,22 +322,24 @@ async function createProperty(
   price,
   garage,
   square,
-  images,
   type,
-  position
+  position,
+  files
 ) {
   try {
-    hectares = Number(hectares);
-    rooms = Number(rooms);
-    bathrooms = Number(bathrooms);
-    price = Number(price);
-    garage = Number(garage);
-    square = Number(square);
-    position = {
-      lat: Number(position.split(",")[0]),
-      lng: Number(position.split(",")[1]),
-    };
-    await Property.create({
+    if (hectares) hectares = Number(hectares);
+    if (rooms) rooms = Number(rooms);
+    if (bathrooms) bathrooms = Number(bathrooms);
+    if (price) price = Number(price);
+    if (garage) garage = Number(garage);
+    if (square) square = Number(square);
+    if (position)
+      position = {
+        lat: Number(position.split(",")[0]),
+        lng: Number(position.split(",")[1]),
+      };
+
+    const property = await Property.create({
       title,
       description,
       hectares,
@@ -347,9 +351,26 @@ async function createProperty(
       garage,
       square,
       position,
-      images,
       type,
     });
+
+    //Si la propiedad fue creada
+    if (property) {
+      if (files.length) {
+        files.map(async (e, i) => {
+          const result = await uploadImage(e.path);
+          console.log(i + " :", result);
+          property.images = [...property.images, result.secure_url];
+          property.image_public_id = [
+            ...property.image_public_id,
+            result.public_id,
+          ];
+          fs.unlink(e.path);
+          await property.save();
+        });
+      }
+    }
+    return property;
   } catch (error) {
     return error;
   }
