@@ -42,7 +42,8 @@ module.exports = async (sequelize) => {
       defaultValue: [],
     },
     image_public_id: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      defaultValue: [],
     },
     position: {
       type: DataTypes.JSONB,

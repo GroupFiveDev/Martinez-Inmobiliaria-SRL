@@ -53,13 +53,9 @@ const diskStorage = multer.diskStorage({
   },
 });
 
-// const fileUpload = multer({
-//   storage: diskStorage,
-// }).single("image");
-
 const fileUpload = multer({
   storage: diskStorage,
-}).array("images", 10);
+}).array("image");
 
 router.post("/", fileUpload, async (req, res) => {
   try {
@@ -78,7 +74,6 @@ router.post("/", fileUpload, async (req, res) => {
       images,
       type,
     } = req.body;
-    console.log("el file: ", req.file);
     return res.json(
       await createProperty(
         title,
@@ -94,7 +89,7 @@ router.post("/", fileUpload, async (req, res) => {
         images,
         type,
         position,
-        req.file
+        req.files
       )
     );
   } catch (error) {

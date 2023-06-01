@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from '../../context/authContext';
 import { useHistory } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const CreateProperty = () => {
   const { user } = useAuth()
 
   const history = useHistory()
-  // !user && history.push("/")
+  !user && history.push("/")
 
   const [form, setForm] = useState({
     type: "",
@@ -22,20 +22,15 @@ const CreateProperty = () => {
     square: "",
     position: "",
     price: "",
-    images: "",
+    image: [],
   })
 
-  const [file, setFile] = useState()
-
   const handleChange = (e) => {
-    // if (e.target.name === "images") {
-    //   console.log("entra al if de images");
-    //   return setFile(e.target.files[0])
-    // }
-    if (e.target.name === "images") {
+    console.log(e.target.files);
+    if (e.target.name === "image") {
       return setForm({
         ...form,
-        images: Object.values(e.target.files),
+        image: e.target.files,
       })
     }
     setForm({
@@ -70,7 +65,6 @@ const CreateProperty = () => {
   let errorMsg = validate(form);
 
   const handleSubmit = async (e) => {
-    console.log("submit: ", form);
     e.preventDefault()
     const formdata = new FormData();
     formdata.append("type", form.type);
@@ -78,16 +72,18 @@ const CreateProperty = () => {
     formdata.append("description", form.description);
     formdata.append("location", form.location);
     formdata.append("price", form.price);
-    formdata.append("image", form.images);
-    console.log("***", formdata);
-    if (Object.values(errorMsg).length) {
-      return alert(Object.values(errorMsg).join('\n'), "error")
+    for (let i = 0; i < form.image.length; i++) {
+      formdata.append("image", form.image[i]);
     }
 
     try {
-      await axios.post("/properties", formdata)
+      await axios.post("/properties", formdata, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
         .catch((err) => console.error(err));
-      // alert("Propiedad Creada")
+      alert("Propiedad Creada")
     } catch (error) {
       console.log(error)
     }
@@ -100,11 +96,6 @@ const CreateProperty = () => {
       return false;
     }
   }
-
-  useEffect(() => {
-    console.log(form);
-  }, [form])
-
 
   return (
     <div className="m-10">
@@ -178,7 +169,7 @@ const CreateProperty = () => {
             </div>
             <div className="mb-6">
               <label className="block mb-2 text-sm font-medium text-gray-900">Imagenes</label>
-              <input onChange={handleChange} type="file" multiple id="images" name="images" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+              <input onChange={handleChange} type="file" multiple id="image" name="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
             </div>
           </div>
           <div className="flex justify-center items-center">

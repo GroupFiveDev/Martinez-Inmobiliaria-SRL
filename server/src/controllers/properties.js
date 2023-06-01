@@ -322,10 +322,9 @@ async function createProperty(
   price,
   garage,
   square,
-  images,
   type,
   position,
-  file
+  files
 ) {
   try {
     if (hectares) hectares = Number(hectares);
@@ -352,21 +351,25 @@ async function createProperty(
       garage,
       square,
       position,
-      images,
       type,
     });
 
     //Si la propiedad fue creada
     if (property) {
-      if (file?.path) {
-        const result = await uploadImage(file.path);
-        property.images = [result.secure_url];
-        property.image_public_id = result.public_id;
-        fs.unlink(file.path);
-        await property.save();
+      if (files.length) {
+        files.map(async (e, i) => {
+          const result = await uploadImage(e.path);
+          console.log(i + " :", result);
+          property.images = [...property.images, result.secure_url];
+          property.image_public_id = [
+            ...property.image_public_id,
+            result.public_id,
+          ];
+          fs.unlink(e.path);
+          await property.save();
+        });
       }
     }
-    console.log(property);
     return property;
   } catch (error) {
     return error;
