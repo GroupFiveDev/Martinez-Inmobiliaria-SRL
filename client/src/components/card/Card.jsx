@@ -111,8 +111,9 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                         </div>
                         : terrain?.toLowerCase() === "ganadero" ?
                           <img src={vaca} alt="vaca" className='w-7' />
-                          :
-                          <img src={maiz} alt="maiz" className='w-7' />
+                          : terrain?.toLowerCase() === "Agrícola" ?
+                            <img src={maiz} alt="maiz" className='w-7' />
+                            : ""
                     }
                     <p className={`${hectareas ? "" : "hidden"} mb-3 mt-3 font-normal text-gray-700`}>
                       HECTÁREAS: {hectareas}

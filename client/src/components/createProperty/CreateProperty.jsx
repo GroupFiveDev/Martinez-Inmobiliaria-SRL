@@ -10,23 +10,22 @@ const CreateProperty = () => {
   !user && history.push("/")
 
   const [form, setForm] = useState({
-    type: "",
-    title: "",
-    description: "",
-    hectares: "",
-    location: "",
-    terrain: "",
-    rooms: "",
-    bathrooms: "",
-    garage: "",
-    square: "",
-    position: "",
-    price: "",
+    type: null,
+    title: null,
+    description: null,
+    hectares: null,
+    location: null,
+    terrain: null,
+    rooms: null,
+    bathrooms: null,
+    garage: null,
+    square: null,
+    position: null,
+    price: null,
     image: [],
   })
 
   const handleChange = (e) => {
-    console.log(e.target.files);
     if (e.target.name === "image") {
       return setForm({
         ...form,
@@ -67,11 +66,10 @@ const CreateProperty = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formdata = new FormData();
-    formdata.append("type", form.type);
-    formdata.append("title", form.title);
-    formdata.append("description", form.description);
-    formdata.append("location", form.location);
-    formdata.append("price", form.price);
+    for (const key in form) {
+      if (key !== "image")
+        formdata.append(key, form[key]);
+    }
     for (let i = 0; i < form.image.length; i++) {
       formdata.append("image", form.image[i]);
     }
@@ -154,7 +152,7 @@ const CreateProperty = () => {
             </div>
             <div className="mb-6">
               <label className="block mb-2 text-sm font-medium text-gray-900">Metros cuadrados</label>
-              <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="garage" name="garage" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+              <input onChange={handleChange} disabled={fieldOrApartment(form)} type="number" id="square" name="square" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
               <p>{errorMsg.square}</p>
             </div>
             <div className="mb-6">
