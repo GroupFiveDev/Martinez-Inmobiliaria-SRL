@@ -59,41 +59,10 @@ const fileUpload = multer({
 
 router.post("/", fileUpload, async (req, res) => {
   try {
-    const {
-      title,
-      description,
-      hectares,
-      location,
-      terrain,
-      rooms,
-      bathrooms,
-      price,
-      garage,
-      position,
-      square,
-      images,
-      type,
-    } = req.body;
-    return res.json(
-      await createProperty(
-        title,
-        description,
-        hectares,
-        location,
-        terrain,
-        rooms,
-        bathrooms,
-        price,
-        garage,
-        square,
-        images,
-        type,
-        position,
-        req.files
-      )
-    );
+    return res.json(await createProperty(req.body, req.files));
   } catch (error) {
-    return res.status(500).json(error);
+    console.log(error);
+    return res.json(error);
   }
 });
 

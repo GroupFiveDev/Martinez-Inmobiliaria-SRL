@@ -398,9 +398,13 @@ export default function CardDetail() {
               <hr className="flex md:hidden" />
             </div>
           </div >
-          <div className="my-4">
-            <Map center2={property?.position} zoom={12} id={property?.id} />
-          </div>
+          {
+            property?.position.lng ?
+              <div className="my-4">
+                <Map center2={property?.position} zoom={12} id={property?.id} />
+              </div>
+              : ""
+          }
           <div className="w-full flex justify-center">
             <button aria-label="save" className={`${user ? "" : "hidden"} w-fit p-3 bg-[#368a8c] mb-5 font-Montserrat text-white hover:bg-[#1d3a3b]`} onClick={handleOnSave}>
               Guardar cambios

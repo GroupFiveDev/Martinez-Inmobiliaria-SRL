@@ -311,22 +311,35 @@ async function deleteProperty(id) {
   }
 }
 
-async function createProperty(
-  title,
-  description,
-  hectares,
-  location,
-  terrain,
-  rooms,
-  bathrooms,
-  price,
-  garage,
-  square,
-  type,
-  position,
-  files
-) {
+async function createProperty(body, files) {
   try {
+    let {
+      type,
+      title,
+      description,
+      hectares,
+      location,
+      terrain,
+      rooms,
+      bathrooms,
+      garage,
+      square,
+      price,
+      images,
+      image_public_id,
+      position,
+      archived,
+      sold,
+    } = body;
+    hectares = JSON.parse(hectares);
+    terrain = JSON.parse(terrain);
+    rooms = JSON.parse(rooms);
+    bathrooms = JSON.parse(bathrooms);
+    garage = JSON.parse(garage);
+    square = JSON.parse(square);
+    // price = JSON.parse(price);
+    // archived = JSON.parse(archived);
+    // sold = JSON.parse(sold);
     if (hectares) hectares = Number(hectares);
     if (rooms) rooms = Number(rooms);
     if (bathrooms) bathrooms = Number(bathrooms);
@@ -359,7 +372,6 @@ async function createProperty(
       if (files.length) {
         files.map(async (e, i) => {
           const result = await uploadImage(e.path);
-          console.log(i + " :", result);
           property.images = [...property.images, result.secure_url];
           property.image_public_id = [
             ...property.image_public_id,
@@ -372,6 +384,7 @@ async function createProperty(
     }
     return property;
   } catch (error) {
+    console.log(error);
     return error;
   }
 }
