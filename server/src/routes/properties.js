@@ -61,7 +61,6 @@ router.post("/", fileUpload, async (req, res) => {
   try {
     return res.json(await createProperty(req.body, req.files));
   } catch (error) {
-    console.log(error);
     return res.json(error);
   }
 });

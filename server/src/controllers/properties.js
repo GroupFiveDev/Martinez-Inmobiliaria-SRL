@@ -325,21 +325,15 @@ async function createProperty(body, files) {
       garage,
       square,
       price,
-      images,
-      image_public_id,
       position,
-      archived,
-      sold,
     } = body;
-    hectares = JSON.parse(hectares);
-    terrain = JSON.parse(terrain);
-    rooms = JSON.parse(rooms);
-    bathrooms = JSON.parse(bathrooms);
-    garage = JSON.parse(garage);
-    square = JSON.parse(square);
-    // price = JSON.parse(price);
-    // archived = JSON.parse(archived);
-    // sold = JSON.parse(sold);
+
+    if (rooms === "") rooms = null;
+    if (bathrooms === "") bathrooms = null;
+    if (garage === "") garage = null;
+    if (square === "") square = null;
+    if (hectares === "") hectares = null;
+
     if (hectares) hectares = Number(hectares);
     if (rooms) rooms = Number(rooms);
     if (bathrooms) bathrooms = Number(bathrooms);
@@ -384,7 +378,6 @@ async function createProperty(body, files) {
     }
     return property;
   } catch (error) {
-    console.log(error);
     return error;
   }
 }
@@ -416,11 +409,10 @@ async function editProperty(id, data) {
     if (data.garage) property.garage = Number(data.garage);
     if (data.square) property.square = Number(data.square);
     if (data.price) property.price = Number(data.price);
-    if (data.images) property.images = data.images;
     if (data.archived !== null) property.archived = data.archived;
     if (data.sold !== null) property.sold = data.sold;
 
-    if (data.position) {
+    if (typeof data.position === "string") {
       const arr = data.position.split(",");
       property.position = { lat: Number(arr[0]), lng: Number(arr[1]) };
     }
