@@ -168,13 +168,9 @@ export default function CardDetail() {
               {
                 property?.images.length ?
                   <div className="px-2 xl:w-full">
-                    <div className="w-full relative flex justify-center items-center">
-                      <img
-                        src={property?.images.length ? property?.images[activeImageIndex] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
-                        onLoad={handleLoadImages}
-                        alt="imagePrincipal"
-                        className={`${principal ? "opacity-25" : ""} h-[562px] w-full object-center rounded-lg shadow-lg relative`}
-                      />
+                    <div class="w-300 h-200 overflow-hidden relative flex justify-center items-center rounded-xl">
+                      <img class={`${principal ? "opacity-25" : ""} w-full h-full object-cover object-center`} src={`${property?.images[activeImageIndex]}`} alt="imagePrincipal" onLoad={handleLoadImages} />
+
                       <div role="status" className={`${principal ? "" : "hidden"} flex justify-center items-center w-[60px] h-[60px] absolute`}>
                         <svg aria-hidden="true" className="w-full h-auto text-gray-200 animate-spin fill-[#368a8c]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
@@ -189,12 +185,14 @@ export default function CardDetail() {
                         {
                           property?.images.slice(k, 3 + k).map((image, index) => (
                             <button className="w-fit" aria-label="carrusel" key={index} onClick={() => index !== activeImageIndex && handleImageClick(index + k)}>
-                              <img
-                                src={image}
-                                onLoad={handleLoadImages}
-                                alt={property?.title}
-                                className={`h-[167px] object-center rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
-                              />
+                              <div className="w-[100px] h-[100px] md:w-[200px] md:h-[200px]">
+                                <img
+                                  src={image}
+                                  onLoad={handleLoadImages}
+                                  alt={property?.title}
+                                  className={`h-full w-ful object-center rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
+                                />
+                              </div>
                             </button>
                           ))
                         }

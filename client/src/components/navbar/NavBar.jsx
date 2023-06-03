@@ -58,9 +58,9 @@ export default function Navbar() {
 
           {/* responsive */}
           <div className="flex w-full justify-between items-center md:order-2 md:hidden">
-            <Link to="/" className={`w-40 h-auto`}>
+            <div onClick={() => window.location.assign('/')} className={`w-40 h-auto`}>
               <img src={logo} className="w-full hover:opacity-50 " alt="inmobiliaria_Logo" />
-            </Link>
+            </div>
             <button onClick={() => setIsOpen(!isOpen)} aria-label="dropdown" type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
               <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
             </button>
