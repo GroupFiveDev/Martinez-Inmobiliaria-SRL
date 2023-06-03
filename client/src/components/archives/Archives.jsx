@@ -1,13 +1,11 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import Card from "../card/Card"
-import Skeleton from "../skeleton/Skeleton"
 import { useAuth } from "../../context/authContext"
 import { useHistory } from "react-router-dom"
 
 export default function Archives() {
   const { user } = useAuth()
-  const history = useHistory()
   const [properties, setProperties] = useState([])
   const [boolean, setBoolean] = useState(false)
 
@@ -16,12 +14,23 @@ export default function Archives() {
       const result = await axios.get("/properties")
       setProperties(result.data.filter(e => e.archived))
     })()
-    !user && history.push("/")
   }, [boolean])
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 })
+  }, [])
+
+
+  if (!user) return (
+    <div>
+      <h1>No sos admin.</h1>
+      {window.location.assign('/')}
+    </div>
+  )
 
   return (
     <>
-      <div className={`${properties?.length ? "" : "h-screen"} flex flex-col justify-center items-center`}>
+      <div className={`${properties?.length ? "" : "h-screen"} flex flex-col justify-center items-center bg-[#F3F4F6]`}>
         <h1 className="md:text-3xl text-2xl text-center font-bold text-gray-800 mb-3 md:mb-0 font-Montserrat">PROPIEDADES ARCHIVADAS</h1>
         <div className="grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2">
           {

@@ -173,7 +173,7 @@ export default function CardDetail() {
                         src={property?.images.length ? property?.images[activeImageIndex] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
                         onLoad={handleLoadImages}
                         alt="imagePrincipal"
-                        className={`${principal ? "opacity-25" : ""} w-full object-fill rounded-lg shadow-lg relative`}
+                        className={`${principal ? "opacity-25" : ""} h-[562px] w-full object-center rounded-lg shadow-lg relative`}
                       />
                       <div role="status" className={`${principal ? "" : "hidden"} flex justify-center items-center w-[60px] h-[60px] absolute`}>
                         <svg aria-hidden="true" className="w-full h-auto text-gray-200 animate-spin fill-[#368a8c]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,22 +184,22 @@ export default function CardDetail() {
                       </div>
                     </div>
                     <div className="w-full relative flex justify-center items-center px-10">
-                      <button className="absolute left-0 w-7 h-7" onClick={() => setK(k - 3)} disabled={k === 0 ? true : false}> <AiOutlineArrowLeft className="w-full h-full" color="white" /> </button>
-                      <div className="mt-4 grid grid-cols-3 gap-4 relative items-center">
+                      <button className={`${property?.images.length <= 3 ? "hidden" : ""} absolute left-0 w-7 h-7`} onClick={() => setK(k - 3)} disabled={k === 0 ? true : false}> <AiOutlineArrowLeft className="w-full h-full" color="white" /> </button>
+                      <div className="mt-4 grid grid-cols-3 gap-2 relative items-center">
                         {
                           property?.images.slice(k, 3 + k).map((image, index) => (
-                            <button aria-label="carrusel" key={index} onClick={() => index !== activeImageIndex && handleImageClick(index)}>
+                            <button className="w-fit" aria-label="carrusel" key={index} onClick={() => index !== activeImageIndex && handleImageClick(index + k)}>
                               <img
                                 src={image}
                                 onLoad={handleLoadImages}
                                 alt={property?.title}
-                                className={`h-[100%] rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
+                                className={`h-[167px] object-center rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
                               />
                             </button>
                           ))
                         }
                       </div>
-                      <button className="absolute right-0 w-7 h-7" onClick={() => setK(k + 3)} disabled={k + 3 >= property.images.length ? true : false}> <AiOutlineArrowRight className="w-full h-full" color="white" /> </button>
+                      <button className={`${property?.images.length <= 3 ? "hidden" : ""} absolute right-0 w-7 h-7`} onClick={() => setK(k + 3)} disabled={k + 3 >= property.images.length ? true : false}> <AiOutlineArrowRight className="w-full h-full" color="white" /> </button>
                     </div>
                   </div>
                   :
@@ -273,7 +273,7 @@ export default function CardDetail() {
                   ) : (
                     <>
                       <div className={`flex flex-wrap justify-center items-center ${edit.rooms ? "gap-10" : "gap-5"}`}>
-                        <div className={`${property?.rooms ? "" : "hidden"} flex items-center font-bold text-white`}>
+                        <div className={`${property?.rooms ? "flex" : user ? "flex" : "hidden"} items-center font-bold text-white`}>
                           <img src={room} alt="romm" className="w-7" />
                           <span className={`${edit.rooms ? "hidden" : "flex"}`}>
                             {property?.rooms}
@@ -286,7 +286,7 @@ export default function CardDetail() {
                             className={`${edit.rooms ? "flex" : "hidden"} w-16 h-10 text-black`}
                           />
                         </div>
-                        <div className={`${property?.bathrooms ? "" : "hidden"}text-white flex items-center font-bold`}>
+                        <div className={`${property?.bathrooms ? "flex" : user ? "flex" : "hidden"} text-white items-center font-bold`}>
                           <img src={bathroom} alt="romm" className="w-7" />
                           <span className={`${edit.rooms ? "hidden" : "flex"}`}>
                             {property?.bathrooms}
@@ -299,7 +299,7 @@ export default function CardDetail() {
                             className={`${edit.rooms ? "flex" : "hidden"} w-16 h-10 text-black`}
                           />
                         </div>
-                        <div className={`${property?.garage ? "flex" : "hidden"} text-white items-center font-bold`}>
+                        <div className={`${property?.garage ? "flex" : user ? "flex" : "hidden"} text-white items-center font-bold`}>
                           <img src={garaje} alt="romm" className="w-7" />
                           <span className={`${edit.rooms ? "hidden" : "flex"}`}>
                             {property?.garage}
@@ -312,7 +312,7 @@ export default function CardDetail() {
                             className={`${edit.rooms ? "flex" : "hidden"} w-16 h-10 text-black`}
                           />
                         </div>
-                        <div className={`${property?.square ? "" : "hidden"}text-white flex items-center font-bold`}>
+                        <div className={`${property?.square ? "flex" : user ? "flex" : "hidden"} text-white flex items-center font-bold`}>
                           <img src={squareIc} alt="romm" className="w-7" />
                           <span className={`${edit.rooms ? "hidden" : "flex"}`}>
                             {property?.square}

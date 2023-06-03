@@ -1,27 +1,23 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from '../../context/authContext';
-import { useHistory } from "react-router-dom";
 
 const CreateProperty = () => {
   const { user } = useAuth()
 
-  const history = useHistory()
-  !user && history.push("/")
-
   const [form, setForm] = useState({
-    type: null,
-    title: null,
-    description: null,
-    hectares: null,
-    location: null,
-    terrain: null,
-    rooms: null,
-    bathrooms: null,
-    garage: null,
-    square: null,
-    position: null,
-    price: null,
+    type: "",
+    title: "",
+    description: "",
+    hectares: "",
+    location: "",
+    terrain: "",
+    rooms: "",
+    bathrooms: "",
+    garage: "",
+    square: "",
+    position: "",
+    price: "",
     image: [],
   })
 
@@ -66,10 +62,12 @@ const CreateProperty = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formdata = new FormData();
+
     for (const key in form) {
       if (key !== "image")
         formdata.append(key, form[key]);
     }
+
     for (let i = 0; i < form.image.length; i++) {
       formdata.append("image", form.image[i]);
     }
@@ -94,6 +92,17 @@ const CreateProperty = () => {
       return false;
     }
   }
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 })
+  }, [])
+
+  if (!user) return (
+    <div>
+      <h1>No sos admin.</h1>
+      {window.location.assign('/')}
+    </div>
+  )
 
   return (
     <div className="m-10">
