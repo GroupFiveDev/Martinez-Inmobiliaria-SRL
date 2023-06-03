@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { useHistory } from "react-router-dom";
 
 export default function Admin() {
-  const history = useHistory()
   const { login } = useAuth()
 
   const [user, setUser] = useState({
@@ -15,7 +13,7 @@ export default function Admin() {
     e.preventDefault()
     try {
       const userCredentials = await login(user.email, user.password)
-      history.push("/")
+      window.location.assign('/')
     } catch (error) {
       console.log(error.message);
     }
