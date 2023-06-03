@@ -41,8 +41,8 @@ export default function Footer() {
               <div className='flex flex-col gap-5 text-center'>
                 <a aria-label="fields" onClick={() => history.push("/")} className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Campos</a>
                 <a aria-label="apartments" onClick={() => history.push("/")} className="font-Montserrat z-10 hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Departamentos</a>
-                <Link to="/Proyectos">
-                  <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" >Proyectos</h2>
+                <Link to="/Mapa">
+                  <h2 className="font-Montserrat hover:text-white hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" >Mapa</h2>
                 </Link>
               </div>
             </div>

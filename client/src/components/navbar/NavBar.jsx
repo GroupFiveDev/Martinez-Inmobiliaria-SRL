@@ -77,7 +77,7 @@ export default function Navbar() {
             <a aria-label="apartments" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
               Departamentos
             </a>
-            <Link to="/" className={`w-60 h-auto ${scrollNav && pathname == "/" ? "hidden" : "flex"}`}>
+            <Link to="/" className={`w-60 h-auto ${scrollNav && pathname == "/" ? "hidden" : ""}`}>
               <img src={logo} className="w-full hover:opacity-50 hidden md:flex" alt="inmobiliaria_Logo" />
             </Link>
             <Link to="/Mapa" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Mapa" ? "md:text-black" : "md:text-white"}`}>
