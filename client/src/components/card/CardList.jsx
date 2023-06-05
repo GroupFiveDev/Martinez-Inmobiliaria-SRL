@@ -71,10 +71,7 @@ export default function CardList() {
           >
             Cambiar vista
           </button>
-          <div
-            className={`${properties?.filter((e) => !e.archived).length > 6 ? "" : "hidden"
-              }`}
-          >
+          <div className={`${properties?.filter((e) => !e.archived).length > 6 ? "" : "hidden"}`} >
             <Pagination
               propertiesPerPage={propertiesPerPage}
               properties={properties?.length}
@@ -143,7 +140,7 @@ export default function CardList() {
             )
             : [0, 1, 2, 3, 4, 5].map((e, i) => <Skeleton key={e + "*"} />)}
         </div>
-        <div className="w-full flex justify-center">
+        <div className={`${properties?.length <= 6 ? "hidden" : ""} w-full flex justify-center`}>
           <Pagination
             propertiesPerPage={propertiesPerPage}
             properties={properties?.length}
