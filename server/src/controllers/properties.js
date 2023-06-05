@@ -32,10 +32,7 @@ async function createProperties() {
       location: "Ruta Provincial 17, Eldorado, Misiones",
       terrain: "Mixto",
       price: 500000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
+      images: [],
       position: {
         lat: -32.957218,
         lng: -60.635688,
@@ -49,10 +46,7 @@ async function createProperties() {
       location: "Ruta Provincial 15, El Calafate, Santa Cruz",
       terrain: "Mixto",
       price: 1500000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
+      images: [],
       position: {
         lat: -31.417043,
         lng: -64.183998,
@@ -66,10 +60,7 @@ async function createProperties() {
       location: "Ruta Nacional 5, Junín, Buenos Aires",
       terrain: "Agrícola",
       price: 1200000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
+      images: [],
       position: {
         lat: -27.450578,
         lng: -58.986316,
@@ -83,10 +74,7 @@ async function createProperties() {
       location: "Ruta Nacional 40, San Juan, San Juan",
       terrain: "Agrícola",
       price: 800000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
+      images: [],
       position: {
         lat: -34.613128,
         lng: -58.377232,
@@ -100,10 +88,7 @@ async function createProperties() {
       location: "Ruta Provincial 25, Esquel, Chubut",
       terrain: "Ganadero",
       price: 2000000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
+      images: [],
       position: {
         lat: -32.890183,
         lng: -68.84405,
@@ -117,10 +102,7 @@ async function createProperties() {
       location: "Ruta Nacional 7, Luján de Cuyo, Mendoza",
       terrain: "Mixto",
       price: 700000,
-      images: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-      ],
+      images: [],
       position: {
         lat: -38.949595,
         lng: -68.062176,
@@ -135,11 +117,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 120000,
-      images: [
-        "https://ejemplo.com/img1.jpg",
-        "https://ejemplo.com/img2.jpg",
-        "https://ejemplo.com/img3.jpg",
-      ],
+      images: [],
       rooms: 2,
       bathrooms: 1,
       position: {
@@ -155,11 +133,7 @@ async function createProperties() {
       location: "Belgrano, Buenos Aires",
       square: 32,
       price: 90000,
-      images: [
-        "https://ejemplo.com/img4.jpg",
-        "https://ejemplo.com/img5.jpg",
-        "https://ejemplo.com/img6.jpg",
-      ],
+      images: [],
       rooms: 3,
       bathrooms: 2,
       position: {
@@ -176,11 +150,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 150000,
-      images: [
-        "https://ejemplo.com/img7.jpg",
-        "https://ejemplo.com/img8.jpg",
-        "https://ejemplo.com/img9.jpg",
-      ],
+      images: [],
       rooms: 4,
       bathrooms: 2,
       position: {
@@ -197,11 +167,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 180000,
-      images: [
-        "https://ejemplo.com/img10.jpg",
-        "https://ejemplo.com/img11.jpg",
-        "https://ejemplo.com/img12.jpg",
-      ],
+      images: [],
       rooms: 2,
       bathrooms: 1,
       position: {
@@ -218,11 +184,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 220000,
-      images: [
-        "https://ejemplo.com/img13.jpg",
-        "https://ejemplo.com/img14.jpg",
-        "https://ejemplo.com/img15.jpg",
-      ],
+      images: [],
       rooms: 3,
       bathrooms: 2,
       position: {
@@ -239,11 +201,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 100000,
-      images: [
-        "https://ejemplo.com/img16.jpg",
-        "https://ejemplo.com/img17.jpg",
-        "https://ejemplo.com/img18.jpg",
-      ],
+      images: [],
       rooms: 1,
       bathrooms: 1,
       position: {
@@ -260,11 +218,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 80000,
-      images: [
-        "https://ejemplo.com/img19.jpg",
-        "https://ejemplo.com/img20.jpg",
-        "https://ejemplo.com/img21.jpg",
-      ],
+      images: [],
       rooms: 2,
       bathrooms: 1,
       position: {
