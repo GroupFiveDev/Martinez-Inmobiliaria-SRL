@@ -112,6 +112,7 @@ export default function CardList() {
                     sold={card.sold}
                     setBoolean={setBoolean}
                     archived={card.archived}
+                    available={card.available}
                   />
                 // )
                 : (card, i) =>
@@ -135,6 +136,7 @@ export default function CardList() {
                       sold={card.sold}
                       setBoolean={setBoolean}
                       archived={card.archived}
+                      available={card.available}
                     />
                   )
             )

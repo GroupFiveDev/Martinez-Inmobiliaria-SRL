@@ -14,8 +14,13 @@ async function uploadImage(filePath) {
   });
 }
 
-async function deleteImage(publicId) {
-  return await cloudinary.uploader.destroy(publicId);
+async function deleteImage(imagesID) {
+  return await cloudinary.api.delete_resources(
+    imagesID,
+    function (error, result) {
+      console.log(result);
+    }
+  );
 }
 
 module.exports = { uploadImage, deleteImage };

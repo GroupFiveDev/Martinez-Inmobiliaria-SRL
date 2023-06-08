@@ -1,6 +1,7 @@
 const { Property } = require("../db.js");
-const { uploadImage } = require("../cloudinary.js");
+const { uploadImage, deleteImage } = require("../cloudinary.js");
 const fs = require("fs-extra");
+const cloudinary = require("cloudinary").v2;
 
 // Solamente para ambiente de desarrollo
 async function createProperties() {
@@ -13,12 +14,12 @@ async function createProperties() {
       location: "Ruta Nacional 5, Santa Rosa, La Pampa",
       terrain: "Ganadero",
       price: 1000000,
-      images: [
-        "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
-        "https://i.pinimg.com/736x/0d/83/f4/0d83f4474c77d94966d16c8eccf6c92d--white-cottage-argentina.jpg",
-        "https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/SBEJYXLPVRCNTGO4UMGT4ZGLYU.jpg",
-        "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
-      ],
+      images: {
+        0: "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
+        1: "https://i.pinimg.com/736x/0d/83/f4/0d83f4474c77d94966d16c8eccf6c92d--white-cottage-argentina.jpg",
+        2: "https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/SBEJYXLPVRCNTGO4UMGT4ZGLYU.jpg",
+        3: "https://www.shutterstock.com/image-photo/cows-grazing-sunset-patagonia-argentina-260nw-1717013122.jpg",
+      },
       position: {
         lat: -34.583436,
         lng: -58.406165,
@@ -32,11 +33,12 @@ async function createProperties() {
       location: "Ruta Provincial 17, Eldorado, Misiones",
       terrain: "Mixto",
       price: 500000,
-      images: [],
+      images: {},
       position: {
         lat: -32.957218,
         lng: -60.635688,
       },
+      available: "Venta",
     },
     {
       type: "field",
@@ -46,11 +48,12 @@ async function createProperties() {
       location: "Ruta Provincial 15, El Calafate, Santa Cruz",
       terrain: "Mixto",
       price: 1500000,
-      images: [],
+      images: {},
       position: {
         lat: -31.417043,
         lng: -64.183998,
       },
+      available: "Alquiler",
     },
     {
       type: "field",
@@ -60,11 +63,12 @@ async function createProperties() {
       location: "Ruta Nacional 5, Junín, Buenos Aires",
       terrain: "Agrícola",
       price: 1200000,
-      images: [],
+      images: {},
       position: {
         lat: -27.450578,
         lng: -58.986316,
       },
+      available: "Alquiler",
     },
     {
       type: "field",
@@ -74,11 +78,12 @@ async function createProperties() {
       location: "Ruta Nacional 40, San Juan, San Juan",
       terrain: "Agrícola",
       price: 800000,
-      images: [],
+      images: {},
       position: {
         lat: -34.613128,
         lng: -58.377232,
       },
+      available: "Alquiler",
     },
     {
       type: "field",
@@ -88,11 +93,12 @@ async function createProperties() {
       location: "Ruta Provincial 25, Esquel, Chubut",
       terrain: "Ganadero",
       price: 2000000,
-      images: [],
+      images: {},
       position: {
         lat: -32.890183,
         lng: -68.84405,
       },
+      available: "Venta",
     },
     {
       type: "field",
@@ -102,7 +108,7 @@ async function createProperties() {
       location: "Ruta Nacional 7, Luján de Cuyo, Mendoza",
       terrain: "Mixto",
       price: 700000,
-      images: [],
+      images: {},
       position: {
         lat: -38.949595,
         lng: -68.062176,
@@ -117,7 +123,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 120000,
-      images: [],
+      images: {},
       rooms: 2,
       bathrooms: 1,
       position: {
@@ -133,7 +139,7 @@ async function createProperties() {
       location: "Belgrano, Buenos Aires",
       square: 32,
       price: 90000,
-      images: [],
+      images: {},
       rooms: 3,
       bathrooms: 2,
       position: {
@@ -150,7 +156,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 150000,
-      images: [],
+      images: {},
       rooms: 4,
       bathrooms: 2,
       position: {
@@ -167,7 +173,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 180000,
-      images: [],
+      images: {},
       rooms: 2,
       bathrooms: 1,
       position: {
@@ -184,7 +190,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 220000,
-      images: [],
+      images: {},
       rooms: 3,
       bathrooms: 2,
       position: {
@@ -201,7 +207,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 100000,
-      images: [],
+      images: {},
       rooms: 1,
       bathrooms: 1,
       position: {
@@ -218,7 +224,7 @@ async function createProperties() {
       square: 32,
       garage: 2,
       price: 80000,
-      images: [],
+      images: {},
       rooms: 2,
       bathrooms: 1,
       position: {
@@ -232,6 +238,7 @@ async function createProperties() {
       order: [["id", "DESC"]],
     });
     if (propertiesDB.length) {
+      console.log(propertiesDB);
       return propertiesDB;
     }
 
@@ -255,6 +262,12 @@ async function getProperties() {
 
 async function deleteProperty(id) {
   try {
+    const property = await Property.findOne({
+      where: { id },
+    });
+
+    deleteImage(property.image_public_id);
+
     const deleted = await Property.destroy({
       where: { id },
     });
@@ -316,11 +329,12 @@ async function createProperty(body, files) {
     });
 
     //Si la propiedad fue creada
+    console.log(files);
     if (property) {
       if (files.length) {
         files.map(async (e, i) => {
           const result = await uploadImage(e.path);
-          property.images = [...property.images, result.secure_url];
+          property.images = { ...property.images, [i]: result.secure_url };
           property.image_public_id = [
             ...property.image_public_id,
             result.public_id,

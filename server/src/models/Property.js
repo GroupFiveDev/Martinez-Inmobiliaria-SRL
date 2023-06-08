@@ -38,8 +38,8 @@ module.exports = async (sequelize) => {
       type: DataTypes.INTEGER,
     },
     images: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
-      defaultValue: [],
+      type: DataTypes.JSONB,
+      defaultValue: {},
     },
     image_public_id: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
@@ -55,6 +55,10 @@ module.exports = async (sequelize) => {
     sold: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    },
+    available: {
+      type: DataTypes.ENUM("Venta", "Alquiler"),
+      defaultValue: null,
     },
   });
 };

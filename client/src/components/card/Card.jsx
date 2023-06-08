@@ -7,12 +7,13 @@ import garaje from '../../assets/icons/garaje.png'
 import squareIc from '../../assets/icons/squareIc.png'
 import vaca from '../../assets/icons/silueta-de-vaca.png'
 import maiz from '../../assets/icons/maiz.png'
+import home from '../../assets/icons/home.png'
 import { useState } from 'react';
 import Modal from '../modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { useAuth } from '../../context/authContext';
 
-export default function Card({ id, type, titulo, descripcion, hectareas, rooms, bathrooms, garage, square, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
+export default function Card({ id, type, titulo, descripcion, hectareas, rooms, bathrooms, garage, square, ubicacion, terrain, price, images, archived, sold, available, boolean, setBoolean }) {
   const [loading, setLoading] = useState(0)
   const { isOpen, openModal, closeModal } = useModal()
   const { user } = useAuth()
@@ -78,9 +79,13 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
           <div className="flex flex-col justify-center relative">
             <img
               className={`rounded-t-lg ${sold ? "blur-sm" : ""} h-[300px]`}
-              src={images?.length ? images[0] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
+              src={images?.length ? images["0"] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
               alt=""
             />
+            <div className={`${available ? "" : "hidden"} bg-[#368b8cc1] w-fit absolute bottom-5 flex items-center gap-2 font-Montserrat text-white p-2`}>
+              <img src={home} alt="home" className='w-5 h-5' />
+              {available === "Venta" ? "VENTA" : available === "Alquiler" ? "ALQUILER" : ""}
+            </div>
             <div className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"}`}>
               <h1 className="text-white font-bold text-3xl font-Montserrat">
                 VENDIDO
