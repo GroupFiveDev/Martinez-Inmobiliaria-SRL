@@ -1,7 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from './components/home/Home';
-import NavBar from './components/navbar/NavBar';
 import Footer from './components/footer/Footer';
 import CardDetail from './components/card/CardDetail';
 import About from './components/about/About';
@@ -14,7 +13,7 @@ import Drawer from './components/drawer/Drawer';
 import Map from './components/map/Map'
 import { useDrawer } from './hooks/useDrawer';
 import { useAuth } from './context/authContext';
-import { useState } from 'react';
+import Navbar from './components/navbar/NavBar';
 
 function App() {
   const { openDrawer, closeDrawer, isOpen } = useDrawer()
@@ -23,7 +22,7 @@ function App() {
   return (
     <>
       <Router>
-        <NavBar />
+        <Navbar />
         <button name="drawer" onClick={openDrawer} className={`${user ? "flex" : ""}hidden fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-[100]`}>ADMIN</button>
         <Drawer isOpen={isOpen} closeDrawer={closeDrawer} />
         <Switch>

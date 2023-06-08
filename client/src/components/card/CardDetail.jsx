@@ -29,7 +29,6 @@ export default function CardDetail() {
   const [principal, setPrincipal] = useState(1)
   const title = useRef(null);
   const [k, setK] = useState(0)
-  const [carrousel, setCarrousel] = useState(0)
   const [edit, setEdit] = useState({
     type: null,
     title: null,
@@ -48,6 +47,7 @@ export default function CardDetail() {
   const { user } = useAuth();
 
   const handleImageClick = (index) => {
+    if (index === activeImageIndex) return
     title.current.scrollIntoView({ behavior: 'smooth' });
     setPrincipal(1)
     setActiveImageIndex(index);
@@ -103,11 +103,11 @@ export default function CardDetail() {
         setProperty(result.data);
       })();
     }
-    if (property) {
-      setCarrousel(property.images.length / 3)
-    }
-    window.scrollTo({ top: 0, left: 0 });
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, [])
 
   useEffect(() => {
     const containerLoader = document.getElementById("loader");
@@ -168,7 +168,7 @@ export default function CardDetail() {
               {
                 property?.images.length ?
                   <div className="px-2 xl:w-full">
-                    <div class="w-300 h-200 overflow-hidden relative flex justify-center items-center rounded-xl">
+                    <div class="w-full h-[481px] overflow-hidden relative flex justify-center items-center rounded-xl">
                       <img class={`${principal ? "opacity-25" : ""} w-full h-full object-cover object-center`} src={`${property?.images[activeImageIndex]}`} alt="imagePrincipal" onLoad={handleLoadImages} />
 
                       <div role="status" className={`${principal ? "" : "hidden"} flex justify-center items-center w-[60px] h-[60px] absolute`}>
@@ -180,24 +180,24 @@ export default function CardDetail() {
                       </div>
                     </div>
                     <div className="w-full relative flex justify-center items-center px-10">
-                      <button className={`${property?.images.length <= 3 ? "hidden" : ""} absolute left-0 w-7 h-7`} onClick={() => setK(k - 3)} disabled={k === 0 ? true : false}> <AiOutlineArrowLeft className="w-full h-full" color="white" /> </button>
-                      <div className="mt-4 grid grid-cols-3 gap-2 relative items-center">
+                      <button className={`${property?.images.length <= 3 ? "hidden" : ""} absolute left-0 w-7 h-7`} onClick={() => { setK(k - 3), setActiveImageIndex(k - 3) }} disabled={k === 0 ? true : false}> <AiOutlineArrowLeft className="w-full h-full" color="white" /> </button>
+                      <div className={`${property?.images.length === 1 ? "hidden" : ""} mt-4 grid grid-cols-3 gap-2 relative items-center`}>
                         {
                           property?.images.slice(k, 3 + k).map((image, index) => (
                             <button className="w-fit" aria-label="carrusel" key={index} onClick={() => index !== activeImageIndex && handleImageClick(index + k)}>
-                              <div className="w-[100px] h-[100px] md:w-[200px] md:h-[200px]">
+                              <div className="w-[100px] h-[100px] md:w-[150px] md:h-[150px]">
                                 <img
                                   src={image}
                                   onLoad={handleLoadImages}
                                   alt={property?.title}
-                                  className={`h-full w-ful object-center rounded-lg shadow-lg ${index === activeImageIndex ? "border-2 border-blue-500" : ""}`}
+                                  className={`h-full w-ful object-center rounded-lg shadow-lg ${index + k === activeImageIndex ? "border-2 border-blue-500" : ""}`}
                                 />
                               </div>
                             </button>
                           ))
                         }
                       </div>
-                      <button className={`${property?.images.length <= 3 ? "hidden" : ""} absolute right-0 w-7 h-7`} onClick={() => setK(k + 3)} disabled={k + 3 >= property.images.length ? true : false}> <AiOutlineArrowRight className="w-full h-full" color="white" /> </button>
+                      <button className={`${property?.images.length <= 3 ? "hidden" : ""} absolute right-0 w-7 h-7`} onClick={() => { setK(k + 3), setActiveImageIndex(k + 3) }} disabled={k + 3 >= property.images.length ? true : false}> <AiOutlineArrowRight className="w-full h-full" color="white" /> </button>
                     </div>
                   </div>
                   :
