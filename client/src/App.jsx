@@ -15,21 +15,15 @@ import Map from './components/map/Map'
 import { useDrawer } from './hooks/useDrawer';
 import { useAuth } from './context/authContext';
 import { useState } from 'react';
-import NavBar2 from './components/navbar/NavBar2';
-import NavBar3 from './components/navbar/NavBar3.';
 
 function App() {
   const { openDrawer, closeDrawer, isOpen } = useDrawer()
-  let [navBar, setnavBar] = useState(1)
   const { user } = useAuth()
 
   return (
     <>
       <Router>
-        {
-          navBar === 1 ? <NavBar /> : navBar === 2 ? <NavBar2 /> : navBar === 3 ? <NavBar3 /> : ""
-        }
-        <button name="drawer" onClick={() => navBar == 1 ? setnavBar(2) : navBar === 2 ? setnavBar(3) : setnavBar(1)} className={`${user ? "flex" : ""}hidden fixed top-20 left-0 bg-red-500 p-5 rounded-2xl z-[100]`}>navbar</button>
+        <NavBar />
         <button name="drawer" onClick={openDrawer} className={`${user ? "flex" : ""}hidden fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-[100]`}>ADMIN</button>
         <Drawer isOpen={isOpen} closeDrawer={closeDrawer} />
         <Switch>
