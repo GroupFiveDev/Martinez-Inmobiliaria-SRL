@@ -168,8 +168,8 @@ export default function CardDetail() {
               {
                 property?.images.length ?
                   <div className="px-2 xl:w-full">
-                    <div class="w-full h-[481px] overflow-hidden relative flex justify-center items-center rounded-xl">
-                      <img class={`${principal ? "opacity-25" : ""} w-full h-full object-cover object-center`} src={`${property?.images[activeImageIndex]}`} alt="imagePrincipal" onLoad={handleLoadImages} />
+                    <div className="w-full h-[481px] overflow-hidden relative flex justify-center items-center rounded-xl">
+                      <img className={`${principal ? "opacity-25" : ""} w-full h-full object-cover object-center`} src={`${property?.images[activeImageIndex]}`} alt="imagePrincipal" onLoad={handleLoadImages} />
 
                       <div role="status" className={`${principal ? "" : "hidden"} flex justify-center items-center w-[60px] h-[60px] absolute`}>
                         <svg aria-hidden="true" className="w-full h-auto text-gray-200 animate-spin fill-[#368a8c]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

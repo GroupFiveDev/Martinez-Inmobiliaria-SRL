@@ -265,6 +265,8 @@ async function deleteProperty(id) {
   }
 }
 
+async function a() {}
+
 async function createProperty(body, files) {
   try {
     let {
@@ -280,8 +282,8 @@ async function createProperty(body, files) {
       square,
       price,
       position,
+      images,
     } = body;
-
     if (rooms === "") rooms = null;
     if (bathrooms === "") bathrooms = null;
     if (garage === "") garage = null;
@@ -315,21 +317,31 @@ async function createProperty(body, files) {
       type,
     });
 
-    //Si la propiedad fue creada
     if (property) {
       if (files.length) {
-        files.map(async (e, i) => {
-          const result = await uploadImage(e.path);
-          property.images = [...property.images, result.secure_url];
-          property.image_public_id = [
-            ...property.image_public_id,
-            result.public_id,
-          ];
-          fs.unlink(e.path);
-          await property.save();
-        });
+        const imageDataMap = {};
+        await Promise.all(
+          files.map(async (e, i) => {
+            const result = await uploadImage(e.path);
+            const imageName = parseInt(result.original_filename.split("-")[1]);
+            imageDataMap[imageName] = result.secure_url;
+
+            property.image_public_id = [
+              ...property.image_public_id,
+              result.public_id,
+            ];
+            fs.unlink(e.path);
+          })
+        );
+
+        const sortedImages = Object.entries(imageDataMap).sort(
+          ([keyA], [keyB]) => keyA - keyB
+        );
+
+        property.images = sortedImages.map(([_, url]) => url);
       }
     }
+    await property.save();
     return property;
   } catch (error) {
     return error;

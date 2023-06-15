@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from '../../context/authContext';
+import ImageContainer from "./ImageContainer";
 
 const CreateProperty = () => {
   const { user } = useAuth()
@@ -19,15 +20,10 @@ const CreateProperty = () => {
     position: "",
     price: "",
     image: [],
+    images: [],
   })
 
   const handleChange = (e) => {
-    if (e.target.name === "image") {
-      return setForm({
-        ...form,
-        image: e.target.files,
-      })
-    }
     setForm({
       ...form,
       [e.target.name]: e.target.value
@@ -93,9 +89,13 @@ const CreateProperty = () => {
     }
   }
 
+
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 })
-  }, [])
+    console.log("2", form?.image);
+  }, [form])
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, left: 0 })
+  // }, [])
 
   if (!user) return (
     <div>
@@ -175,8 +175,7 @@ const CreateProperty = () => {
               <p>{errorMsg.price}</p>
             </div>
             <div className="mb-6">
-              <label className="block mb-2 text-sm font-medium text-gray-900">Imagenes</label>
-              <input onChange={handleChange} type="file" multiple id="image" name="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+              <ImageContainer form={form} setForm={setForm} />
             </div>
           </div>
           <div className="flex justify-center items-center">
