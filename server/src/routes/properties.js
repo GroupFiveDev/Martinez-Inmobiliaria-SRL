@@ -7,14 +7,15 @@ const {
   editProperty,
   createProperty,
   orderAndFilterProperties,
-  // getProperties,
+  getProperties,
 } = require("../controllers/properties.js");
 const multer = require("multer");
 const path = require("path");
 
 router.get("/", async (req, res) => {
   try {
-    return res.json(await createProperties());
+    // return res.json(await createProperties());
+    return res.json(await getProperties());
   } catch (error) {
     return res.status(404).json(error);
   }
@@ -28,14 +29,6 @@ router.get("/orderAndFilter/:value", async (req, res) => {
     return res.status(404).json(error);
   }
 });
-
-// router.get("/", async (req, res) => {
-//   try {
-//     return res.json(await getProperties());
-//   } catch (error) {
-//     return res.status(404).json(error);
-//   }
-// });
 
 router.get("/:id", async (req, res) => {
   try {
