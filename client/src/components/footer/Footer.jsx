@@ -46,6 +46,8 @@ export default function Footer() {
                 </Link>
               </div>
             </div>
+            <Link to="/admin" className='absolute bottom-0 right-0 w-[100px] h-[50px] hover:cursor-default'>
+            </Link>
           </div>
 
           <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />

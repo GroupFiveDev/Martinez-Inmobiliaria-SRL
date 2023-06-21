@@ -408,4 +408,5 @@ module.exports = {
   editProperty,
   createProperty,
   orderAndFilterProperties,
+  getProperties,
 };
