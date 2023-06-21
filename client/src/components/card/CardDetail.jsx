@@ -168,7 +168,7 @@ export default function CardDetail() {
               {
                 property?.images.length ?
                   <div className="px-2 xl:w-full">
-                    <div className="w-full h-[481px] overflow-hidden relative flex justify-center items-center rounded-xl">
+                    <div className="overflow-hidden relative flex justify-center items-center rounded-xl">
                       <img className={`${principal ? "opacity-25" : ""} w-full h-full object-cover object-center`} src={`${property?.images[activeImageIndex]}`} alt="imagePrincipal" onLoad={handleLoadImages} />
 
                       <div role="status" className={`${principal ? "" : "hidden"} flex justify-center items-center w-[60px] h-[60px] absolute`}>

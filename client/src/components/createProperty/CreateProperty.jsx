@@ -2,9 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from '../../context/authContext';
 import ImageContainer from "./ImageContainer";
+import Modal from '../modal/Loading'
+import { useModal } from '../../hooks/useModal'
 
 const CreateProperty = () => {
   const { user } = useAuth()
+  const { isOpen, openModal, closeModal } = useModal()
+
 
   const [form, setForm] = useState({
     type: "",
@@ -56,6 +60,7 @@ const CreateProperty = () => {
   let errorMsg = validate(form);
 
   const handleSubmit = async (e) => {
+    openModal()
     e.preventDefault()
     const formdata = new FormData();
 
@@ -75,10 +80,12 @@ const CreateProperty = () => {
         }
       })
         .catch((err) => console.error(err));
-      alert("Propiedad Creada")
     } catch (error) {
       console.log(error)
     }
+    closeModal()
+    const form2 = document.getElementById("formProperty")
+    form2.reset()
   }
 
   const fieldOrApartment = (form) => {
@@ -89,13 +96,9 @@ const CreateProperty = () => {
     }
   }
 
-
   useEffect(() => {
-    console.log("2", form?.image);
-  }, [form])
-  // useEffect(() => {
-  //   window.scrollTo({ top: 0, left: 0 })
-  // }, [])
+    window.scrollTo({ top: 0, left: 0 })
+  }, [])
 
   if (!user) return (
     <div>
@@ -106,9 +109,12 @@ const CreateProperty = () => {
 
   return (
     <div className="m-10">
+      <Modal isOpen={isOpen} closeModal={closeModal}>
+        <h1 className='p-5 text-white font-Montserrat'>Creando propiedad</h1>
+      </Modal>
       <h1 className="flex justify-center font-bold mb-5">Crear Propiedad:</h1>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="formProperty">
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">Tipo de propiedad</label>

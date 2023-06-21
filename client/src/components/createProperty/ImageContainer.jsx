@@ -27,9 +27,7 @@ const ImageContainer = ({ form, setForm }) => {
       </ul>
     )
   })
-  // 1 ,2 ,3 ,4, 5
 
-  // 2, 1
   const onSortEnd = ({ oldIndex, newIndex }) => {
     let imagesCopy = [...images]
     let filesCopy = [...files]
