@@ -1,15 +1,15 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
-import vaca from '../../assets/icons/silueta-de-vaca24.png'
-import vaca2 from '../../assets/icons/silueta-de-vaca24_v2.png'
-import edificio from '../../assets/icons/edificio.png'
-import edificio2 from '../../assets/icons/edificio_v2.png'
-import bathroom from "../../assets/icons/bathrooms.png";
-import room from "../../assets/icons/rooms.png";
-import squareIc from "../../assets/icons/squareIc.png";
-import garaje from "../../assets/icons/garaje.png";
-import logo from "../../assets/logo/logo_blanco_fondo_negro-removebg-preview.png";
+import vaca from '../../assets/icons/silueta-de-vaca24.webp'
+import vaca2 from '../../assets/icons/silueta-de-vaca24-v2.webp'
+import edificio from '../../assets/icons/edificio.webp'
+import edificio2 from '../../assets/icons/edificio-v2.webp'
+import bathroom from "../../assets/icons/bathrooms.webp";
+import room from "../../assets/icons/rooms.webp";
+import squareIc from "../../assets/icons/squareIc.webp";
+import garaje from "../../assets/icons/garaje.webp";
+// import logo from "../../assets/logo/logo_blanco_fondo_negro-removebg-preview.webp";
 import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 

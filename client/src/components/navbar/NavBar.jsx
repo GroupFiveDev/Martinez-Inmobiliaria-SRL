@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview2.png'
+import logo from '../../assets/logo/blanco-fondo-negro-removebg-preview2.webp'
 import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
 import { useLocation, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import video from '../../assets/la_perla/video.mp4'
-import video2 from '../../assets/la_perla/video_sm.mp4'
+//import video from '../../assets/la_perla/video.mp4' // https://asset.cloudinary.com/dgei1j8pa/2ca4ff1b4384fffe2a1e28555c655ac7 
+//https://res.cloudinary.com/dgei1j8pa/video/upload/v1690582766/TJInmobiliaria/Videos/video_sm_mns5na.mp4
+const video = "https://res.cloudinary.com/dgei1j8pa/video/upload/v1690582766/TJInmobiliaria/Videos/video_sm_mns5na.mp4"
+//import video2 from '../../assets/la_perla/video_sm.mp4' // https://asset.cloudinary.com/dgei1j8pa/9886bf8dff08d5ce75ff690fcb8a1068
+//https://res.cloudinary.com/dgei1j8pa/video/upload/v1690582763/TJInmobiliaria/Videos/video_e1aane.mp4
+const video2 = "https://res.cloudinary.com/dgei1j8pa/video/upload/v1690582763/TJInmobiliaria/Videos/video_e1aane.mp4"
 
 
 export default function Navbar() {
@@ -37,11 +41,11 @@ export default function Navbar() {
     <div>
       <div className={`${pathname === "/" ? "flex" : "hidden"} top-0 w-full h-screen relative`}>
         <video controls={false} autoPlay loop muted className="h-full w-full hidden sm:flex object-cover">
-          <source src={video} type="video/mp4" />
+          <source src={video2} type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
         <video controls={false} autoPlay loop muted className="h-full w-full flex sm:hidden object-cover">
-          <source src={video2} type="video/mp4" />
+          <source src={video} type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
       </div>

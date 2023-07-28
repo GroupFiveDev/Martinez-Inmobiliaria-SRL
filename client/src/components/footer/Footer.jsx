@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo/logo_blanco_fondo_negro-removebg-preview2.png'
+import logo from '../../assets/logo/blanco-fondo-negro-removebg-preview2.webp'
 import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 

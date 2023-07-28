@@ -1,4 +1,4 @@
-import editIc from "../../assets/icons/edit.png"
+import editIc from "../../assets/icons/edit.webp"
 
 export default function Edit({ value, onClick, user }) {
   return (

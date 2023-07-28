@@ -1,4 +1,4 @@
-import closeIc from "../../assets/icons/close.png"
+import closeIc from "../../assets/icons/close.webp"
 
 export default function Close({ value, onClick }) {
   return (
