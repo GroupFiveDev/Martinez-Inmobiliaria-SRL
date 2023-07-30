@@ -3,11 +3,7 @@ import logo from '../../assets/logo/blanco-fondo-negro-removebg-preview2.webp'
 import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
 import { useLocation, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-//import video from '../../assets/la_perla/video.mp4' // https://asset.cloudinary.com/dgei1j8pa/2ca4ff1b4384fffe2a1e28555c655ac7 
-//https://res.cloudinary.com/dgei1j8pa/video/upload/v1690582766/TJInmobiliaria/Videos/video_sm_mns5na.mp4
 const video = "https://res.cloudinary.com/dgei1j8pa/video/upload/v1690582766/TJInmobiliaria/Videos/video_sm_mns5na.mp4"
-//import video2 from '../../assets/la_perla/video_sm.mp4' // https://asset.cloudinary.com/dgei1j8pa/9886bf8dff08d5ce75ff690fcb8a1068
-//https://res.cloudinary.com/dgei1j8pa/video/upload/v1690582763/TJInmobiliaria/Videos/video_e1aane.mp4
 const video2 = "https://res.cloudinary.com/dgei1j8pa/video/upload/v1690582763/TJInmobiliaria/Videos/video_e1aane.mp4"
 
 
@@ -17,8 +13,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrollNav, setScrollNav] = useState(false);
 
-  const title = document.getElementById("title")
-  title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
+  // Esto cambia el title segun la seccion en la que estes
+
+  // const title = document.getElementById("title")
+  // title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
 
   const changeNav = () => {
     setIsOpen(false)
@@ -63,7 +61,7 @@ export default function Navbar() {
           {/* responsive */}
           <div className="flex w-full justify-between items-center md:order-2 md:hidden">
             <div onClick={() => window.location.assign('/')} className={`w-40 h-auto`}>
-              <img src={logo} className="w-full hover:opacity-50 " alt="inmobiliaria_Logo" />
+              <img src={logo} className="w-[160px] h-[113px] hover:opacity-50 " alt="inmobiliaria_Logo" />
             </div>
             <button onClick={() => setIsOpen(!isOpen)} aria-label="dropdown" type="button" className="h-fit inline-flex items-center p-2 bg-white text-sm text-gray-500 rounded-lg md:hidden  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
               <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
@@ -82,7 +80,7 @@ export default function Navbar() {
               Departamentos
             </a>
             <Link to="/" className={`w-60 h-auto ${scrollNav && pathname == "/" ? "hidden" : ""}`}>
-              <img src={logo} className="w-full hover:opacity-50 hidden md:flex" alt="inmobiliaria_Logo" />
+              <img src={logo} className="w-[240px] h-[170px] hover:opacity-50 hidden md:flex" alt="inmobiliaria_Logo" />
             </Link>
             <Link to="/Mapa" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Mapa" ? "md:text-black" : "md:text-white"}`}>
               Mapa
