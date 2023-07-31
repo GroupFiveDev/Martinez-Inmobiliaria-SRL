@@ -27,7 +27,7 @@ server.use((req, res, next) => {
   next();
 });
 // Config cache
-app.use(
+server.use(
   express.static(path.join(__dirname, "public"), {
     setHeaders: (res, path) => {
       if (
