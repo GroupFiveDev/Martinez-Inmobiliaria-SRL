@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import trash from '../../assets/icons/trash.png'
-import bathroom from '../../assets/icons/bathrooms.png'
-import room from '../../assets/icons/rooms.png'
-import garaje from '../../assets/icons/garaje.png'
-import squareIc from '../../assets/icons/squareIc.png'
-import vaca from '../../assets/icons/silueta-de-vaca.png'
-import maiz from '../../assets/icons/maiz.png'
+import trash from '../../assets/icons/trash.webp'
+import bathroom from '../../assets/icons/bathrooms.webp'
+import room from '../../assets/icons/rooms.webp'
+import garaje from '../../assets/icons/garaje.webp'
+import squareIc from '../../assets/icons/squareIc.webp'
+import vaca from '../../assets/icons/silueta-de-vaca.webp'
+import maiz from '../../assets/icons/maiz.webp'
 import { useState } from 'react';
 import Modal from '../modal/Modal';
 import { useModal } from '../../hooks/useModal';

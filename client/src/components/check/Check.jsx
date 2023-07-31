@@ -1,4 +1,4 @@
-import checkIc from "../../assets/icons/check.png"
+import checkIc from "../../assets/icons/check.webp"
 
 export default function Check({ value, onClick }) {
   return (

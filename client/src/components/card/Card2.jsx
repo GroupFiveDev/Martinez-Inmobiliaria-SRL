@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import room from "../../assets/icons/rooms.png";
-import bathroom from "../../assets/icons/bathrooms.png";
-import garaje from "../../assets/icons/garaje.png";
-import squareIc from "../../assets/icons/squareIc.png";
+import room from "../../assets/icons/rooms.webp";
+import bathroom from "../../assets/icons/bathrooms.webp";
+import garaje from "../../assets/icons/garaje.webp";
+import squareIc from "../../assets/icons/squareIc.webp";
 
 export default function Card2({
   id,

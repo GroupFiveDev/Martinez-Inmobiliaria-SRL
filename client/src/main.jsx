@@ -7,11 +7,6 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from './context/authContext.jsx';
 import axios from "axios";
 
-console.warn("Hiciste pull y merge origin/develop antes de codear? :)");
-console.warn("Hiciste pull y merge origin/develop antes de codear? :)");
-console.warn("Hiciste pull y merge origin/develop antes de codear? :)");
-console.warn("Hiciste pull y merge origin/develop antes de codear? :)");
-
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 ReactDOM.render(
   <AuthProvider>
