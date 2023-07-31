@@ -69,7 +69,7 @@ export default function Navbar() {
           </div>
 
           {/* pc */}
-          <div className={`animate-movimiento max-[768px]:absolute max-[768px]:top-[125px] max-[768px]:lef-0 max-[768px]:right-0 items-center justify-center ${isOpen ? "" : "hidden"} md:h-fit w-full md:flex z-30 gap-5 bg-white md:bg-transparent font-medium pl-5 md:pl-0`} >
+          <div className={`${isOpen ? "" : "hidden"} animate-movimiento w-full items-center justify-center z-30 gap-5 bg-white font-medium pl-5 md:pl-0 max-[767px]:absolute max-[767px]:top-[145px] max-[767px]:lef-0 max-[767px]:right-0 md:h-fit md:flex md:bg-transparent`} >
             <Link to="/" onClick={() => { setIsOpen(!isOpen), window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }} className="text-lg block py-2 pl-1 pr-4 text-black rounded md:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
               Inicio
             </Link>
