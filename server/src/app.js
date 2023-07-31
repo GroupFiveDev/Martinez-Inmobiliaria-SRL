@@ -27,6 +27,11 @@ server.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  res.setHeader("Cache-Control", "public, max-age=31536000");
+  next();
+});
+
 server.use("/", routes);
 
 server.use((err, req, res, next) => {
