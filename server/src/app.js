@@ -26,7 +26,7 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-
+// Config cache
 app.use(
   express.static(path.join(__dirname, "public"), {
     setHeaders: (res, path) => {
