@@ -14,7 +14,7 @@ export default {
       keyframes: {
         movimiento: {
           "0%": { opacity: 0, top: 0 },
-          "100%": { opacity: 1, top: "125px" },
+          "100%": { opacity: 1, top: "145px" },
         },
         movimientoLeftRight: {
           "0%": { opacity: 0, left: 0 },
