@@ -27,10 +27,21 @@ server.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  res.setHeader("Cache-Control", "public, max-age=31536000");
-  next();
-});
+app.use(
+  express.static(path.join(__dirname, "public"), {
+    setHeaders: (res, path) => {
+      if (
+        path.endsWith(".html") ||
+        path.endsWith(".css") ||
+        path.endsWith(".js") ||
+        path.endsWith(".webp") ||
+        path.endsWith(".png")
+      ) {
+        res.setHeader("Cache-Control", "public, max-age=31536000");
+      }
+    },
+  })
+);
 
 server.use("/", routes);
 
