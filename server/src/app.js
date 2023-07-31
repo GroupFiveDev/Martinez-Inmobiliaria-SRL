@@ -36,6 +36,8 @@ server.use(
         path.endsWith(".css") ||
         path.endsWith(".js") ||
         path.endsWith(".webp") ||
+        path.endsWith(".mp4") ||
+        path.endsWith(".jpg") ||
         path.endsWith(".png")
       ) {
         res.setHeader("Cache-Control", "public, max-age=31536000");
