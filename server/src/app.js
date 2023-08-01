@@ -40,7 +40,7 @@ server.use(
         path.endsWith(".jpg") ||
         path.endsWith(".png")
       ) {
-        res.setHeader("Cache-Control", "public, max-age=604800");
+        res.setHeader("Cache-Control", "public, max-age=2592000");
       }
     },
   })
