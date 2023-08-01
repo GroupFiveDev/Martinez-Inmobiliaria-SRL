@@ -77,9 +77,9 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
         <Link to={`/card/${id}`}>
           <div className="flex flex-col justify-center relative">
             <img
-              className={`rounded-t-lg ${sold ? "blur-sm" : ""} h-[300px]`}
-              src={images?.length ? images[0] : "https://img.freepik.com/foto-gratis/gran-paisaje-verde-cubierto-cesped-rodeado-arboles_181624-14827.jpg"}
-              alt=""
+              className={`rounded-t-lg ${sold ? "blur-sm" : ""} h-[300px] w-full`}
+              src={images?.length ? images[0] : ""}
+              alt="Imagen_de_la_propiedad"
             />
             <div className={`absolute bg-[#368b8cc1] w-full h-14 flex justify-center items-center ${sold ? "" : "hidden"}`}>
               <h1 className="text-white font-bold text-3xl font-Montserrat">
@@ -106,13 +106,13 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                     {
                       terrain?.toLowerCase() === "mixto" ?
                         <div className='flex gap-4'>
-                          <img src={vaca} alt="vaca" className='w-7' />
-                          <img src={maiz} alt="maiz" className='w-7' />
+                          <img src={vaca} alt="vaca" className='w-7 h-7' />
+                          <img src={maiz} alt="maiz" className='w-7 h-7' />
                         </div>
                         : terrain?.toLowerCase() === "ganadero" ?
-                          <img src={vaca} alt="vaca" className='w-7' />
+                          <img src={vaca} alt="vaca" className='w-7 h-7' />
                           : terrain?.toLowerCase() === "Agrícola" ?
-                            <img src={maiz} alt="maiz" className='w-7' />
+                            <img src={maiz} alt="maiz" className='w-7 h-7' />
                             : ""
                     }
                     <p className={`${hectareas ? "" : "hidden"} mb-3 mt-3 font-normal text-gray-700`}>
@@ -125,19 +125,19 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                   :
                   <div className='flex gap-5'>
                     <p className={`${rooms ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
-                      <img src={room} alt="romm" className='w-7' />
+                      <img src={room} alt="romm" className='w-7 h-7' />
                       {rooms}
                     </p>
                     <p className={`${bathrooms ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
-                      <img src={bathroom} alt="romm" className='w-7' />
+                      <img src={bathroom} alt="romm" className='w-7 h-7' />
                       {bathrooms}
                     </p>
                     <p className={`${garage ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
-                      <img src={garaje} alt="garage" className='w-7' />
+                      <img src={garaje} alt="garage" className='w-7 h-7' />
                       {garage}
                     </p>
                     <p className={`${square ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
-                      <img src={squareIc} alt="square" className='w-7' />
+                      <img src={squareIc} alt="square" className='w-7 h-7' />
                       {square}
                     </p>
                   </div>
