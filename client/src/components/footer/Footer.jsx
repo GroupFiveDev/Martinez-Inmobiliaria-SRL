@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="w-full relative">
           <div className="  md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
-              <img src={logo} alt="TyJ_Logo" className='w-[50%] h-auto sm:w-40 sm:h-auto hover:cursor-pointer hover:opacity-50 z-40' onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); history.push("/") }} />
+              <img src={logo} alt="TyJ_Logo" className='w-[160px] h-[113px] sm:w-40 sm:h-auto hover:cursor-pointer hover:opacity-50 z-40' onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); history.push("/") }} />
             </div>
 
             <div className='md:absolute flex flex-col items-center my-6 w-full'>

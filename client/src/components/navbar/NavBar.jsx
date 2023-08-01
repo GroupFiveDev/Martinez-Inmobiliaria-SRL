@@ -38,11 +38,11 @@ export default function Navbar() {
   return (
     <div>
       <div className={`${pathname === "/" ? "flex" : "hidden"} top-0 w-full h-screen relative`}>
-        <video controls={false} autoPlay loop muted className="h-full w-full hidden sm:flex object-cover">
+        <video controls={false} autoPlay loop muted className="h-screen w-full hidden sm:flex object-cover">
           <source src={video2} type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
-        <video controls={false} autoPlay loop muted className="h-full w-full flex sm:hidden object-cover">
+        <video controls={false} autoPlay loop muted className="h-screen w-full flex sm:hidden object-cover">
           <source src={video} type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
