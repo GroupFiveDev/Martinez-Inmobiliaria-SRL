@@ -104,6 +104,16 @@ export default function CardDetail() {
     window.scrollTo({ top: 0, left: 0 });
   }, [])
 
+  if (!property) {
+    return (
+      <div className="h-screen w-full flex justify-center bg-gray-600">
+        <div className="w-20 h-20 mt-5">
+          <LoaderIamge />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <>
       <div className={`w-full min-h-screen flex justify-center relative bg-gray-600`}>
@@ -139,7 +149,7 @@ export default function CardDetail() {
                   <div className="p-2 xl:w-full flex flex-col items-center">
                     <div className="overflow-hidden relative flex justify-center items-center w-fit" onMouseEnter={() => setHoveredButton(true)} onMouseLeave={() => setHoveredButton(false)}>
                       <button className={`absolute left-0 text-9xl text-[#368a8c] h-full bg-[#5a65653c] ${hoveredButton ? "absolute" : "hidden"} ${activeImageIndex === 0 && "hidden"}`} onClick={() => handleImageClick(activeImageIndex - 1)}> < IoIosArrowBack /> </button>
-                      <button className={`absolute right-0 text-9xl text-[#368a8c] h-full bg-[#5a65653c] bg-gray-500 ${hoveredButton ? "absolute" : "hidden"} ${activeImageIndex + 1 === property?.images.length && "hidden"}`} onClick={() => handleImageClick(activeImageIndex + 1)}>  <IoIosArrowForward /> </button>
+                      <button className={`absolute right-0 text-9xl text-[#368a8c] h-full bg-[#5a65653c] ${hoveredButton ? "absolute" : "hidden"} ${activeImageIndex + 1 === property?.images.length && "hidden"}`} onClick={() => handleImageClick(activeImageIndex + 1)}>  <IoIosArrowForward /> </button>
                       <img className={`${principal ? "opacity-25" : ""} w-[780px] h-[514px] max-[650px]:h-[450px] max-[560px]:h-[400px] max-[490px]:h-[370px]`} src={`${property?.images[activeImageIndex]}`} alt="imagePrincipal" onLoad={handleLoadImages} />
                       <div role="status" className={`${principal ? "" : "hidden"} flex justify-center items-center w-[60px] h-[60px] absolute`}>
                         <LoaderIamge />
@@ -164,7 +174,9 @@ export default function CardDetail() {
                     </div>
                   </div>
                   :
-                  <h1>Esta propiedad no tiene imagenes</h1>
+                  <div className="w-10 h-10">
+                    <LoaderIamge />
+                  </div>
               }
               {/* detalles */}
               <div className="w-full flex justify-start flex-col items-start text-white mt-4 gap-4">
