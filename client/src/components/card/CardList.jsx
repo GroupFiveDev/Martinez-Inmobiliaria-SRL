@@ -92,7 +92,6 @@ export default function CardList() {
             ? currentproperties.map(
               view === "grid"
                 ? (card, i) =>
-                  // !card.archived && (
                   <Card
                     key={i}
                     id={card.id}
@@ -113,7 +112,6 @@ export default function CardList() {
                     setBoolean={setBoolean}
                     archived={card.archived}
                   />
-                // )
                 : (card, i) =>
                   !card.archived && (
                     <Card2
