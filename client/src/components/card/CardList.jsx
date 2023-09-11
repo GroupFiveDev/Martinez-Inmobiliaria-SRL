@@ -83,16 +83,12 @@ export default function CardList() {
           </div>
         </div>
         <div
-          className={`${view === "grid"
-            ? "grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2"
-            : "w-screen"
-            }`}
+          className={`${view === "grid" ? "relative justify-center items-center grid grid-cols-1 self-center md:gap-4 xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 m:grid-cols-2" : "w-screen"}`}
         >
           {currentproperties.length
             ? currentproperties.map(
               view === "grid"
                 ? (card, i) =>
-                  // !card.archived && (
                   <Card
                     key={i}
                     id={card.id}
@@ -113,7 +109,6 @@ export default function CardList() {
                     setBoolean={setBoolean}
                     archived={card.archived}
                   />
-                // )
                 : (card, i) =>
                   !card.archived && (
                     <Card2

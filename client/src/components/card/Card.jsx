@@ -5,8 +5,6 @@ import bathroom from '../../assets/icons/bathrooms.webp'
 import room from '../../assets/icons/rooms.webp'
 import garaje from '../../assets/icons/garaje.webp'
 import squareIc from '../../assets/icons/squareIc.webp'
-import vaca from '../../assets/icons/silueta-de-vaca.webp'
-import maiz from '../../assets/icons/maiz.webp'
 import { useState } from 'react';
 import Modal from '../modal/Modal';
 import { useModal } from '../../hooks/useModal';
@@ -92,38 +90,26 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
               </h1>
             </div>
           </div>
-          <div className="p-5">
-            <div className="px-5">
-              <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+          <div className="">
+            <div className="">
+              <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 font-Montserra bg-[#52afb0] w-full px-2 flex justify-center text-center py-1">
                 {titulo}
               </h1>
-              <p className="mb-3 font-normal text-gray-700">
+              <p className="mb-3 font-normal text-gray-700 font-Montserrat px-2">
                 {descripcion?.length > 96 ? descripcion?.slice(0, 96).concat("...") : descripcion}
               </p>
               {
                 type === "field" ?
                   <>
-                    {
-                      terrain?.toLowerCase() === "mixto" ?
-                        <div className='flex gap-4'>
-                          <img src={vaca} alt="vaca" className='w-7 h-7' />
-                          <img src={maiz} alt="maiz" className='w-7 h-7' />
-                        </div>
-                        : terrain?.toLowerCase() === "ganadero" ?
-                          <img src={vaca} alt="vaca" className='w-7 h-7' />
-                          : terrain?.toLowerCase() === "Agrícola" ?
-                            <img src={maiz} alt="maiz" className='w-7 h-7' />
-                            : ""
-                    }
-                    <p className={`${hectareas ? "" : "hidden"} mb-3 mt-3 font-normal text-gray-700`}>
+                    <p className={`${hectareas ? "" : "hidden"} mb-3 mt-3 font-normal text-gray-700 px-2`}>
                       HECTÁREAS: {hectareas}
                     </p>
-                    <p className={`${terrain ? "" : "hidden"} mb-3 font-normal text-gray-700`}>
+                    <p className={`${terrain ? "" : "hidden"} mb-3 font-normal text-gray-700 px-2`}>
                       Aptitud: {terrain}
                     </p>
                   </>
                   :
-                  <div className='flex gap-5'>
+                  <div className='flex gap-5 px-2'>
                     <p className={`${rooms ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
                       <img src={room} alt="romm" className='w-7 h-7' />
                       {rooms}
@@ -142,10 +128,10 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                     </p>
                   </div>
               }
-              <p className={`${ubicacion ? "flex" : "hidden"} mb-3 font-normal text-gray-700`}>
+              <p className={`${ubicacion ? "flex" : "hidden"} mb-3 font-normal text-gray-700 px-2`}>
                 Ubicación: {ubicacion}
               </p>
-              <p className={`${price ? "" : "flex"} mb-3 font-normal text-gray-700`}>
+              <p className={`${price ? "" : "flex"} mb-3 font-normal text-gray-700 px-2`}>
                 $ {price}
               </p>
             </div>
