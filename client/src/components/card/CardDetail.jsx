@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useParams, Prompt, useHistory } from "react-router-dom";
 import { useModal } from "../../hooks/useModal.js";
 import { useAuth } from "../../context/authContext.jsx";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import Phone from "../contact/contacInfo/Phone";
 import WhatsApp from "../contact/contacInfo/WhatsApp";
 import axios from "axios";
@@ -10,13 +12,11 @@ import bathroom from "../../assets/icons/bathrooms.webp";
 import room from "../../assets/icons/rooms.webp";
 import squareIc from "../../assets/icons/squareIc.webp";
 import garaje from "../../assets/icons/garaje.webp";
-import logo from "../../assets/logo/blanco-fondo-negro-removebg-preview.webp";
 import Edit from "../edit/Edit.jsx";
 import Check from "../check/Check.jsx";
 import Close from "../close/Close.jsx";
 import Loading from "../modal/Loading.jsx";
 import Map from "../map/Map.jsx";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import LoaderIamge from "../../assets/svg/svg.components.jsx";
 
 export default function CardDetail() {
@@ -30,6 +30,7 @@ export default function CardDetail() {
   const [principal, setPrincipal] = useState(1)
   const title = useRef(null);
   const [k, setK] = useState(0)
+  const [hoveredButton, setHoveredButton] = useState(false)
   const [edit, setEdit] = useState({
     type: null,
     title: null,
@@ -49,8 +50,6 @@ export default function CardDetail() {
 
   const handleImageClick = (index) => {
     if (index === activeImageIndex) return
-    // title.current.scrollIntoView({ behavior: 'smooth' });
-    // setPrincipal(1)
     setActiveImageIndex(index);
   };
 
@@ -105,36 +104,20 @@ export default function CardDetail() {
     window.scrollTo({ top: 0, left: 0 });
   }, [])
 
-  // useEffect(() => {
-  //   const containerLoader = document.getElementById("loader");
-  //   const body = document.getElementById("body");
-
-  //   if (imagesCount === property?.images.length + 1) {
-  //     containerLoader.className = "justify-center items-center w-full h-full bg-[#368a8c] absolute top-0 z-50 hidden";
-  //     body.className = "overflow-auto";
-  //   } else {
-  //     window.scrollTo({ top: 0, left: 0 });
-  //     containerLoader.className = "justify-center items-center w-full h-full bg-[#368a8c] absolute top-0 z-50 flex";
-  //     body.className = "overflow-y-hidden";
-  //   }
-  //   containerLoader.className = "justify-center items-center w-full h-full bg-[#368a8c] absolute top-0 z-50 hidden";
-  //   body.className = "overflow-auto";
-
-  // }, [imagesCount]);
+  if (!property) {
+    return (
+      <div className="h-screen w-full flex justify-center bg-gray-600">
+        <div className="w-20 h-20 mt-5">
+          <LoaderIamge />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
-      {/* <div id="loader">
-        <div className="relative flex flex-col items-center justify-center">
-          <div className="bg-[#368a8c] z-[55] absolute w-full h-full animate-pulse z-60"></div>
-          <img src={logo} alt="logo" className="z-50" />
-          <h1 className="text-white font-Montserrat text-xl z-50">
-            Cargando...
-          </h1>
-        </div>
-      </div> */}
       <div className={`w-full min-h-screen flex justify-center relative bg-gray-600`}>
-        <div className="absolute bottom-0 left-0 hidden h-full md:flex w-24 z-40 rallado" />
+        <div className="absolute bottom-0 left-0 hidden h-full xl:flex w-24 z-40 rallado" />
         <div className="flex flex-col justify-center pt-4 w-[95%] md:w-[70%]">
           {/* titulo */}
           <div className="bg-[#368a8c] mb-5 flex items-center gap-2 w-full" ref={title}>
@@ -163,15 +146,17 @@ export default function CardDetail() {
               {/* imagen */}
               {
                 property?.images.length ?
-                  <div className="p-2 xl:w-full">
-                    <div className="overflow-hidden relative flex justify-center items-center">
-                      <img className={`${principal ? "opacity-25" : ""} w-[780px] max-h-[514px]`} src={`${property?.images[activeImageIndex]}`} alt="imagePrincipal" onLoad={handleLoadImages} />
+                  <div className="p-2 xl:w-full flex flex-col items-center">
+                    <div className="overflow-hidden relative flex justify-center items-center w-fit" onMouseEnter={() => setHoveredButton(true)} onMouseLeave={() => setHoveredButton(false)}>
+                      <button className={`absolute left-0 text-9xl text-[#368a8c] h-full bg-[#5a65653c] ${hoveredButton ? "absolute" : "hidden"} ${activeImageIndex === 0 && "hidden"}`} onClick={() => handleImageClick(activeImageIndex - 1)}> < IoIosArrowBack /> </button>
+                      <button className={`absolute right-0 text-9xl text-[#368a8c] h-full bg-[#5a65653c] ${hoveredButton ? "absolute" : "hidden"} ${activeImageIndex + 1 === property?.images.length && "hidden"}`} onClick={() => handleImageClick(activeImageIndex + 1)}>  <IoIosArrowForward /> </button>
+                      <img className={`${principal ? "opacity-25" : ""} w-[780px] h-[514px] max-[650px]:h-[450px] max-[560px]:h-[400px] max-[490px]:h-[370px]`} src={`${property?.images[activeImageIndex]}`} alt="imagePrincipal" onLoad={handleLoadImages} />
                       <div role="status" className={`${principal ? "" : "hidden"} flex justify-center items-center w-[60px] h-[60px] absolute`}>
                         <LoaderIamge />
                         <span className="sr-only">Loading...</span>
                       </div>
                     </div>
-                    <div className="w-full relative flex justify-between items-center mt-5 gap-2 bg-gray-700 p-4 border-2 border-[#368a8c]">
+                    <div className={`w-full relative flex ${property?.images.length >= 3 ? "justify-between" : "justify-center"} items-center mt-5 gap-2 bg-gray-700 p-4 border-2 border-[#368a8c]`}>
                       <button className={`${property?.images.length <= 3 ? "hidden" : ""} w-7 h-7`} onClick={() => { setK(k - 3), setActiveImageIndex(k - 3) }} disabled={k === 0 ? true : false}> <AiOutlineArrowLeft className="w-7 h-7" color="white" /> </button>
                       {
                         property?.images.slice(k, 3 + k).map((image, index) => (
@@ -189,7 +174,9 @@ export default function CardDetail() {
                     </div>
                   </div>
                   :
-                  <h1>Esta propiedad no tiene imagenes</h1>
+                  <div className="w-10 h-10">
+                    <LoaderIamge />
+                  </div>
               }
               {/* detalles */}
               <div className="w-full flex justify-start flex-col items-start text-white mt-4 gap-4">

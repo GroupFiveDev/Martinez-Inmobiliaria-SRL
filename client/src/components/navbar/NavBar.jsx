@@ -13,11 +13,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrollNav, setScrollNav] = useState(false);
 
-  // Esto cambia el title segun la seccion en la que estes
-
-  // const title = document.getElementById("title")
-  // title.innerHTML = `TJ - ${pathname !== "/" && !pathname.includes("/card") ? pathname.slice(1) : "Servicios Inmobiliarios"}`
-
   const changeNav = () => {
     setIsOpen(false)
     if (window.scrollY >= 1) {
@@ -70,30 +65,34 @@ export default function Navbar() {
 
           {/* pc */}
           <div className={`${isOpen ? "" : "hidden"} animate-movimiento w-full items-center justify-center z-30 gap-5 bg-white font-medium pl-5 md:pl-0 max-[767px]:absolute max-[767px]:top-[145px] max-[767px]:lef-0 max-[767px]:right-0 md:h-fit md:flex md:bg-transparent`} >
-            <Link to="/" onClick={() => { setIsOpen(!isOpen), window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }} className="text-lg block py-2 pl-1 pr-4 text-black rounded md:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
-              Inicio
-            </Link>
-            <a aria-label="fields" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className=" block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
-              Campos
-            </a>
-            <a aria-label="apartments" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
-              Departamentos
-            </a>
+            <div className={` ${scrollNav && pathname === "/" ? "h-auto" : "h-[170px]"} pb-5 flex gap-5 items-end justify-center`}>
+              <Link to="/" onClick={() => { setIsOpen(!isOpen), window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }} className="text-lg block py-2 pl-1 pr-4 text-black rounded md:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+                Inicio
+              </Link>
+              <a aria-label="fields" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className=" block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+                Campos
+              </a>
+              <a aria-label="apartments" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+                Departamentos
+              </a>
+            </div>
             <Link to="/" className={`w-60 h-auto ${scrollNav && pathname == "/" ? "hidden" : ""}`}>
               <img src={logo} className="w-[240px] h-[170px] hover:opacity-50 hidden md:flex" alt="inmobiliaria_Logo" />
             </Link>
-            <Link to="/Mapa" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Mapa" ? "md:text-black" : "md:text-white"}`}>
-              Mapa
-            </Link>
-            <Link to="/Nosotros" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Nosotros" ? "md:text-black" : "md:text-white"}`}>
-              Nosotros
-            </Link>
-            <Link to="/Contacto" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 md:m-0 ${pathname === "/Contacto" ? "md:text-black" : "md:text-white"}`}>
-              Contacto
-            </Link>
-            <a aria-label="call" href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-1 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
-              Llamanos
-            </a>
+            <div className={` ${scrollNav && pathname === "/" ? "h-auto" : "h-[170px]"} pb-5 flex gap-5 items-end justify-center`}>
+              <Link to="/Mapa" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Mapa" ? "md:text-black" : "md:text-white"}`}>
+                Mapa
+              </Link>
+              <Link to="/Nosotros" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 ${pathname === "/Nosotros" ? "md:text-black" : "md:text-white"}`}>
+                Nosotros
+              </Link>
+              <Link to="/Contacto" onClick={() => setIsOpen(!isOpen)} className={`block py-2 pl-1 pr-4 text-black rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0 md:m-0 ${pathname === "/Contacto" ? "md:text-black" : "md:text-white"}`}>
+                Contacto
+              </Link>
+              <a aria-label="call" href="tel:2473509269" onClick={() => setIsOpen(!isOpen)} target="_blank" className="md:hidden block py-2 pl-1 pr-4 text-black md:text-white  rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+                Llamanos
+              </a>
+            </div>
           </div>
         </div>
       </nav >

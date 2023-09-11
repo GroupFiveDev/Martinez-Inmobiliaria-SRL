@@ -9,14 +9,12 @@ import bathroom from "../../assets/icons/bathrooms.webp";
 import room from "../../assets/icons/rooms.webp";
 import squareIc from "../../assets/icons/squareIc.webp";
 import garaje from "../../assets/icons/garaje.webp";
-// import logo from "../../assets/logo/logo_blanco_fondo_negro-removebg-preview.webp";
-import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useLocation } from 'react-router-dom';
 
 
 export default function Map({ zoom = 9, center2, id }) {
 
   const { pathname } = useLocation()
-  const history = useHistory()
   const [properties, setProperties] = useState()
   const [popUpBool, setPopUpBool] = useState(false)
   const [property, setProperty] = useState()
@@ -34,6 +32,10 @@ export default function Map({ zoom = 9, center2, id }) {
   const handleOnClick = (e) => {
     setPopUpBool(true)
     setProperty(e)
+  }
+
+  const seeProperty = () => {
+    return window.location.assign(`/card/${property?.id}`)
   }
 
   useEffect(() => {
@@ -157,7 +159,7 @@ export default function Map({ zoom = 9, center2, id }) {
                   </div>
                 </div>
                 <div className='w-full flex justify-center items-center mb-4'>
-                  <button className='font-Montserrat' onClick={() => history.push(`card/${property?.id}`)}> Ver propiedad </button>
+                  <button className='font-Montserrat' onClick={() => seeProperty()}> Ver propiedad </button>
                 </div>
               </div>
             </div>
@@ -167,3 +169,4 @@ export default function Map({ zoom = 9, center2, id }) {
     </>
   )
 }
+
