@@ -22,6 +22,17 @@ export default function Navbar() {
     }
   };
 
+  const handleScrollToCampos = () => {
+    history.push('/');
+
+    setTimeout(() => {
+      const camposElement = document.getElementById('campos');
+      if (camposElement) {
+        camposElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   useEffect(() => {
     if (pathname === "/") {
       window.addEventListener("scroll", changeNav);
@@ -69,12 +80,12 @@ export default function Navbar() {
               <Link to="/" onClick={() => { setIsOpen(!isOpen), window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }} className="text-lg block py-2 pl-1 pr-4 text-black rounded md:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
                 Inicio
               </Link>
-              <a aria-label="fields" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className=" block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+              <span aria-label="fields" onClick={() => { setIsOpen(!isOpen); handleScrollToCampos() }} className="hover:cursor-pointer block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
                 Campos
-              </a>
-              <a aria-label="apartments" href="#campos" onClick={() => { setIsOpen(!isOpen); history.push("/") }} className="block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
+              </span>
+              <span aria-label="apartments" onClick={() => { setIsOpen(!isOpen); handleScrollToCampos() }} className="hover:cursor-pointer block py-2 pl-1 pr-4 text-black md:text-white rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:opacity-50 md:p-0">
                 Departamentos
-              </a>
+              </span>
             </div>
             <Link to="/" className={`w-60 h-auto ${scrollNav && pathname == "/" ? "hidden" : ""}`}>
               <img src={logo} className="w-[240px] h-[170px] hover:opacity-50 hidden md:flex" alt="inmobiliaria_Logo" />
