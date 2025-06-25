@@ -1,0 +1,184 @@
+[
+  {
+    "id": 1,
+    "type": "apartment",
+    "title": "Departamento Céntrico - Rosario",
+    "description": "Hermoso departamento de 2 ambientes en el centro de Rosario, con todas las comodidades. Ideal para parejas o profesionales.",
+    "hectares": null,
+    "location": "Centro, Rosario, Santa Fe",
+    "terrain": null,
+    "rooms": 2,
+    "bathrooms": 1,
+    "garage": 1,
+    "square": 65,
+    "price": 95000,
+    "position": {
+      "lat": -32.9442,
+      "lng": -60.6505
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&h=600&fit=crop"
+    ],
+    "archived": false,
+    "sold": false,
+    "createdAt": "2024-01-15T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "type": "field",
+    "title": "Campo Ganadero - San Luis",
+    "description": "Excelente campo ganadero con infraestructura completa. Ideal para cría de ganado bovino. Agua abundante y pasturas naturales.",
+    "hectares": 150,
+    "location": "San Luis, Argentina",
+    "terrain": "Ganadero",
+    "rooms": null,
+    "bathrooms": null,
+    "garage": null,
+    "square": null,
+    "price": 2800000,
+    "position": {
+      "lat": -33.2695,
+      "lng": -66.3354
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+    ],
+    "archived": false,
+    "sold": false,
+    "createdAt": "2024-01-10T08:15:00Z"
+  },
+  {
+    "id": 3,
+    "type": "apartment",
+    "title": "Departamento 3 Ambientes - Córdoba",
+    "description": "Amplio departamento de 3 ambientes en Nueva Córdoba. Cocina integrada, balcón con vista panorámica y amenities completos.",
+    "hectares": null,
+    "location": "Nueva Córdoba, Córdoba Capital",
+    "terrain": null,
+    "rooms": 3,
+    "bathrooms": 2,
+    "garage": 1,
+    "square": 85,
+    "price": 125000,
+    "position": {
+      "lat": -31.4201,
+      "lng": -64.1888
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&h=600&fit=crop"
+    ],
+    "archived": false,
+    "sold": false,
+    "createdAt": "2024-01-20T14:22:00Z"
+  },
+  {
+    "id": 4,
+    "type": "field",
+    "title": "Campo Agrícola - Buenos Aires",
+    "description": "Campo de primera calidad para agricultura. Suelos fértiles, riego por aspersión instalado. Excelente para cultivos de soja y maíz.",
+    "hectares": 200,
+    "location": "Pergamino, Buenos Aires",
+    "terrain": "Agrícola",
+    "rooms": null,
+    "bathrooms": null,
+    "garage": null,
+    "square": null,
+    "price": 4200000,
+    "position": {
+      "lat": -33.8897,
+      "lng": -60.5734
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1574923448126-ad1c3d5fef67?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1440581572325-0bea30075d9d?w=800&h=600&fit=crop"
+    ],
+    "archived": false,
+    "sold": false,
+    "createdAt": "2024-01-05T16:45:00Z"
+  },
+  {
+    "id": 5,
+    "type": "apartment",
+    "title": "Loft Moderno - Buenos Aires",
+    "description": "Loft de diseño moderno en Palermo. Espacios amplios, iluminación natural excepcional y terminaciones de primera calidad.",
+    "hectares": null,
+    "location": "Palermo, CABA",
+    "terrain": null,
+    "rooms": 1,
+    "bathrooms": 1,
+    "garage": 0,
+    "square": 55,
+    "price": 180000,
+    "position": {
+      "lat": -34.5875,
+      "lng": -58.4200
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&h=600&fit=crop"
+    ],
+    "archived": true,
+    "sold": false,
+    "createdAt": "2024-01-25T11:10:00Z"
+  },
+  {
+    "id": 6,
+    "type": "field",
+    "title": "Campo Mixto - Entre Ríos",
+    "description": "Campo de uso mixto ideal para agricultura y ganadería. Excelente ubicación con acceso a rutas principales.",
+    "hectares": 300,
+    "location": "Gualeguaychú, Entre Ríos",
+    "terrain": "Mixto",
+    "rooms": null,
+    "bathrooms": null,
+    "garage": null,
+    "square": null,
+    "price": 5500000,
+    "position": {
+      "lat": -33.0093,
+      "lng": -58.5130
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop"
+    ],
+    "archived": false,
+    "sold": true,
+    "createdAt": "2023-12-28T09:30:00Z"
+  },
+  {
+    "id": 7,
+    "type": "apartment",
+    "title": "Departamento Familiar - Mendoza",
+    "description": "Departamento de 4 ambientes perfecto para familias. Ubicado en zona residencial tranquila con todos los servicios cercanos.",
+    "hectares": null,
+    "location": "Godoy Cruz, Mendoza",
+    "terrain": null,
+    "rooms": 4,
+    "bathrooms": 2,
+    "garage": 2,
+    "square": 110,
+    "price": 145000,
+    "position": {
+      "lat": -32.9270,
+      "lng": -68.8357
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop"
+    ],
+    "archived": false,
+    "sold": false,
+    "createdAt": "2024-01-30T13:20:00Z"
+  }
+] 
