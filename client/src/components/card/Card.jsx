@@ -1,14 +1,14 @@
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import trash from '../../assets/icons/trash.webp'
 import bathroom from '../../assets/icons/bathrooms.webp'
 import room from '../../assets/icons/rooms.webp'
 import garaje from '../../assets/icons/garaje.webp'
-import squareIc from '../../assets/icons/squareIc.webp'
+import squareic from '../../assets/icons/squareic.webp'
 import { useState } from 'react';
 import Modal from '../modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { useAuth } from '../../context/authContext';
+import apiService from '../../services/apiService';
 
 export default function Card({ id, type, titulo, descripcion, hectareas, rooms, bathrooms, garage, square, ubicacion, terrain, price, images, archived, sold, boolean, setBoolean }) {
   const [loading, setLoading] = useState(0)
@@ -17,24 +17,40 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
 
   async function deleted() {
     setLoading(1)
-    await axios.delete(`/properties/${id}`)
-    setBoolean(!boolean)
-    setLoading(0)
-    closeModal()
+    try {
+      await apiService.deleteProperty(id)
+      setBoolean(!boolean)
+      setLoading(0)
+      closeModal()
+    } catch (error) {
+      alert(error.message)
+      setLoading(0)
+      closeModal()
+    }
   }
 
   async function handleArchived() {
     setLoading(1)
-    await axios.patch(`/properties/${id}`, { archived: !archived });
-    setBoolean(!boolean);
-    setLoading(0)
+    try {
+      await apiService.updateProperty(id, { archived: !archived });
+      setBoolean(!boolean);
+      setLoading(0)
+    } catch (error) {
+      alert(error.message)
+      setLoading(0)
+    }
   }
 
   async function handleSold() {
     setLoading(1)
-    await axios.patch(`/properties/${id}`, { sold: !sold });
-    setBoolean(!boolean);
-    setLoading(0)
+    try {
+      await apiService.updateProperty(id, { sold: !sold });
+      setBoolean(!boolean);
+      setLoading(0)
+    } catch (error) {
+      alert(error.message)
+      setLoading(0)
+    }
   }
 
   return (
@@ -123,7 +139,7 @@ export default function Card({ id, type, titulo, descripcion, hectareas, rooms, 
                       {garage}
                     </p>
                     <p className={`${square ? "" : "hidden"} mb-3 text-gray-700 flex items-end gap-4 font-bold`}>
-                      <img src={squareIc} alt="square" className='w-7 h-7' />
+                      <img src={squareic} alt="square" className='w-7 h-7' />
                       {square}
                     </p>
                   </div>

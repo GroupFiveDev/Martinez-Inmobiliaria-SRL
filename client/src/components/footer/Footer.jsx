@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/blanco-fondo-negro-removebg-preview2.webp'
 import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Footer() {
-  const history = useHistory()
+  const navigate = useNavigate()
   return (
     <>
       <footer className="bg-[#276163] p-4 h-fit md:h-fit">
         <div className="w-full relative">
           <div className="  md:flex md:justify-between md:w-full md:items-center">
             <div className="mb-6 md:mb-0 flex justify-center">
-              <img src={logo} alt="TyJ_Logo" className='w-[160px] h-[113px] hover:cursor-pointer hover:opacity-50 z-40' onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); history.push("/") }} />
+              <img src={logo} alt="TyJ_Logo" className='w-[160px] h-[113px] hover:cursor-pointer hover:opacity-50 z-40' onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); navigate("/") }} />
             </div>
 
             <div className='md:absolute flex flex-col items-center my-6 w-full'>
@@ -39,8 +39,8 @@ export default function Footer() {
                 </Link>
               </div>
               <div className='flex flex-col gap-5 text-center'>
-                <a aria-label="fields" onClick={() => history.push("/")} className="font-Montserrat hover:text-white hover:opacity-50 hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Campos</a>
-                <a aria-label="apartments" onClick={() => history.push("/")} className="font-Montserrat z-10 hover:text-white hover:opacity-50 hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Departamentos</a>
+                            <a aria-label="fields" onClick={() => navigate("/")} className="font-Montserrat hover:text-white hover:opacity-50 hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Campos</a>
+            <a aria-label="apartments" onClick={() => navigate("/")} className="font-Montserrat z-10 hover:text-white hover:opacity-50 hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" ><h2></h2>Departamentos</a>
                 <Link to="/Mapa">
                   <h2 className="font-Montserrat hover:text-white hover:opacity-50 hover:cursor-pointer text-sm font-semibold text-white uppercase" href="#campos" >Mapa</h2>
                 </Link>

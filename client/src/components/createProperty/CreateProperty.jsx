@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from '../../context/authContext';
 import ImageContainer from "./ImageContainer";
 import Modal from '../modal/Loading'
 import { useModal } from '../../hooks/useModal'
+import apiService from "../../services/apiService"
 
 const CreateProperty = () => {
   const { user } = useAuth()
@@ -74,18 +74,19 @@ const CreateProperty = () => {
     }
 
     try {
-      await axios.post("/properties", formdata, {
+      await apiService.createProperty(formdata, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      })
-        .catch((err) => console.error(err));
+      });
+      closeModal()
+      const form2 = document.getElementById("formProperty")
+      form2.reset()
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      alert(error.message);
+      closeModal()
     }
-    closeModal()
-    const form2 = document.getElementById("formProperty")
-    form2.reset()
   }
 
   const fieldOrApartment = (form) => {

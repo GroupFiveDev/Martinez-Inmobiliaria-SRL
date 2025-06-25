@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState } from "react";
+import apiService from "../../services/apiService";
 
 export default function Filter({ setProperties }) {
   const [filterValue, setFilterValue] = useState({});
@@ -17,9 +17,7 @@ export default function Filter({ setProperties }) {
         e.target.value.split(",")[1],
       ]];
     }
-    const result = await axios.get(
-      `/properties/orderAndFilter/${JSON.stringify(filterValue)}`
-    );
+    const result = await apiService.getFilteredProperties(JSON.stringify(filterValue));
     setProperties(result.data);
   }
 

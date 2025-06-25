@@ -1,5 +1,4 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
 import vaca from '../../assets/icons/silueta-de-vaca24.webp'
 import vaca2 from '../../assets/icons/silueta-de-vaca24-v2.webp'
@@ -7,9 +6,10 @@ import edificio from '../../assets/icons/edificio.webp'
 import edificio2 from '../../assets/icons/edificio-v2.webp'
 import bathroom from "../../assets/icons/bathrooms.webp";
 import room from "../../assets/icons/rooms.webp";
-import squareIc from "../../assets/icons/squareIc.webp";
+import squareIc from "../../assets/icons/squareic.webp";
 import garaje from "../../assets/icons/garaje.webp";
 import { useLocation } from 'react-router-dom';
+import apiService from "../../services/apiService";
 
 
 export default function Map({ zoom = 9, center2, id }) {
@@ -40,7 +40,7 @@ export default function Map({ zoom = 9, center2, id }) {
 
   useEffect(() => {
     (async function () {
-      const propertiesDB = await axios.get("/properties");
+      const propertiesDB = await apiService.getProperties();
       setProperties(propertiesDB.data.filter(e => e.archived === false));
     })();
   }, []);

@@ -1,53 +1,86 @@
 import React, { useEffect, useState } from 'react';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc'
-import { arrayMoveImmutable } from 'array-move';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  horizontalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import {
+  useSortable,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 const ImageContainer = ({ form, setForm }) => {
-
   const [images, setImages] = useState([]);
-  const [files, setFiles] = useState()
+  const [files, setFiles] = useState([]);
 
-  const SortableItem = SortableElement(({ value, index2 }) => {
+  const SortableItem = ({ id, src, index }) => {
+    const {
+      attributes,
+      listeners,
+      setNodeRef,
+      transform,
+      transition,
+    } = useSortable({ id });
+
+    const style = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+    };
+
     return (
-      <div className='relative w-fit flex justify-center items-center hover:contrast-50 contrast-none hover:cursor-pointer'>
+      <div
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className='relative w-fit flex justify-center items-center hover:contrast-50 contrast-none hover:cursor-pointer'
+      >
         <p className='absolute text-white text-5xl font-bold'>
           <span className='text-stroke-black'>
-            {index2 + 1}
+            {index + 1}
           </span>
         </p>
-        <img src={value.src} alt={`image ${index2}`} className='w-24 h-24 cover' />
+        <img src={src} alt={`image ${index}`} className='w-24 h-24 cover' />
       </div>
     );
-  });
+  };
 
-  const SortableList = SortableContainer(({ items }) => {
-    return (
-      <ul className='flex gap-2'>
-        {items?.map((e, i) => <SortableItem key={i} value={e} index={i} index2={i} />)}
-      </ul>
-    )
-  })
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    let imagesCopy = [...images]
-    let filesCopy = [...files]
-    imagesCopy = arrayMoveImmutable(imagesCopy, oldIndex, newIndex)
-    filesCopy = arrayMoveImmutable(filesCopy, oldIndex, newIndex)
-    const next = filesCopy[oldIndex].name;
-    const prev = filesCopy[newIndex].name;
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
 
-    filesCopy[newIndex].name = next;
-    filesCopy[oldIndex].name = prev;
+    if (active.id !== over.id) {
+      const oldIndex = images.findIndex(item => item.id === active.id);
+      const newIndex = images.findIndex(item => item.id === over.id);
 
-    console.log("prev", prev, "next", next);
-    setImages(imagesCopy)
-    setFiles(filesCopy)
-  }
+      const newImages = arrayMove(images, oldIndex, newIndex);
+      const newFiles = arrayMove(Array.from(files), oldIndex, newIndex);
+
+      setImages(newImages);
+      setFiles(newFiles);
+    }
+  };
 
   const handleChange = (event) => {
     const fileList = event.target.files;
-    setFiles(fileList)
-    const selectedImages = Array.from(fileList).map(file => ({
+    setFiles(fileList);
+    const selectedImages = Array.from(fileList).map((file, index) => ({
+      id: `image-${index}`,
       src: URL.createObjectURL(file),
     }));
     setImages(selectedImages);
@@ -58,15 +91,40 @@ const ImageContainer = ({ form, setForm }) => {
       ...form,
       image: files,
       images: images
-    })
-  }, [images])
+    });
+  }, [images]);
 
   return (
     <>
       <label className="block mb-2 text-sm font-medium text-gray-900">Imagenes</label>
-      <input onChange={handleChange} type="file" multiple id="image" name="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+      <input 
+        onChange={handleChange} 
+        type="file" 
+        multiple 
+        id="image" 
+        name="image" 
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
+        required 
+      />
       <div className="bg-[#847c7c21] mt-1 rounded-lg flex flex-wrap justify-center gap-2 py-5">
-        <SortableList items={images} onSortEnd={onSortEnd} axis={"x"} />
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext items={images.map(img => img.id)} strategy={horizontalListSortingStrategy}>
+            <div className="flex gap-2">
+              {images?.map((image, index) => (
+                <SortableItem 
+                  key={image.id} 
+                  id={image.id} 
+                  src={image.src} 
+                  index={index} 
+                />
+              ))}
+            </div>
+          </SortableContext>
+        </DndContext>
       </div>
     </>
   );

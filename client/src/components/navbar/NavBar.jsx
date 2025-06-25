@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from '../../assets/logo/blanco-fondo-negro-removebg-preview2.webp'
 import { AiOutlineInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 const video = "https://res.cloudinary.com/dgei1j8pa/video/upload/v1690897866/TJInmobiliaria/Videos/Video_sm_ovehrl.mp4"
 const video2 = "https://res.cloudinary.com/dgei1j8pa/video/upload/v1690897865/TJInmobiliaria/Videos/Video_md_lawyl3.mp4"
@@ -9,7 +9,7 @@ const video2 = "https://res.cloudinary.com/dgei1j8pa/video/upload/v1690897865/TJ
 
 export default function Navbar() {
   const { pathname } = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   const [scrollNav, setScrollNav] = useState(false);
 
@@ -23,7 +23,7 @@ export default function Navbar() {
   };
 
   const handleScrollToCampos = () => {
-    history.push('/');
+    navigate('/');
 
     setTimeout(() => {
       const camposElement = document.getElementById('campos');

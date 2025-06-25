@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Filter from "../filter/Filter";
 import Pagination from "../pagination/Pagination";
 import Card from "./Card";
-import axios from "axios";
 import Skeleton from "../skeleton/Skeleton";
 import Card2 from "./Card2";
+import apiService from "../../services/apiService";
 
 export default function CardList() {
   const [properties, setProperties] = useState([]);
@@ -54,7 +54,7 @@ export default function CardList() {
 
   useEffect(() => {
     (async function () {
-      const propertiesDB = await axios.get("/properties");
+      const propertiesDB = await apiService.getProperties();
       setProperties(propertiesDB.data.filter(e => e.archived === false));
     })();
   }, [boolean]);

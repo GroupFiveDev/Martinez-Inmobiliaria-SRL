@@ -1,8 +1,8 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import Card from "../card/Card"
 import { useAuth } from "../../context/authContext"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import apiService from "../../services/apiService"
 
 export default function Archives() {
   const { user } = useAuth()
@@ -11,7 +11,7 @@ export default function Archives() {
 
   useEffect(() => {
     (async function () {
-      const result = await axios.get("/properties")
+      const result = await apiService.getProperties()
       setProperties(result.data.filter(e => e.archived))
     })()
   }, [boolean])

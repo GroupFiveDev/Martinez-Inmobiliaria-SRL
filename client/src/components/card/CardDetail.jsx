@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams, Prompt, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useModal } from "../../hooks/useModal.js";
 import { useAuth } from "../../context/authContext.jsx";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import Phone from "../contact/contacInfo/Phone";
 import WhatsApp from "../contact/contacInfo/WhatsApp";
-import axios from "axios";
 import Location from "../contact/contacInfo/Location";
+import apiService from "../../services/apiService";
 import bathroom from "../../assets/icons/bathrooms.webp";
 import room from "../../assets/icons/rooms.webp";
-import squareIc from "../../assets/icons/squareIc.webp";
+import squareIc from "../../assets/icons/squareic.webp";
 import garaje from "../../assets/icons/garaje.webp";
 import Edit from "../edit/Edit.jsx";
 import Check from "../check/Check.jsx";
@@ -20,7 +20,7 @@ import Map from "../map/Map.jsx";
 import LoaderIamge from "../../assets/svg/svg.components.jsx";
 
 export default function CardDetail() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id } = useParams();
   const { isOpen, closeModal, openModal } = useModal();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -79,10 +79,15 @@ export default function CardDetail() {
 
   const handleOnSave = async () => {
     openModal();
-    const result = await axios.patch(`/properties/${id}`, property);
-    setChange(false);
-    closeModal();
-    history.push("/");
+    try {
+      const result = await apiService.updateProperty(id, property);
+      setChange(false);
+      closeModal();
+      navigate("/");
+    } catch (error) {
+      alert(error.message);
+      closeModal();
+    }
   };
 
   const handleLoadImages = (e) => {
@@ -94,8 +99,13 @@ export default function CardDetail() {
   useEffect(() => {
     if (!property) {
       (async function () {
-        const result = await axios.get(`/properties/${id}`);
-        setProperty(result.data);
+        try {
+          const result = await apiService.getPropertyById(id);
+          setProperty(result.data);
+        } catch (error) {
+          console.error("Error obteniendo propiedad:", error);
+          // Opcional: mostrar mensaje de error al usuario
+        }
       })();
     }
   }, []);
@@ -137,7 +147,6 @@ export default function CardDetail() {
           </div>
           <div className="flex flex-col xl:flex-row md:justify-between gap-5">
             <div className="xl:w-[70%] flex flex-col items-center">
-              {change && (<Prompt message="¿No hay cambios guardados, desea salir igual?" />)}
               <Loading isOpen={isOpen}>
                 <h1 className="font-Montserrat text-white font-bold text-xl">
                   Guardando cambios...

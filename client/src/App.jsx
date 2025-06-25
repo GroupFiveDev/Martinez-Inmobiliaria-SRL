@@ -1,5 +1,5 @@
 import './App.css'
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from './components/home/Home';
 import Footer from './components/footer/Footer';
 import CardDetail from './components/card/CardDetail';
@@ -14,6 +14,7 @@ import Map from './components/map/Map'
 import { useDrawer } from './hooks/useDrawer';
 import { useAuth } from './context/authContext';
 import Navbar from './components/navbar/NavBar';
+import ApiStatus from './components/apiStatus/ApiStatus';
 
 function App() {
   const { openDrawer, closeDrawer, isOpen } = useDrawer()
@@ -21,23 +22,22 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <button name="drawer" onClick={openDrawer} className={`${user ? "flex" : ""}hidden fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-[100]`}>ADMIN</button>
-        <Drawer isOpen={isOpen} closeDrawer={closeDrawer} />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/card/:id" component={CardDetail} />
-          <Route exact path="/Nosotros" component={About} />
-          <Route exact path="/Contacto" component={Contact} />
-          <Route exact path="/Archivados" component={Archives} />
-          <Route exact path="/Proyectos" component={Proyects} />
-          <Route exact path="/Admin" component={Admin} />
-          <Route exact path="/create" component={CreateProperty} />
-          <Route exact path="/Mapa" component={Map} />
-        </Switch>
-        <Footer />
-      </Router>
+      <Navbar />
+      <ApiStatus />
+      <button name="drawer" onClick={openDrawer} className={`${user ? "flex" : ""}hidden fixed top-0 left-0 bg-red-500 p-5 rounded-2xl z-[100]`}>ADMIN</button>
+      <Drawer isOpen={isOpen} closeDrawer={closeDrawer} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/card/:id" element={<CardDetail />} />
+        <Route path="/Nosotros" element={<About />} />
+        <Route path="/Contacto" element={<Contact />} />
+        <Route path="/Archivados" element={<Archives />} />
+        <Route path="/Proyectos" element={<Proyects />} />
+        <Route path="/Admin" element={<Admin />} />
+        <Route path="/create" element={<CreateProperty />} />
+        <Route path="/Mapa" element={<Map />} />
+      </Routes>
+      <Footer />
     </>
   )
 }
